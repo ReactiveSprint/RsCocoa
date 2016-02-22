@@ -1,0 +1,6 @@
+framework module Pods_ReactiveSprint_Example {
+  umbrella header "Pods-ReactiveSprint_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

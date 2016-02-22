@@ -1,0 +1,22 @@
+PODS:
+  - Nimble (3.0.0)
+  - Quick (0.8.0)
+  - ReactiveSprint (0.1.0)
+
+DEPENDENCIES:
+  - Nimble (= 3.0.0)
+  - Quick (~> 0.8.0)
+  - ReactiveSprint (from `../`)
+
+EXTERNAL SOURCES:
+  ReactiveSprint:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Nimble: 4c353d43735b38b545cbb4cb91504588eb5de926
+  Quick: 563d0f6ec5f72e394645adb377708639b7dd38ab
+  ReactiveSprint: 85dd101a9759bf975120a20708b4e86232d77a2a
+
+PODFILE CHECKSUM: 1060148be9298ef466c26e137f094ffbca16f925
+
+COCOAPODS: 1.0.0.beta.3

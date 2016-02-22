@@ -1,0 +1,6 @@
+framework module ReactiveSprint {
+  umbrella header "ReactiveSprint-umbrella.h"
+
+  export *
+  module * { export * }
+}
