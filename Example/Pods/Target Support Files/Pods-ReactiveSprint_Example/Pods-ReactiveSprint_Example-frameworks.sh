@@ -84,8 +84,12 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "Pods-ReactiveSprint_Example/ReactiveCocoa.framework"
   install_framework "Pods-ReactiveSprint_Example/ReactiveSprint.framework"
+  install_framework "Pods-ReactiveSprint_Example/Result.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "Pods-ReactiveSprint_Example/ReactiveCocoa.framework"
   install_framework "Pods-ReactiveSprint_Example/ReactiveSprint.framework"
+  install_framework "Pods-ReactiveSprint_Example/Result.framework"
 fi

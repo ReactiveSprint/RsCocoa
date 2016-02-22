@@ -21,5 +21,10 @@
     "ReactiveSprint": [
       "Pod/Assets/*.png"
     ]
+  },
+  "dependencies": {
+    "ReactiveCocoa": [
+      "~> 4.0"
+    ]
   }
 }
