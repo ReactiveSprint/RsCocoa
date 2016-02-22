@@ -239,7 +239,6 @@
 		C62B0AA907AA7D6350BF26E239FFFB39 /* RACTupleSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 68EFB8CC20BFA8459D39F528FDEF93EE /* RACTupleSequence.m */; };
 		C63AB521EA514A811A167E507C0CF9AD /* Expression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9325C1F4D9E8C5F7490F43684678DB /* Expression.swift */; };
 		C65617FB8A239068923FA3023E4C8D9B /* RACScopedDisposable.m in Sources */ = {isa = PBXBuildFile; fileRef = 227209C9900D3EB5F852F95B5448BA3C /* RACScopedDisposable.m */; };
-		C8D91D88D4956F5777D38E12F555FDB1 /* ReplaceMe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77344903A7A6F968F5977B12C91A089C /* ReplaceMe.swift */; };
 		C9AC658F3FCB67B50E96313C2687B33D /* MatcherProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FB12C5245F77AA553B3EA26C1E72CA6 /* MatcherProtocols.swift */; };
 		CA66AA1DCDE9283C57AA07D907FC747E /* Callsite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BB7181FB89B6C30EF839F1CD65C18D0 /* Callsite.swift */; };
 		CAAED5FB81DB035A9EC080917C783FA6 /* AdapterProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D0A4B4F984639A2607C51C6C281704 /* AdapterProtocols.swift */; };
@@ -279,6 +278,7 @@
 		E2FECBF1421CE00688C1A1EA9DB85FE3 /* NSDictionary+RACSequenceAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = A02CA35E5CCB364F98409D3F48E41589 /* NSDictionary+RACSequenceAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E36C5201AE7F1CBB25F9D2E7CBFC3C20 /* Match.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7526AC964ADEEE36B0103956ED2CBB42 /* Match.swift */; };
 		E3F3DBE87BFBFB7CC12D35108402E128 /* RACSubscriber.h in Headers */ = {isa = PBXBuildFile; fileRef = 20DA2FAC76CD295FF0FA2BDF472A7E2B /* RACSubscriber.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E5406A111C7B2B650035C40E /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5406A101C7B2B650035C40E /* ViewModel.swift */; };
 		E6C30CCB20844B69B667093CE8726B94 /* UIImagePickerController+RACSignalSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 33CCA71E164BCF3D3BC7AE58DE6C24D8 /* UIImagePickerController+RACSignalSupport.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E6E7B15FAD6C56681511813DB2666478 /* AssertionRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF552F08854F74F72C125DDD3C086D6 /* AssertionRecorder.swift */; };
 		E70BBA9EA67CEC670CA0E562ECEAF3CB /* Pods-ReactiveSprint_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F331C3368A597220747711B75A9A59 /* Pods-ReactiveSprint_Example-dummy.m */; };
@@ -538,7 +538,6 @@
 		74CCED6FF528F7BCA43D2459F8FEA16B /* RACEagerSequence.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACEagerSequence.m; path = "ReactiveCocoa/Objective-C/RACEagerSequence.m"; sourceTree = "<group>"; };
 		74E7E849FAE3CAE5240D00088CB50A35 /* NSIndexSet+RACSequenceAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSIndexSet+RACSequenceAdditions.m"; path = "ReactiveCocoa/Objective-C/NSIndexSet+RACSequenceAdditions.m"; sourceTree = "<group>"; };
 		7526AC964ADEEE36B0103956ED2CBB42 /* Match.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Match.swift; path = Nimble/Matchers/Match.swift; sourceTree = "<group>"; };
-		77344903A7A6F968F5977B12C91A089C /* ReplaceMe.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ReplaceMe.swift; sourceTree = "<group>"; };
 		77AD1AB6A2D419C2BD8359BC12FA7C98 /* RACSubscriptingAssignmentTrampoline.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACSubscriptingAssignmentTrampoline.m; path = "ReactiveCocoa/Objective-C/RACSubscriptingAssignmentTrampoline.m"; sourceTree = "<group>"; };
 		780C6DBBF7D0D9662A0265F5B85D458B /* Poll.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Poll.swift; path = Nimble/Utils/Poll.swift; sourceTree = "<group>"; };
 		787678B055CBF5FFD6DA5B2A3A8DC5DB /* NSUserDefaults+RACSupport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSUserDefaults+RACSupport.h"; path = "ReactiveCocoa/Objective-C/NSUserDefaults+RACSupport.h"; sourceTree = "<group>"; };
@@ -697,6 +696,7 @@
 		E24D68EF98D8A98D2343FF0187005DD3 /* World.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = World.h; path = Quick/World.h; sourceTree = "<group>"; };
 		E41F54AC707471744A5B4D14AFB7A7EC /* NSString+RACKeyPathUtilities.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+RACKeyPathUtilities.m"; path = "ReactiveCocoa/Objective-C/NSString+RACKeyPathUtilities.m"; sourceTree = "<group>"; };
 		E50672EED4BADF86FE97F1543FE1269F /* RACDisposable.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACDisposable.h; path = "ReactiveCocoa/Objective-C/RACDisposable.h"; sourceTree = "<group>"; };
+		E5406A101C7B2B650035C40E /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		E56CAC6AD1B70D061F4488ECB6B1864A /* UIBarButtonItem+RACCommandSupport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIBarButtonItem+RACCommandSupport.m"; path = "ReactiveCocoa/Objective-C/UIBarButtonItem+RACCommandSupport.m"; sourceTree = "<group>"; };
 		E6AE8F4B0034EE6A936C1352D0AE88AB /* Result-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Result-prefix.pch"; sourceTree = "<group>"; };
 		E76421F0E741E2E5AD2A5A93C985B423 /* Pods-ReactiveSprint_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ReactiveSprint_Example-umbrella.h"; sourceTree = "<group>"; };
@@ -1162,7 +1162,7 @@
 		9AA9AF7073804B42CCDAF5E2E5D90D14 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				77344903A7A6F968F5977B12C91A089C /* ReplaceMe.swift */,
+				E5406A101C7B2B650035C40E /* ViewModel.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1677,6 +1677,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = ReactiveSprint;
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1849,7 +1850,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				16E2A9DC79F2D22231502B602AC5590E /* ReactiveSprint-dummy.m in Sources */,
-				C8D91D88D4956F5777D38E12F555FDB1 /* ReplaceMe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1915,6 +1915,7 @@
 				73695FA6A6CDFBB13C0CC73C2E5126C0 /* Nimble-dummy.m in Sources */,
 				831D33A4C5C5BBC1EC158D9A236C61D7 /* NimbleXCTestHandler.swift in Sources */,
 				9187EEC2982DB82AD8D3A7001AA647D6 /* NMBExceptionCapture.m in Sources */,
+				E5406A111C7B2B650035C40E /* ViewModel.swift in Sources */,
 				CD9D31B6063C50689EAC2A0745C282DC /* ObjCExpectation.swift in Sources */,
 				7BFD25B1BB1116D8AC47E2C3874C5B76 /* ObjCMatcher.swift in Sources */,
 				8D0BF52FF564A170A3D1DE28C27B233E /* Poll.swift in Sources */,

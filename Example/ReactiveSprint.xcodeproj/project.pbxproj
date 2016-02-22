@@ -12,9 +12,9 @@
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
-		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		B1A6112299F70F9E060DD679 /* Pods_ReactiveSprint_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53A2D43A411F7EBF3C7FF5C /* Pods_ReactiveSprint_Tests.framework */; };
 		D18442CC21DF41A68EEE2FC9 /* Pods_ReactiveSprint_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E619FC54D68AB474EB02CE4 /* Pods_ReactiveSprint_Example.framework */; };
+		E5406A131C7B2DF90035C40E /* ViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5406A121C7B2DF90035C40E /* ViewModelSpec.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,12 +39,12 @@
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* ReactiveSprint_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReactiveSprint_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		64358B0E7341A30A7D1C97A6 /* ReactiveSprint.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = ReactiveSprint.podspec; path = ../ReactiveSprint.podspec; sourceTree = "<group>"; };
 		6469D4D6120BC11A54D8F11A /* Pods-ReactiveSprint_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactiveSprint_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReactiveSprint_Example/Pods-ReactiveSprint_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		6589256AA72411FA1409B0E9 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		7E619FC54D68AB474EB02CE4 /* Pods_ReactiveSprint_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReactiveSprint_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2EB7046BC84D130CA763A64 /* Pods-ReactiveSprint_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactiveSprint_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReactiveSprint_Tests/Pods-ReactiveSprint_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		E5406A121C7B2DF90035C40E /* ViewModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelSpec.swift; sourceTree = "<group>"; };
 		EDBC012B32416B5D72F1E8E5 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		F53A2D43A411F7EBF3C7FF5C /* Pods_ReactiveSprint_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReactiveSprint_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -115,7 +115,7 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				607FACEB1AFB9204008FA782 /* Tests.swift */,
+				E5406A121C7B2DF90035C40E /* ViewModelSpec.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -211,7 +211,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0720;
-				ORGANIZATIONNAME = CocoaPods;
+				ORGANIZATIONNAME = ReactiveSprint;
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -368,7 +368,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
+				E5406A131C7B2DF90035C40E /* ViewModelSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
