@@ -1,24 +1,8 @@
 # ReactiveSprint
 
-[![CI Status](http://img.shields.io/travis/Ahmad Baraka/ReactiveSprint.svg?style=flat)](https://travis-ci.org/Ahmad Baraka/ReactiveSprint)
-[![Version](https://img.shields.io/cocoapods/v/ReactiveSprint.svg?style=flat)](http://cocoapods.org/pods/ReactiveSprint)
-[![License](https://img.shields.io/cocoapods/l/ReactiveSprint.svg?style=flat)](http://cocoapods.org/pods/ReactiveSprint)
-[![Platform](https://img.shields.io/cocoapods/p/ReactiveSprint.svg?style=flat)](http://cocoapods.org/pods/ReactiveSprint)
-
-## Usage
-
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
-
-## Requirements
-
-## Installation
-
-ReactiveSprint is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
-
-```ruby
-pod "ReactiveSprint"
-```
+[![CI Status](https://travis-ci.org/ReactiveSprint/ReactiveSprint-Swift.svg?branch=master)](https://travis-ci.org/ReactiveSprint/ReactiveSprint-Swift)
+ReactiveSprint aims to speedup development in different platforms by providing implementation for MVVM.  
+This project is currently under development.
 
 ## Author
 
