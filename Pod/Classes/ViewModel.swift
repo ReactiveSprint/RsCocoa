@@ -74,7 +74,7 @@ public extension SignalProducerType
         var signalDisposableHandler: CompositeDisposable.DisposableHandle?
         
         return SignalProducer { (observer, disposable) -> () in
-            let activeDisposable = activeProducer.start(Observer(failed: nil
+            disposable += activeProducer.start(Observer(failed: nil
                 , completed: { observer.sendCompleted() },
                 interrupted: { observer.sendInterrupted() },
                 next: { isActive -> () in
@@ -103,8 +103,6 @@ public extension SignalProducerType
                         }
                     }
             }))
-            
-            disposable.addDisposable(activeDisposable)
         }
     }
 }
