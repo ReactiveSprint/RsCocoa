@@ -57,3 +57,54 @@ public class ViewModel
         self.init(title: nil)
     }
 }
+
+public extension SignalProducerType
+{
+    /// Observes the receiver whenever `viewModel` is active.
+    ///
+    /// When `viewModel` is inactive, any active observer is disposed.
+    ///
+    /// - Returns: A signal which forwards `next`s from the latest observer
+    /// and completes when `viewModel` is deinitialized. If the receiver sends
+    /// an error at any point, the returned signal will error out as well.
+    public func forwardWhileActive(viewModel: ViewModel) -> SignalProducer<Value, Error>
+    {
+        let activeProducer = viewModel.active.producer
+        var signalDisposable: Disposable?
+        var signalDisposableHandler: CompositeDisposable.DisposableHandle?
+        
+        return SignalProducer { (observer, disposable) -> () in
+            let activeDisposable = activeProducer.start(Observer(failed: nil
+                , completed: { observer.sendCompleted() },
+                interrupted: { observer.sendInterrupted() },
+                next: { isActive -> () in
+                    if isActive
+                    {
+                        signalDisposable = self.start(Observer(failed: { observer.sendFailed($0) },
+                            completed: nil,
+                            interrupted: nil,
+                            next: { observer.sendNext($0)}
+                            ))
+                        
+                        signalDisposableHandler = disposable.addDisposable(signalDisposable)
+                    }
+                    else
+                    {
+                        if let signalDisposable1 = signalDisposable
+                        {
+                            signalDisposable1.dispose()
+                            signalDisposable = nil
+                        }
+                        
+                        if let signalDisposableHandler1 = signalDisposableHandler
+                        {
+                            signalDisposableHandler1.remove()
+                            signalDisposableHandler = nil
+                        }
+                    }
+            }))
+            
+            disposable.addDisposable(activeDisposable)
+        }
+    }
+}
