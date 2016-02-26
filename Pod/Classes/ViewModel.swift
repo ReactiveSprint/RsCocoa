@@ -60,11 +60,11 @@ public class ViewModel
 
 public extension SignalProducerType
 {
-    /// Observes the receiver whenever `viewModel` is active.
+    /// Starts the receiver whenever `viewModel` is active.
     ///
     /// When `viewModel` is inactive, any active observer is disposed.
     ///
-    /// - Returns: A signal which forwards `next`s from the latest observer
+    /// - Returns: A SignalProducer starts and forwards `next`s from the latest observer
     /// and completes when `viewModel` is deinitialized. If the receiver sends
     /// an error at any point, the returned signal will error out as well.
     public func forwardWhileActive(viewModel: ViewModel) -> SignalProducer<Value, Error>
