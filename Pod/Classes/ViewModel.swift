@@ -46,7 +46,7 @@ public class ViewModel
     
     /// Initializes a ViewModel with `title`
     ///
-    /// - parameter title: Title to be used for the reciever.
+    /// - Parameter title: Title to be used for the reciever.
     public init(title: String?)
     {
         self.title = ReactiveCocoa.MutableProperty(title)
