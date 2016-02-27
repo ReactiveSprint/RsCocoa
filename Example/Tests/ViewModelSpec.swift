@@ -98,7 +98,7 @@ class ViewModelSpec: QuickSpec {
                     expect(completed).toEventually(beTrue())
                 }
                 
-                it("should forward signal") {
+                it("should forward SignalProducer") {
                     let signal = SignalProducer<Int, NoError> { (observer, disposable) in
                         observer.sendNext(1)
                         observer.sendNext(2)
@@ -120,6 +120,53 @@ class ViewModelSpec: QuickSpec {
                     
                     viewModel.active.value = true
                     
+                    expectedValues = [1, 2, 1, 2]
+                    expect(values).toEventually(equal(expectedValues))
+                    expect(completed) == false
+                }
+                
+            }
+            
+            context("Signal manipulation") {
+                var values: [Int]!
+                var expectedValues: [Int]!
+                var completed = false
+                
+                beforeEach {
+                    values = [Int]()
+                    viewModel.active.value = true
+                }
+                
+                afterEach {
+                    viewModel = nil
+                    expect(completed).toEventually(beTrue())
+                }
+                
+                it("should forward signal") {
+                    let (signal, observer) = Signal<Int, NoError>.pipe()
+                    
+                    signal.forwardWhileActive(viewModel)
+                        .observe(Observer(failed: nil,
+                            completed: { completed = true },
+                            interrupted: nil,
+                            next: { values.append($0) }))
+                    
+                    observer.sendNext(1)
+                    observer.sendNext(2)
+                    
+                    expectedValues = [1, 2]
+                    expect(values).toEventually(equal(expectedValues))
+                    expect(completed) == false
+                    
+                    viewModel.active.value = false
+                    observer.sendNext(1)
+                    expect(values).toEventually(equal(expectedValues))
+                    expect(completed) == false
+                    
+                    viewModel.active.value = true
+                    
+                    observer.sendNext(1)
+                    observer.sendNext(2)
                     expectedValues = [1, 2, 1, 2]
                     expect(values).toEventually(equal(expectedValues))
                     expect(completed) == false

@@ -106,3 +106,59 @@ public extension SignalProducerType
         }
     }
 }
+public extension SignalType
+{
+    /// Observes the receiver whenever `viewModel` is active.
+    ///
+    /// When `viewModel` is inactive, any active observer is disposed.
+    ///
+    /// - Returns: A signal which forwards `next`s from the latest observer
+    /// and completes when `viewModel` is deinitialized. If the receiver sends
+    /// an error at any point, the returned signal will error out as well.
+    public func forwardWhileActive(viewModel: ViewModel) -> Signal<Value, Error>
+    {
+        let activeProducer = viewModel.active.producer
+        let signal = self.signal
+        
+        return Signal { observer -> (Disposable?) in
+            let disposable = CompositeDisposable()
+            var signalDisposable: Disposable?
+            var signalDisposableHandler: CompositeDisposable.DisposableHandle?
+            
+            disposable += activeProducer.start(
+                Observer(failed: nil,
+                    completed: { observer.sendCompleted() },
+                    interrupted: { observer.sendInterrupted() },
+                    next:
+                    { isActive -> () in
+                        if isActive
+                        {
+                            signalDisposable = signal.observe(
+                                Observer(failed: { observer.sendFailed($0) },
+                                    completed: nil,
+                                    interrupted: nil,
+                                    next: { observer.sendNext($0)})
+                            )
+                            
+                            signalDisposableHandler = disposable.addDisposable(signalDisposable)
+                        }
+                        else
+                        {
+                            if let signalDisposable1 = signalDisposable
+                            {
+                                signalDisposable1.dispose()
+                                signalDisposable = nil
+                            }
+                            
+                            if let signalDisposableHandler1 = signalDisposableHandler
+                            {
+                                signalDisposableHandler1.remove()
+                                signalDisposableHandler = nil
+                            }
+                        }
+                }))
+            
+            return disposable
+        }
+    }
+}
