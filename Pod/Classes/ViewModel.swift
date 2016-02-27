@@ -21,6 +21,9 @@ public class ViewModel
     /// This generally implies that the associated view is visible. When set to false,
     /// the view model should throttle or cancel low-priority or UI-related work.
     ///
+    /// Original `active` implementation and tests from
+    /// [ReactiveViewModel.](https://github.com/ReactiveCocoa/ReactiveViewModel)
+    ///
     /// This property defaults to false.
     public let active = ReactiveCocoa.MutableProperty(false)
     
@@ -105,7 +108,49 @@ public extension SignalProducerType
             }))
         }
     }
+    
+    /// Throttles events on the receiver while `viewModel` is inactive.
+    ///
+    /// This method will stay subscribed to the receiver the entire time
+    /// except that its events will be throttled when `viewModel`  becomes inactive.
+    ///
+    /// - Returns: A signal which forwards events from the receiver (throttled while
+    /// `viewModel` is inactive), and completes when the receiver completes or `viewModel`
+    /// is deinitialized.
+    public func throttleWhileInactive(viewModel: ViewModel, interval: NSTimeInterval, onScheduler scheduler: DateSchedulerType) -> SignalProducer<Value, Error>
+    {
+        let activeProducer = viewModel.active.producer.flatMapError({ _ in SignalProducer<Bool, Error>.empty })
+        let untilSignal = flatMap(.Latest, transform: { _ in SignalProducer.empty })
+            .flatMapError({ _ in SignalProducer<(), NoError>.empty})
+        let producer = self.producer.replayLazily(1)
+        
+        return SignalProducer <SignalProducer<Value, Error>, Error> ({ (observer, disposable) in
+            disposable += activeProducer.start { event in
+                switch event
+                {
+                case let .Failed(error):
+                    observer.sendFailed(error)
+                case .Completed:
+                    observer.sendCompleted()
+                case .Interrupted:
+                    observer.sendInterrupted()
+                case let .Next(active):
+                    if active
+                    {
+                        observer.sendNext(producer)
+                    }
+                    else
+                    {
+                        observer.sendNext(producer.throttle(interval, onScheduler: scheduler))
+                    }
+                    break
+                }
+            }
+        }).flatten(.Latest)
+            .takeUntil(untilSignal)
+    }
 }
+
 public extension SignalType
 {
     /// Observes the receiver whenever `viewModel` is active.
@@ -160,5 +205,24 @@ public extension SignalType
             
             return disposable
         }
+    }
+    
+    /// Throttles events on the receiver while `viewModel` is inactive.
+    ///
+    /// This method will stay subscribed to the receiver the entire time
+    /// except that its events will be throttled when `viewModel`  becomes inactive.
+    ///
+    /// - Returns: A signal which forwards events from the receiver (throttled while
+    /// `viewModel` is inactive), and completes when the receiver completes or `viewModel`
+    /// is deinitialized.
+    public func throttleWhileInactive(viewModel: ViewModel, interval: NSTimeInterval, onScheduler scheduler: DateSchedulerType) -> Signal<Value, Error>
+    {
+        var r: Signal<Value, Error>!
+        SignalProducer(signal: self)
+            .throttleWhileInactive(viewModel, interval: interval, onScheduler: scheduler)
+            .startWithSignal { (signal, disposable) -> () in
+                r = signal
+        }
+        return r
     }
 }

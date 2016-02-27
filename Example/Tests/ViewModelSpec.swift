@@ -29,6 +29,10 @@ class ViewModelSpec: QuickSpec {
             }
         }
         
+        ///
+        /// Original `active` implementation and tests from
+        /// [ReactiveViewModel.](https://github.com/ReactiveCocoa/ReactiveViewModel)
+        ///
         describe("active property") {
             
             it("should default to false") {
@@ -83,7 +87,7 @@ class ViewModelSpec: QuickSpec {
                 expect(nextEvents) == 2
             }
             
-            context("SignalProducer manipulation") {
+            context("SignalProducer forwarding") {
                 var values: [Int]!
                 var expectedValues: [Int]!
                 var completed = false
@@ -125,6 +129,68 @@ class ViewModelSpec: QuickSpec {
                     expect(completed) == false
                 }
                 
+            }
+            
+            context("SignalProducer throttling") {
+                var values: [Int]!
+                var expectedValues: [Int]!
+                var completed = false
+                
+                beforeEach {
+                    values = [Int]()
+                    viewModel.active.value = true
+                }
+                
+                afterEach {
+                    viewModel = nil
+                    expect(completed).toEventually(beTrue())
+                }
+                
+                it("should throttle SignalProducer") {
+                    let (signal, observer) = SignalProducer<Int, NoError>.buffer(1)
+                    
+                    signal.throttleWhileInactive(viewModel, interval: 1, onScheduler: QueueScheduler.mainQueueScheduler)
+                        .start(Observer(failed: nil,
+                            completed: { completed = true },
+                            interrupted: nil,
+                            next: {
+                                values.append($0) }))
+                    
+                    observer.sendNext(1)
+                    
+                    expectedValues = [1]
+                    expect(values) == expectedValues
+                    expect(completed) == false
+                    
+                    viewModel.active.value = false
+                    
+                    observer.sendNext(2)
+                    observer.sendNext(3)
+                    expect(values) == expectedValues
+                    expect(completed) == false
+
+                    expectedValues = [1, 3]
+                    expect(values).toEventually(equal(expectedValues), timeout: 2)
+                    expect(completed) == false
+
+                    // After reactivating, we should still get this event.
+                    observer.sendNext(4)
+                    viewModel.active.value = true
+                    
+                    expectedValues = [1, 3, 4]
+                    expect(values) == expectedValues
+                    expect(completed) == false
+                    
+                    // And now new events should be instant.
+                    observer.sendNext(5)
+                    expectedValues = [1, 3, 4, 5]
+                    expect(values) == expectedValues
+                    expect(completed) == false
+                    
+                    observer.sendCompleted()
+                    expect(values) == expectedValues
+                    expect(completed) == true
+                }
             }
             
             context("Signal manipulation") {
@@ -171,8 +237,70 @@ class ViewModelSpec: QuickSpec {
                     expect(values).toEventually(equal(expectedValues))
                     expect(completed) == false
                 }
-                
             }
+            
+            context("Signal throttling") {
+                var values: [Int]!
+                var expectedValues: [Int]!
+                var completed = false
+                
+                beforeEach {
+                    values = [Int]()
+                    viewModel.active.value = true
+                }
+                
+                afterEach {
+                    viewModel = nil
+                    expect(completed).toEventually(beTrue())
+                }
+                
+                it("should throttle Signal") {
+                    let (signal, observer) = Signal<Int, NoError>.pipe()
+                    
+                    signal.throttleWhileInactive(viewModel, interval: 1, onScheduler: QueueScheduler.mainQueueScheduler)
+                        .observe(Observer(failed: nil,
+                            completed: { completed = true },
+                            interrupted: nil,
+                            next: { values.append($0) }))
+                    
+                    observer.sendNext(1)
+                    
+                    expectedValues = [1]
+                    expect(values) == expectedValues
+                    expect(completed) == false
+                    
+                    viewModel.active.value = false
+                    
+                    observer.sendNext(2)
+                    observer.sendNext(3)
+                    expect(values) == expectedValues
+                    expect(completed) == false
+                    
+                    expectedValues = [1, 3]
+                    
+                    expect(values).toEventually(equal(expectedValues), timeout: 2)
+                    expect(completed) == false
+                    
+                    // After reactivating, we should still get this event.
+                    observer.sendNext(4)
+                    viewModel.active.value = true
+                    
+                    expectedValues = [1, 3, 4]
+                    expect(values) == expectedValues
+                    expect(completed) == false
+                    
+                    // And now new events should be instant.
+                    observer.sendNext(5)
+                    expectedValues = [1, 3, 4, 5]
+                    expect(values) == expectedValues
+                    expect(completed) == false
+                    
+                    observer.sendCompleted()
+                    expect(values) == expectedValues
+                    expect(completed) == true
+                }
+            }
+            
         }
     }
     
