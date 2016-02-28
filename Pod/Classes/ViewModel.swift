@@ -10,8 +10,18 @@ import Foundation
 import ReactiveCocoa
 import Result
 
+/// Represents a ViewModel.
+public protocol ViewModelType
+{
+    /// Used as general `title`
+    var title: ReactiveCocoa.MutableProperty<String?> { get }
+    
+    /// Whether the view model is currently "active."
+    var active: MutableProperty<Bool> { get }
+}
+
 /// Abstract implementation of `ViewModel` used in `MVVM pattern`
-public class ViewModel
+public class ViewModel: ViewModelType
 {
     /// Used as general `title`
     public let title: ReactiveCocoa.MutableProperty<String?>
@@ -54,6 +64,7 @@ public class ViewModel
     {
         self.title = ReactiveCocoa.MutableProperty(title)
     }
+    
     /// Initializes a ViewModel with `nil title`.
     public convenience init()
     {
@@ -70,43 +81,9 @@ public extension SignalProducerType
     /// - Returns: A SignalProducer starts and forwards `next`s from the latest observer
     /// and completes when `viewModel` is deinitialized. If the receiver sends
     /// an error at any point, the returned signal will error out as well.
-    public func forwardWhileActive(viewModel: ViewModel) -> SignalProducer<Value, Error>
+    public func forwardWhileActive(viewModel: ViewModelType) -> SignalProducer<Value, Error>
     {
-        let activeProducer = viewModel.active.producer
-        var signalDisposable: Disposable?
-        var signalDisposableHandler: CompositeDisposable.DisposableHandle?
-        
-        return SignalProducer { (observer, disposable) -> () in
-            disposable += activeProducer.start(Observer(failed: nil
-                , completed: { observer.sendCompleted() },
-                interrupted: { observer.sendInterrupted() },
-                next: { isActive -> () in
-                    if isActive
-                    {
-                        signalDisposable = self.start(Observer(failed: { observer.sendFailed($0) },
-                            completed: nil,
-                            interrupted: nil,
-                            next: { observer.sendNext($0)}
-                            ))
-                        
-                        signalDisposableHandler = disposable.addDisposable(signalDisposable)
-                    }
-                    else
-                    {
-                        if let signalDisposable1 = signalDisposable
-                        {
-                            signalDisposable1.dispose()
-                            signalDisposable = nil
-                        }
-                        
-                        if let signalDisposableHandler1 = signalDisposableHandler
-                        {
-                            signalDisposableHandler1.remove()
-                            signalDisposableHandler = nil
-                        }
-                    }
-            }))
-        }
+        return forwardWhileActive(viewModel.active.producer)
     }
     
     /// Throttles events on the receiver while `viewModel` is inactive.
@@ -117,37 +94,9 @@ public extension SignalProducerType
     /// - Returns: A signal which forwards events from the receiver (throttled while
     /// `viewModel` is inactive), and completes when the receiver completes or `viewModel`
     /// is deinitialized.
-    public func throttleWhileInactive(viewModel: ViewModel, interval: NSTimeInterval, onScheduler scheduler: DateSchedulerType) -> SignalProducer<Value, Error>
+    public func throttleWhileInactive(viewModel: ViewModelType, interval: NSTimeInterval, onScheduler scheduler: DateSchedulerType) -> SignalProducer<Value, Error>
     {
-        let activeProducer = viewModel.active.producer.flatMapError({ _ in SignalProducer<Bool, Error>.empty })
-        let untilSignal = flatMap(.Latest, transform: { _ in SignalProducer.empty })
-            .flatMapError({ _ in SignalProducer<(), NoError>.empty})
-        let producer = self.producer.replayLazily(1)
-        
-        return SignalProducer <SignalProducer<Value, Error>, Error> ({ (observer, disposable) in
-            disposable += activeProducer.start { event in
-                switch event
-                {
-                case let .Failed(error):
-                    observer.sendFailed(error)
-                case .Completed:
-                    observer.sendCompleted()
-                case .Interrupted:
-                    observer.sendInterrupted()
-                case let .Next(active):
-                    if active
-                    {
-                        observer.sendNext(producer)
-                    }
-                    else
-                    {
-                        observer.sendNext(producer.throttle(interval, onScheduler: scheduler))
-                    }
-                    break
-                }
-            }
-        }).flatten(.Latest)
-            .takeUntil(untilSignal)
+        return throttleWhileInactive(viewModel.active.producer, interval: interval, onScheduler: scheduler)
     }
 }
 
@@ -160,51 +109,9 @@ public extension SignalType
     /// - Returns: A signal which forwards `next`s from the latest observer
     /// and completes when `viewModel` is deinitialized. If the receiver sends
     /// an error at any point, the returned signal will error out as well.
-    public func forwardWhileActive(viewModel: ViewModel) -> Signal<Value, Error>
+    public func forwardWhileActive(viewModel: ViewModelType) -> Signal<Value, Error>
     {
-        let activeProducer = viewModel.active.producer
-        let signal = self.signal
-        
-        return Signal { observer -> (Disposable?) in
-            let disposable = CompositeDisposable()
-            var signalDisposable: Disposable?
-            var signalDisposableHandler: CompositeDisposable.DisposableHandle?
-            
-            disposable += activeProducer.start(
-                Observer(failed: nil,
-                    completed: { observer.sendCompleted() },
-                    interrupted: { observer.sendInterrupted() },
-                    next:
-                    { isActive -> () in
-                        if isActive
-                        {
-                            signalDisposable = signal.observe(
-                                Observer(failed: { observer.sendFailed($0) },
-                                    completed: nil,
-                                    interrupted: nil,
-                                    next: { observer.sendNext($0)})
-                            )
-                            
-                            signalDisposableHandler = disposable.addDisposable(signalDisposable)
-                        }
-                        else
-                        {
-                            if let signalDisposable1 = signalDisposable
-                            {
-                                signalDisposable1.dispose()
-                                signalDisposable = nil
-                            }
-                            
-                            if let signalDisposableHandler1 = signalDisposableHandler
-                            {
-                                signalDisposableHandler1.remove()
-                                signalDisposableHandler = nil
-                            }
-                        }
-                }))
-            
-            return disposable
-        }
+        return forwardWhileActive(viewModel.active.producer)
     }
     
     /// Throttles events on the receiver while `viewModel` is inactive.
@@ -215,14 +122,8 @@ public extension SignalType
     /// - Returns: A signal which forwards events from the receiver (throttled while
     /// `viewModel` is inactive), and completes when the receiver completes or `viewModel`
     /// is deinitialized.
-    public func throttleWhileInactive(viewModel: ViewModel, interval: NSTimeInterval, onScheduler scheduler: DateSchedulerType) -> Signal<Value, Error>
+    public func throttleWhileInactive(viewModel: ViewModelType, interval: NSTimeInterval, onScheduler scheduler: DateSchedulerType) -> Signal<Value, Error>
     {
-        var r: Signal<Value, Error>!
-        SignalProducer(signal: self)
-            .throttleWhileInactive(viewModel, interval: interval, onScheduler: scheduler)
-            .startWithSignal { (signal, disposable) -> () in
-                r = signal
-        }
-        return r
+        return throttleWhileInactive(viewModel.active.producer, interval: interval, onScheduler: scheduler)
     }
 }
