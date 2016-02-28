@@ -18,6 +18,9 @@ public protocol ViewModelType
     
     /// Whether the view model is currently "active."
     var active: MutableProperty<Bool> { get }
+    
+    /// Unified errors signal for the receiver.
+    var errors: Signal<ViewModelErrorType, NoError> { get }
 }
 
 /// Abstract implementation of `ViewModel` used in `MVVM pattern`
@@ -57,18 +60,53 @@ public class ViewModel: ViewModelType
         .filter({ !$0 })
         .map({ [unowned self] _ in self })
     
+    private let errorsObserver: Observer<Signal<ViewModelErrorType, NoError>, NoError>
+    /// Unified errors signal for the receiver.
+    ///
+    /// Use `bindAction(Action)` or `bindErrors(Signal)`
+    public let errors: Signal<ViewModelErrorType, NoError>
+    
     /// Initializes a ViewModel with `title`
     ///
     /// - Parameter title: Title to be used for the reciever.
     public init(title: String?)
     {
         self.title = ReactiveCocoa.MutableProperty(title)
+        
+        let errors: (Signal<Signal<ViewModelErrorType, NoError>, NoError>, Observer<Signal<ViewModelErrorType, NoError>, NoError>) = Signal.pipe()
+        
+        self.errors = errors.0.flatten(.Merge)
+        errorsObserver = errors.1
     }
     
     /// Initializes a ViewModel with `nil title`.
     public convenience init()
     {
         self.init(title: nil)
+    }
+    
+    deinit
+    {
+        errorsObserver.sendCompleted()
+    }
+}
+
+public extension ViewModel
+{
+    /// Binds `errorsSignal` to the receiver's `errors.`
+    ///
+    /// This method allows you to forward errors without binding an Action.
+    ///
+    /// - Parameter signal: A signal which sends ViewModelErrorType
+    public func bindErrors<Error: ViewModelErrorType>(signal: Signal<Error, NoError>)
+    {
+        errorsObserver.sendNext(signal.map { $0 as ViewModelErrorType })
+    }
+    
+    /// Binds `action.errors` to the receiver's `errors.`
+    public func bindAction<Input, Output, Error: ViewModelErrorType>(action: Action<Input, Output, Error>)
+    {
+        bindErrors(action.errors)
     }
 }
 
@@ -126,4 +164,21 @@ public extension SignalType
     {
         return throttleWhileInactive(viewModel.active.producer, interval: interval, onScheduler: scheduler)
     }
+}
+
+/// Represents Errors that occur in ViewModels.
+///
+/// This error type is suitable for use in Alerts.
+public protocol ViewModelErrorType: ErrorType
+{
+    var localizedDescription: String { get }
+    
+    var localizedRecoverySuggestion: String? { get }
+    
+    var localizedRecoveryOptions: [String]? { get }
+}
+
+extension NSError: ViewModelErrorType
+{
+    
 }
