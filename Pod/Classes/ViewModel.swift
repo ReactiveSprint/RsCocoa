@@ -21,6 +21,13 @@ public protocol ViewModelType
     
     /// Unified errors signal for the receiver.
     var errors: Signal<ViewModelErrorType, NoError> { get }
+    
+    /// Binds `errorsSignal` to the receiver's `errors.`
+    ///
+    /// This method allows you to forward errors without binding an Action.
+    ///
+    /// - Parameter signal: A signal which sends ViewModelErrorType
+    func bindErrors<Error: ViewModelErrorType>(signal: Signal<Error, NoError>)
 }
 
 /// Abstract implementation of `ViewModel` used in `MVVM pattern`
@@ -89,10 +96,7 @@ public class ViewModel: ViewModelType
     {
         errorsObserver.sendCompleted()
     }
-}
-
-public extension ViewModel
-{
+    
     /// Binds `errorsSignal` to the receiver's `errors.`
     ///
     /// This method allows you to forward errors without binding an Action.
@@ -102,7 +106,10 @@ public extension ViewModel
     {
         errorsObserver.sendNext(signal.map { $0 as ViewModelErrorType })
     }
-    
+}
+
+public extension ViewModelType
+{
     /// Binds `action.errors` to the receiver's `errors.`
     public func bindAction<Input, Output, Error: ViewModelErrorType>(action: Action<Input, Output, Error>)
     {
