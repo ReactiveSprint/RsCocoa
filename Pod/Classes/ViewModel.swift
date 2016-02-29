@@ -53,7 +53,7 @@ public class ViewModel: ViewModelType
     /// If the receiver is currently active, this signal will send once immediately
     /// upon observe.
     private(set) public lazy var didBecomeActive: SignalProducer<ViewModel, NoError> = self.active.producer
-        .skipRepeats({ $0 == $1 })
+        .skipRepeats()
         .filter({ $0 })
         .map({ [unowned self] _ in self })
     
@@ -63,7 +63,7 @@ public class ViewModel: ViewModelType
     /// If the receiver is currently inactive, this signal will send once immediately
     /// upon observe.
     private(set) public lazy var didBecomeInActive: SignalProducer<ViewModel, NoError> = self.active.producer
-        .skipRepeats({ $0 == $1 })
+        .skipRepeats()
         .filter({ !$0 })
         .map({ [unowned self] _ in self })
     
