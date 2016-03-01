@@ -1,5 +1,5 @@
 //
-//  Throttle.swift
+//  SignalManipulation.swift
 //  Pods
 //
 //  Created by Ahmad Baraka on 2/28/16.

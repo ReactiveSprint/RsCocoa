@@ -177,7 +177,7 @@
 		83525539DB6D9EFE26610A417CC6AFFA /* RACSubscriptionScheduler.m in Sources */ = {isa = PBXBuildFile; fileRef = 5449B753075FD9A5C237D49DF146C28F /* RACSubscriptionScheduler.m */; };
 		85C5DEC5B1718A866932EE477FF930AE /* RACSubscriptionScheduler.h in Headers */ = {isa = PBXBuildFile; fileRef = DC9991FCD3B4BBA15957F71016EE3251 /* RACSubscriptionScheduler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		87CD6F8E3649218ED741EABEF396B308 /* UIAlertView+RACSignalSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = B10E26CBDF6A328F10D9D1EE1BE37F55 /* UIAlertView+RACSignalSupport.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		88496613194BB9A6A0886430D47E6979 /* Throttle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5179C6FCFB280EF642E39F9957C4B0 /* Throttle.swift */; };
+		88496613194BB9A6A0886430D47E6979 /* SignalManipulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B5179C6FCFB280EF642E39F9957C4B0 /* SignalManipulation.swift */; };
 		892C4FA1B02CC053BA90C3A18406E451 /* RACUnarySequence.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A7AFCCE79455CC0B3A1F5517F40CE21 /* RACUnarySequence.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		896AEF72F792D652556E3B0E893C4593 /* UIControl+RACSignalSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 20F233799EA08C7D73890F424961F01F /* UIControl+RACSignalSupport.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8A09DE6D80C404F5C9797294CEDD0105 /* RACTestScheduler.h in Headers */ = {isa = PBXBuildFile; fileRef = BAE082597B0093682428AD55C56EEB95 /* RACTestScheduler.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -486,7 +486,7 @@
 		489A5F79EA5114407648FC89071A8B6B /* EXTScope.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EXTScope.h; path = "ReactiveCocoa/Objective-C/extobjc/EXTScope.h"; sourceTree = "<group>"; };
 		48BC0B07D4AC5A7658F331DA33BEBF41 /* Scheduler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Scheduler.swift; path = ReactiveCocoa/Swift/Scheduler.swift; sourceTree = "<group>"; };
 		49E0456561146A498EF19F082809E76A /* SignalProducer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SignalProducer.swift; path = ReactiveCocoa/Swift/SignalProducer.swift; sourceTree = "<group>"; };
-		4B5179C6FCFB280EF642E39F9957C4B0 /* Throttle.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Throttle.swift; sourceTree = "<group>"; };
+		4B5179C6FCFB280EF642E39F9957C4B0 /* SignalManipulation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SignalManipulation.swift; sourceTree = "<group>"; };
 		4DD595B6D47EF566DA47CD8CF771CD72 /* QuickSpec.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = QuickSpec.h; path = Quick/QuickSpec.h; sourceTree = "<group>"; };
 		4E37FAEBEA2E9934D92978FE492C6BDA /* Pods-ReactiveSprint_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ReactiveSprint_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		4E4B43958E8990779E6A134FDD6D0A7F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -911,7 +911,7 @@
 		5244D6805D59D77C90C605F94E0E1C71 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				4B5179C6FCFB280EF642E39F9957C4B0 /* Throttle.swift */,
+				4B5179C6FCFB280EF642E39F9957C4B0 /* SignalManipulation.swift */,
 				C012D2426F929873DA17304853B051C9 /* ViewModel.swift */,
 			);
 			path = Classes;
@@ -1730,7 +1730,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C5CF0DF6BD103CC3FAA55E9F54E58C4 /* ReactiveSprint-dummy.m in Sources */,
-				88496613194BB9A6A0886430D47E6979 /* Throttle.swift in Sources */,
+				88496613194BB9A6A0886430D47E6979 /* SignalManipulation.swift in Sources */,
 				938B4ADB64721B80BAFF8AFD8BE6DAB7 /* ViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

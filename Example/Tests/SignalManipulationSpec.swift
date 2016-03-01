@@ -1,5 +1,5 @@
 //
-//  ThrottleSpec.swift
+//  SignalManipulationSpec.swift
 //  ReactiveSprint
 //
 //  Created by Ahmad Baraka on 2/28/16.
@@ -13,7 +13,7 @@ import ReactiveCocoa
 import Result
 import ReactiveSprint
 
-class ThrottleSpec: QuickSpec {
+class SignalManipulationSpec: QuickSpec {
     
     override func spec() {
         
