@@ -173,3 +173,59 @@ public extension SignalType
         return r
     }
 }
+
+public extension SignalProducerType
+{
+    /// Starts the receiver whenever `viewModel` is active.
+    ///
+    /// When `viewModel` is inactive, any active observer is disposed.
+    ///
+    /// - Returns: A SignalProducer starts and forwards `next`s from the latest observer
+    /// and completes when `viewModel` is deinitialized. If the receiver sends
+    /// an error at any point, the returned signal will error out as well.
+    public func forwardWhileActive(viewModel: ViewModelType) -> SignalProducer<Value, Error>
+    {
+        return forwardWhileActive(viewModel.active.producer)
+    }
+    
+    /// Throttles events on the receiver while `viewModel` is inactive.
+    ///
+    /// This method will stay subscribed to the receiver the entire time
+    /// except that its events will be throttled when `viewModel`  becomes inactive.
+    ///
+    /// - Returns: A signal which forwards events from the receiver (throttled while
+    /// `viewModel` is inactive), and completes when the receiver completes or `viewModel`
+    /// is deinitialized.
+    public func throttleWhileInactive(viewModel: ViewModelType, interval: NSTimeInterval, onScheduler scheduler: DateSchedulerType) -> SignalProducer<Value, Error>
+    {
+        return throttleWhileInactive(viewModel.active.producer, interval: interval, onScheduler: scheduler)
+    }
+}
+
+public extension SignalType
+{
+    /// Observes the receiver whenever `viewModel` is active.
+    ///
+    /// When `viewModel` is inactive, any active observer is disposed.
+    ///
+    /// - Returns: A signal which forwards `next`s from the latest observer
+    /// and completes when `viewModel` is deinitialized. If the receiver sends
+    /// an error at any point, the returned signal will error out as well.
+    public func forwardWhileActive(viewModel: ViewModelType) -> Signal<Value, Error>
+    {
+        return forwardWhileActive(viewModel.active.producer)
+    }
+    
+    /// Throttles events on the receiver while `viewModel` is inactive.
+    ///
+    /// This method will stay subscribed to the receiver the entire time
+    /// except that its events will be throttled when `viewModel`  becomes inactive.
+    ///
+    /// - Returns: A signal which forwards events from the receiver (throttled while
+    /// `viewModel` is inactive), and completes when the receiver completes or `viewModel`
+    /// is deinitialized.
+    public func throttleWhileInactive(viewModel: ViewModelType, interval: NSTimeInterval, onScheduler scheduler: DateSchedulerType) -> Signal<Value, Error>
+    {
+        return throttleWhileInactive(viewModel.active.producer, interval: interval, onScheduler: scheduler)
+    }
+}
