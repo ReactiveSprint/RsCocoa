@@ -171,7 +171,7 @@ public extension ViewModelType
     }
     
     /// Binds `action.executing` to the receiver's `loading.`
-    public func bindAction<Input, Output>(action: Action<Input, Output, NoError>)
+    public func bindAction<Input, Output, Error: ErrorType>(action: Action<Input, Output, Error>)
     {
         bindLoading(action.executing.producer)
     }
