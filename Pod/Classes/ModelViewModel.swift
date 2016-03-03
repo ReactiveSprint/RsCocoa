@@ -27,22 +27,13 @@ public class ModelViewModel<Model: AnyModel>: ViewModel, ModelViewModelType
     /// Returns the Model object wrapped in the receiver.
     public let model: Model
     
-    /// Initializes a ViewModel with `title and model.`
-    ///
-    /// - Parameter title: The title for ViewModel.
-    /// - Parameter model: Model to be wrapped.
-    public init(title: String?, _ model: Model)
-    {
-        self.model = model
-        super.init(title: title)
-    }
-    
     /// Initializes a ViewModel with `model.`
     ///
     /// - Parameter model: Model to be wrapped.
-    public convenience init(_ model: Model)
+    public init(_ model: Model)
     {
-        self.init(title: nil, model)
+        self.model = model
+        super.init()
     }
 }
 

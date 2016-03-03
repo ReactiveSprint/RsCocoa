@@ -85,13 +85,11 @@ public class ViewModel: ViewModelType
     /// Whether the receiver is currently loading
     public let loading: AnyProperty<Bool>
     
-    /// Initializes a ViewModel with `title`
-    ///
-    /// - Parameter title: Title to be used for the reciever.
-    public init(title: String?)
+    /// Initializes a ViewModel.
+    public init()
     {
-        self.title = ReactiveCocoa.MutableProperty(title)
-        
+        title = ReactiveCocoa.MutableProperty(nil)
+
         let errors: (Signal<Signal<ViewModelErrorType, NoError>, NoError>, Observer<Signal<ViewModelErrorType, NoError>, NoError>) = Signal.pipe()
         
         self.errors = errors.0.flatten(.Merge)
@@ -113,10 +111,13 @@ public class ViewModel: ViewModelType
         loading = AnyProperty(initialValue: false, producer: loadingProducer)
     }
     
-    /// Initializes a ViewModel with `nil title`.
-    public convenience init()
+    /// Initializes a ViewModel with `title`
+    ///
+    /// - Parameter title: Title to be used for the reciever.
+    public convenience init(title: String?)
     {
-        self.init(title: nil)
+        self.init()
+        self.title.value = title
     }
     
     deinit
