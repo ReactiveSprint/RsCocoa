@@ -42,7 +42,7 @@ public protocol ViewModelType
 public class ViewModel: ViewModelType
 {
     /// Used as general `title`
-    public let title: ReactiveCocoa.MutableProperty<String?>
+    public let title = MutableProperty<String?>(nil)
     
     /// Whether the view model is currently "active."
     ///
@@ -53,7 +53,7 @@ public class ViewModel: ViewModelType
     /// [ReactiveViewModel.](https://github.com/ReactiveCocoa/ReactiveViewModel)
     ///
     /// This property defaults to false.
-    public let active = ReactiveCocoa.MutableProperty(false)
+    public let active = MutableProperty(false)
     
     /// Observes the receiver's `active` property, and sends the receiver whenever it
     /// changes from false to true.
@@ -88,8 +88,6 @@ public class ViewModel: ViewModelType
     /// Initializes a ViewModel.
     public init()
     {
-        title = ReactiveCocoa.MutableProperty(nil)
-
         let errors: (Signal<Signal<ViewModelErrorType, NoError>, NoError>, Observer<Signal<ViewModelErrorType, NoError>, NoError>) = Signal.pipe()
         
         self.errors = errors.0.flatten(.Merge)
