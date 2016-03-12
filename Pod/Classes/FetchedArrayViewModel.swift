@@ -12,6 +12,7 @@ import Result
 /// ArrayViewModel which its array is lazily fetched, or even paginated.
 public protocol FetchedArrayViewModelType: class, ArrayViewModelType
 {
+    typealias FetchInput
     typealias PaginationType
     typealias FetchError: ViewModelErrorType
     
@@ -21,10 +22,10 @@ public protocol FetchedArrayViewModelType: class, ArrayViewModelType
     
     var nextPage: PaginationType? { get }
     
-    var refreshAction: Action<(), [Element], FetchError> { get }
-    var fetchAction: Action<(), [Element], FetchError> { get }
+    var refreshAction: Action<FetchInput, [Element], FetchError> { get }
+    var fetchAction: Action<FetchInput, [Element], FetchError> { get }
     
-    func fetchIfNeeded()
+    func fetchIfNeeded(input: FetchInput)
 }
 
 public extension FetchedArrayViewModelType
@@ -33,11 +34,11 @@ public extension FetchedArrayViewModelType
         return nextPage != nil
     }
     
-    public func fetchIfNeeded()
+    public func fetchIfNeeded(input: FetchInput)
     {
         if willFetchNextPage && hasNextPage.value
         {
-            fetchAction.apply().start()
+            fetchAction.apply(input).start()
         }
     }
 }
