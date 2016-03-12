@@ -36,8 +36,8 @@ public protocol FetchedArrayViewModelType: class, ArrayViewModelType
     /// If `nextPage` is nil, then this action will refresh, else this action should fetch next page.
     var fetchAction: Action<FetchInput, [Element], FetchError> { get }
     
-    /// Applies fetchAction only if next page is available.
-    func fetchIfNeeded(input: FetchInput)
+    /// Applies `fetchAction` only if next page is availabe or returns `SignalProducer.empty`
+    func fetchIfNeeded(input: FetchInput) -> SignalProducer<[Element], ActionError<FetchError>>
 }
 
 public extension FetchedArrayViewModelType
@@ -46,12 +46,16 @@ public extension FetchedArrayViewModelType
         return nextPage != nil
     }
     
-    public func fetchIfNeeded(input: FetchInput)
+    /// Applies `fetchAction` only if next page is availabe or returns `SignalProducer.empty`
+    @warn_unused_result(message="Did you forget to call `start` on the producer?")
+    public func fetchIfNeeded(input: FetchInput) -> SignalProducer<[Element], ActionError<FetchError>>
     {
         if willFetchNextPage && hasNextPage.value
         {
-            fetchAction.apply(input).start()
+            return fetchAction.apply(input)
         }
+        
+        return SignalProducer.empty
     }
 }
 

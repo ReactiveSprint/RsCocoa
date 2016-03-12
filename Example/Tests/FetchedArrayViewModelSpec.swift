@@ -101,7 +101,7 @@ class FetchedArrayViewModelSpec: QuickSpec {
                     expect(viewModel.viewModels.count).toEventually(equal(8), timeout: 2)
                     expect(viewModel.count.value).toEventually(equal(8), timeout: 2)
                     
-                    viewModel.fetchIfNeeded()
+                    viewModel.fetchIfNeeded().start()
                     
                     expect(viewModel.refreshing.value) == false
                     expect(viewModel.fetchingNextPage.value) == true
@@ -124,7 +124,7 @@ class FetchedArrayViewModelSpec: QuickSpec {
                     expect(viewModel[2].title.value) == "3"
                     expect(viewModel[3].title.value) == "4"
                     
-                    viewModel.fetchIfNeeded()
+                    viewModel.fetchIfNeeded().start()
                     expect(viewModel.count.value).toEventually(equal(8), timeout: 2)
                     expect(viewModel[0].title.value) == "1"
                     expect(viewModel[1].title.value) == "2"
