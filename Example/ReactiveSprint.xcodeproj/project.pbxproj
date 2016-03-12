@@ -16,6 +16,7 @@
 		D18442CC21DF41A68EEE2FC9 /* Pods_ReactiveSprint_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E619FC54D68AB474EB02CE4 /* Pods_ReactiveSprint_Example.framework */; };
 		E5406A131C7B2DF90035C40E /* ViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5406A121C7B2DF90035C40E /* ViewModelSpec.swift */; };
 		E547894D1C880F620075B0F5 /* ArrayViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E547894C1C880F620075B0F5 /* ArrayViewModelSpec.swift */; };
+		E54789541C8B552F0075B0F5 /* FetchedArrayViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54789531C8B552F0075B0F5 /* FetchedArrayViewModelSpec.swift */; };
 		E56767C31C83453A00ABF66E /* SignalManipulationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56767C21C83453A00ABF66E /* SignalManipulationSpec.swift */; };
 		E56767C91C862F6700ABF66E /* ModelViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56767C81C862F6700ABF66E /* ModelViewModelSpec.swift */; };
 		E56767CC1C869D3C00ABF66E /* TestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56767CA1C869AE400ABF66E /* TestModel.swift */; };
@@ -50,6 +51,7 @@
 		B2EB7046BC84D130CA763A64 /* Pods-ReactiveSprint_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReactiveSprint_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReactiveSprint_Tests/Pods-ReactiveSprint_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		E5406A121C7B2DF90035C40E /* ViewModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelSpec.swift; sourceTree = "<group>"; };
 		E547894C1C880F620075B0F5 /* ArrayViewModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayViewModelSpec.swift; sourceTree = "<group>"; };
+		E54789531C8B552F0075B0F5 /* FetchedArrayViewModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedArrayViewModelSpec.swift; sourceTree = "<group>"; };
 		E56767C21C83453A00ABF66E /* SignalManipulationSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignalManipulationSpec.swift; sourceTree = "<group>"; };
 		E56767C81C862F6700ABF66E /* ModelViewModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelViewModelSpec.swift; sourceTree = "<group>"; };
 		E56767CA1C869AE400ABF66E /* TestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestModel.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				E56767C81C862F6700ABF66E /* ModelViewModelSpec.swift */,
 				E56767CA1C869AE400ABF66E /* TestModel.swift */,
 				E547894C1C880F620075B0F5 /* ArrayViewModelSpec.swift */,
+				E54789531C8B552F0075B0F5 /* FetchedArrayViewModelSpec.swift */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -385,6 +388,7 @@
 				E56767C91C862F6700ABF66E /* ModelViewModelSpec.swift in Sources */,
 				E5406A131C7B2DF90035C40E /* ViewModelSpec.swift in Sources */,
 				E56767CC1C869D3C00ABF66E /* TestModel.swift in Sources */,
+				E54789541C8B552F0075B0F5 /* FetchedArrayViewModelSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

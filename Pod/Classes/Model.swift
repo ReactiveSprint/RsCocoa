@@ -6,7 +6,6 @@
 //  Copyright © 2016 ReactiveSprint. All rights reserved.
 //
 
-import Foundation
 import ReactiveCocoa
 
 /// Represents a Model type.

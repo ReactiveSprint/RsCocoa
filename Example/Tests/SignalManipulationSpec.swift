@@ -6,7 +6,6 @@
 //  Copyright © 2016 ReactiveSprint. All rights reserved.
 //
 
-import XCTest
 import Quick
 import Nimble
 import ReactiveCocoa

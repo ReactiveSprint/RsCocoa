@@ -25,7 +25,7 @@ class ModelViewModelSpec: QuickSpec {
             var deleteAction: Action<Bool, TestModel, NSError>!
             
             beforeEach {
-                model = TestModel()
+                model = TestModel(objectId: 1)
                 viewModel = ModelViewModel(model)
                 
                 saveAction = viewModel.createSaveAction()

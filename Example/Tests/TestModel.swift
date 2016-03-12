@@ -6,17 +6,17 @@
 //  Copyright © 2016 ReactiveSprint. All rights reserved.
 //
 
-import Foundation
 import ReactiveCocoa
 import Result
 import ReactiveSprint
 
 public final class TestModel: ModelSaving, ModelFetching, ModelDeleting
 {
+    public let objectId: ConstantProperty<Int>
     
-    public init()
+    public init(objectId: Int)
     {
-        
+        self.objectId = ConstantProperty(objectId)
     }
     
     private func emptyProducer(input: Bool) -> SignalProducer<TestModel, NSError>

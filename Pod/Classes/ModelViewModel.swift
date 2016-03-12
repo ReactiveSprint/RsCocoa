@@ -6,7 +6,6 @@
 //  Copyright © 2016 ReactiveSprint. All rights reserved.
 //
 
-import UIKit
 import ReactiveCocoa
 import Result
 
