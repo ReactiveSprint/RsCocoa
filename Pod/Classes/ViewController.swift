@@ -11,7 +11,7 @@ import ReactiveCocoa
 import Result
 
 /// ViewController which wraps `ViewModel`.
-public class ViewController<ViewModel: ViewModelType>: UIViewController, ViewType
+public class ViewController<ViewModel: ViewModelType>: UIViewController, ViewControllerType
 {
     /// ViewModel which will be used as context for this "View."
     ///
@@ -23,12 +23,6 @@ public class ViewController<ViewModel: ViewModelType>: UIViewController, ViewTyp
         }
     }
     
-    /// Used to bind viewModel's title.
-    private lazy var titleProperty: DynamicProperty = DynamicProperty(object: self, keyPath: "title")
-    
-    /// A UIView that is used to present loading to user.
-    ///
-    /// Your UIView may optionally conform to `LoadingViewType` protocol.
     @IBOutlet public var loadingView: UIView?
     
     public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?)
@@ -41,108 +35,38 @@ public class ViewController<ViewModel: ViewModelType>: UIViewController, ViewTyp
         super.init(coder: aDecoder)
     }
     
-    /// Binds `viewModel` to the receiver.
-    ///
-    /// This is called at `didSet` for viewModel property.
-    ///
-    /// Default implementation calls `bindActive(_:)` , `bindTitle(_:)`, `bindLoading(_:)`
-    /// and `bindErrors(_:)`
     public func bindViewModel(viewModel: ViewModel)
     {
-        bindActive(viewModel)
-        bindTitle(viewModel)
-        bindLoading(viewModel)
-        bindErrors(viewModel)
+        _bindViewModel(viewModel, viewController: self)
     }
     
-    /// Binds viewModel's title to the receiver title.
+    public func bindActive(viewModel: ViewModel)
+    {
+        _bindActive(viewModel, viewController: self)
+    }
+    
     public func bindTitle(viewModel: ViewModel)
     {
-        titleProperty <~ viewModel.title.producer.map { $0 as AnyObject? }
+        _bindTitle(viewModel, viewController: self)
     }
     
-    /// Binds viewModel's loading to `showLoading(_:)`
-    ///
-    /// Default binding uses `forwardWhileActive(_:).`
     public func bindLoading(viewModel: ViewModel)
     {
-        let loadingProducer = viewModel.loading.producer.forwardWhileActive(viewModel)
-        loadingProducer.startWithNext(self.presentLoading)
+        _bindLoading(viewModel, viewController: self)
     }
     
-    /// Shows or hides loading view.
-    ///
-    /// Default implementation shows or hides `loadingView` if set.
-    ///
-    /// If loadingView is LoadingViewType, then `LoadingViewType.loading` will be set.
     public func presentLoading(loading: Bool)
     {
-        if let loadingView = self.loadingView
-        {
-            if loadingView is LoadingViewType
-            {
-                var loadingViewType = loadingView as! LoadingViewType
-                
-                loadingViewType.loading = loading
-            }
-            else
-            {
-                loadingView.hidden = !loading
-            }
-        }
+        _presentLoading(loading, viewController: self)
     }
     
-    /// Binds viewModel's errors to `showErrors(_:)`
-    ///
-    /// Default binding uses `forwardWhileActive(_:).`
     public func bindErrors(viewModel: ViewModel)
     {
-        viewModel.errors.forwardWhileActive(viewModel).observeNext(self.presentError)
+        _bindErrors(viewModel, viewController: self)
     }
     
-    /// Presents `error` in an UIAlertController.
     public func presentError(error: ViewModelErrorType)
     {
-        presentViewController(UIAlertController(error: error), animated: true, completion: nil)
-    }
-}
-
-public extension UIViewController
-{
-    /// Binds ViewModel's `active` property from the receiver.
-    ///
-    /// When `viewDidAppear(_:)` is called or `UIApplicationDidBecomeActiveNotification` is sent
-    /// ViewModel's active is set to `true.`
-    ///
-    /// When `viewWillDisappear(_:)` is called or `UIApplicationWillResignActiveNotification` is sent
-    /// ViewModel's active is set to `false.`
-    public func bindActive(viewModel: ViewModelType)
-    {
-        let presented = RACSignal.merge([
-            rac_signalForSelector(Selector("viewWillAppear:")).mapReplace(true)
-                .doNext { NSLog("viewWillAppear: %@", $0.description) }
-            , rac_signalForSelector(Selector("viewWillDisappear:")).mapReplace(false)
-            .doNext { NSLog("viewWillDisappear: %@", $0.description) }
-            ])
-        
-        let appActive = RACSignal.merge([
-            NSNotificationCenter.defaultCenter()
-                .rac_addObserverForName(UIApplicationDidBecomeActiveNotification, object: nil)
-                .mapReplace(true)
-                .doNext { NSLog("UIApplicationDidBecomeActiveNotification: %@", $0.description) }
-            , NSNotificationCenter.defaultCenter()
-                .rac_addObserverForName(UIApplicationWillResignActiveNotification, object: nil)
-                .mapReplace(false)
-                .doNext { NSLog("UIApplicationWillResignActiveNotification: %@", $0.description) }
-            ]).startWith(true)
-            .doNext { NSLog("appActive: %@", $0.description) }
-        
-        let activeSignal = RACSignal.combineLatest([presented, appActive])
-            .and()
-            .toSignalProducer()
-            .map { $0 as! Bool }
-            .flatMapError { _ in SignalProducer<Bool, NoError>.empty }
-        
-        viewModel.active <~ activeSignal
+        _presentError(error, viewController: self)
     }
 }
