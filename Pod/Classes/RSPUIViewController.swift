@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  RSPUIViewController.swift
 //  Pods
 //
 //  Created by Ahmad Baraka on 3/12/16.
@@ -11,7 +11,7 @@ import ReactiveCocoa
 import Result
 
 /// ViewController which wraps `ViewModel`.
-public class ViewController<ViewModel: ViewModelType>: UIViewController, ViewControllerType
+public class RSPUIViewController<ViewModel: ViewModelType>: UIViewController, ViewControllerType
 {
     /// ViewModel which will be used as context for this "View."
     ///

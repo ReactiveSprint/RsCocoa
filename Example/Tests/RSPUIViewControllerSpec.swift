@@ -1,5 +1,5 @@
 //
-//  ViewControllerSpec.swift
+//  RSPUIViewControllerSpec.swift
 //  ReactiveSprint
 //
 //  Created by Ahmad Baraka on 3/16/16.
@@ -13,21 +13,21 @@ import ReactiveCocoa
 import Result
 import ReactiveSprint
 
-class ViewControllerSpec: QuickSpec {
+class RSPUIViewControllerSpec: QuickSpec {
     
     override func spec() {
         
         describe("ViewController active") {
             
             var viewModel: ViewModel!
-            var viewController: ViewController<ViewModel>!
+            var viewController: RSPUIViewController<ViewModel>!
             
             var loadingSignal: Signal<Bool, NoError>!
             var loadingObserver: Observer<Bool, NoError>!
             
             beforeEach {
                 viewModel = ViewModel(title: "TestViewModel")
-                viewController = ViewController(nibName: nil, bundle: nil)
+                viewController = RSPUIViewController(nibName: nil, bundle: nil)
                 viewController.viewModel = viewModel
                 
                 let loading = Signal<Bool, NoError>.pipe()

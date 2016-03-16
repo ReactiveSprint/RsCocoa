@@ -287,7 +287,7 @@
 		E56DE9721C99913200EECBA3 /* LoadingViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56DE9711C99913200EECBA3 /* LoadingViewType.swift */; };
 		E56DE9811C99B6F300EECBA3 /* ViewControllerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56DE9801C99B6F300EECBA3 /* ViewControllerType.swift */; };
 		E56DE9831C99C24100EECBA3 /* NSObject+RAC4Deallocating.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56DE9821C99C24100EECBA3 /* NSObject+RAC4Deallocating.swift */; };
-		E588EEC31C949DC4004BCD7E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E588EEC21C949DC4004BCD7E /* ViewController.swift */; };
+		E588EEC31C949DC4004BCD7E /* RSPUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E588EEC21C949DC4004BCD7E /* RSPUIViewController.swift */; };
 		E59D17491C94A2D100ADB6CF /* ViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59D17481C94A2D100ADB6CF /* ViewType.swift */; };
 		E5F546EF1C997B6C00DC721C /* UIAlertController+ViewModelErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F546EE1C997B6C00DC721C /* UIAlertController+ViewModelErrorType.swift */; };
 		E6C30CCB20844B69B667093CE8726B94 /* UIImagePickerController+RACSignalSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 33CCA71E164BCF3D3BC7AE58DE6C24D8 /* UIImagePickerController+RACSignalSupport.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -717,7 +717,7 @@
 		E56DE9711C99913200EECBA3 /* LoadingViewType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewType.swift; sourceTree = "<group>"; };
 		E56DE9801C99B6F300EECBA3 /* ViewControllerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerType.swift; sourceTree = "<group>"; };
 		E56DE9821C99C24100EECBA3 /* NSObject+RAC4Deallocating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+RAC4Deallocating.swift"; sourceTree = "<group>"; };
-		E588EEC21C949DC4004BCD7E /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E588EEC21C949DC4004BCD7E /* RSPUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSPUIViewController.swift; sourceTree = "<group>"; };
 		E59D17481C94A2D100ADB6CF /* ViewType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewType.swift; sourceTree = "<group>"; };
 		E5F546EE1C997B6C00DC721C /* UIAlertController+ViewModelErrorType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+ViewModelErrorType.swift"; sourceTree = "<group>"; };
 		E6AE8F4B0034EE6A936C1352D0AE88AB /* Result-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Result-prefix.pch"; sourceTree = "<group>"; };
@@ -933,6 +933,7 @@
 			children = (
 				E5F546EA1C98098D00DC721C /* Views */,
 				E5F546E91C98098100DC721C /* ViewModels */,
+				E5F546EB1C9809A100DC721C /* Models */,
 				E56DE9821C99C24100EECBA3 /* NSObject+RAC4Deallocating.swift */,
 			);
 			path = Classes;
@@ -1369,7 +1370,6 @@
 				E56767C41C85D5AE00ABF66E /* ModelViewModel.swift */,
 				E56767CD1C86AE2F00ABF66E /* ArrayViewModel.swift */,
 				E547894E1C8819890075B0F5 /* FetchedArrayViewModel.swift */,
-				E5F546EB1C9809A100DC721C /* Models */,
 			);
 			name = ViewModels;
 			sourceTree = "<group>";
@@ -1379,7 +1379,7 @@
 			children = (
 				E59D17481C94A2D100ADB6CF /* ViewType.swift */,
 				E56DE9801C99B6F300EECBA3 /* ViewControllerType.swift */,
-				E588EEC21C949DC4004BCD7E /* ViewController.swift */,
+				E588EEC21C949DC4004BCD7E /* RSPUIViewController.swift */,
 				E5F546EE1C997B6C00DC721C /* UIAlertController+ViewModelErrorType.swift */,
 				E56DE9711C99913200EECBA3 /* LoadingViewType.swift */,
 			);
@@ -1792,7 +1792,7 @@
 				E56DE9831C99C24100EECBA3 /* NSObject+RAC4Deallocating.swift in Sources */,
 				E54789501C8819990075B0F5 /* FetchedArrayViewModel.swift in Sources */,
 				E59D17491C94A2D100ADB6CF /* ViewType.swift in Sources */,
-				E588EEC31C949DC4004BCD7E /* ViewController.swift in Sources */,
+				E588EEC31C949DC4004BCD7E /* RSPUIViewController.swift in Sources */,
 				88496613194BB9A6A0886430D47E6979 /* SignalManipulation.swift in Sources */,
 				E5F546EF1C997B6C00DC721C /* UIAlertController+ViewModelErrorType.swift in Sources */,
 				938B4ADB64721B80BAFF8AFD8BE6DAB7 /* ViewModel.swift in Sources */,
