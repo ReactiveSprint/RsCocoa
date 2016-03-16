@@ -20,6 +20,9 @@
 		E56767C31C83453A00ABF66E /* SignalManipulationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56767C21C83453A00ABF66E /* SignalManipulationSpec.swift */; };
 		E56767C91C862F6700ABF66E /* ModelViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56767C81C862F6700ABF66E /* ModelViewModelSpec.swift */; };
 		E56767CC1C869D3C00ABF66E /* TestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56767CA1C869AE400ABF66E /* TestModel.swift */; };
+		E56DE9741C99A3AE00EECBA3 /* LoadingViewTypeSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56DE9731C99A3AE00EECBA3 /* LoadingViewTypeSpec.swift */; };
+		E56DE9761C99A45900EECBA3 /* UIAlertControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56DE9751C99A45900EECBA3 /* UIAlertControllerSpec.swift */; };
+		E5F546F31C997CC900DC721C /* ViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F546F21C997CC900DC721C /* ViewControllerSpec.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +58,9 @@
 		E56767C21C83453A00ABF66E /* SignalManipulationSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignalManipulationSpec.swift; sourceTree = "<group>"; };
 		E56767C81C862F6700ABF66E /* ModelViewModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelViewModelSpec.swift; sourceTree = "<group>"; };
 		E56767CA1C869AE400ABF66E /* TestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestModel.swift; sourceTree = "<group>"; };
+		E56DE9731C99A3AE00EECBA3 /* LoadingViewTypeSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewTypeSpec.swift; sourceTree = "<group>"; };
+		E56DE9751C99A45900EECBA3 /* UIAlertControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAlertControllerSpec.swift; sourceTree = "<group>"; };
+		E5F546F21C997CC900DC721C /* ViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerSpec.swift; sourceTree = "<group>"; };
 		EDBC012B32416B5D72F1E8E5 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		F53A2D43A411F7EBF3C7FF5C /* Pods_ReactiveSprint_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReactiveSprint_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -125,12 +131,8 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				E56767C21C83453A00ABF66E /* SignalManipulationSpec.swift */,
-				E5406A121C7B2DF90035C40E /* ViewModelSpec.swift */,
-				E56767C81C862F6700ABF66E /* ModelViewModelSpec.swift */,
-				E56767CA1C869AE400ABF66E /* TestModel.swift */,
-				E547894C1C880F620075B0F5 /* ArrayViewModelSpec.swift */,
-				E54789531C8B552F0075B0F5 /* FetchedArrayViewModelSpec.swift */,
+				E5F546F01C997C9F00DC721C /* Views */,
+				E5F546F11C997CA400DC721C /* ViewModels */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -172,6 +174,29 @@
 				B2EB7046BC84D130CA763A64 /* Pods-ReactiveSprint_Tests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		E5F546F01C997C9F00DC721C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E5F546F21C997CC900DC721C /* ViewControllerSpec.swift */,
+				E56DE9731C99A3AE00EECBA3 /* LoadingViewTypeSpec.swift */,
+				E56DE9751C99A45900EECBA3 /* UIAlertControllerSpec.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		E5F546F11C997CA400DC721C /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				E56767C21C83453A00ABF66E /* SignalManipulationSpec.swift */,
+				E5406A121C7B2DF90035C40E /* ViewModelSpec.swift */,
+				E56767C81C862F6700ABF66E /* ModelViewModelSpec.swift */,
+				E56767CA1C869AE400ABF66E /* TestModel.swift */,
+				E547894C1C880F620075B0F5 /* ArrayViewModelSpec.swift */,
+				E54789531C8B552F0075B0F5 /* FetchedArrayViewModelSpec.swift */,
+			);
+			name = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -384,6 +409,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E56767C31C83453A00ABF66E /* SignalManipulationSpec.swift in Sources */,
+				E5F546F31C997CC900DC721C /* ViewControllerSpec.swift in Sources */,
+				E56DE9741C99A3AE00EECBA3 /* LoadingViewTypeSpec.swift in Sources */,
+				E56DE9761C99A45900EECBA3 /* UIAlertControllerSpec.swift in Sources */,
 				E547894D1C880F620075B0F5 /* ArrayViewModelSpec.swift in Sources */,
 				E56767C91C862F6700ABF66E /* ModelViewModelSpec.swift in Sources */,
 				E5406A131C7B2DF90035C40E /* ViewModelSpec.swift in Sources */,

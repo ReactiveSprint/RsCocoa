@@ -284,8 +284,10 @@
 		E56767C51C85D5AE00ABF66E /* ModelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56767C41C85D5AE00ABF66E /* ModelViewModel.swift */; };
 		E56767C71C85DC4200ABF66E /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56767C61C85DC4200ABF66E /* Model.swift */; };
 		E56767CF1C86AE5D00ABF66E /* ArrayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56767CD1C86AE2F00ABF66E /* ArrayViewModel.swift */; };
+		E56DE9721C99913200EECBA3 /* LoadingViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56DE9711C99913200EECBA3 /* LoadingViewType.swift */; };
 		E588EEC31C949DC4004BCD7E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E588EEC21C949DC4004BCD7E /* ViewController.swift */; };
-		E59D17491C94A2D100ADB6CF /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59D17481C94A2D100ADB6CF /* View.swift */; };
+		E59D17491C94A2D100ADB6CF /* ViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59D17481C94A2D100ADB6CF /* ViewType.swift */; };
+		E5F546EF1C997B6C00DC721C /* UIAlertController+ViewModelErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F546EE1C997B6C00DC721C /* UIAlertController+ViewModelErrorType.swift */; };
 		E6C30CCB20844B69B667093CE8726B94 /* UIImagePickerController+RACSignalSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 33CCA71E164BCF3D3BC7AE58DE6C24D8 /* UIImagePickerController+RACSignalSupport.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E6E7B15FAD6C56681511813DB2666478 /* AssertionRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF552F08854F74F72C125DDD3C086D6 /* AssertionRecorder.swift */; };
 		E70BBA9EA67CEC670CA0E562ECEAF3CB /* Pods-ReactiveSprint_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F331C3368A597220747711B75A9A59 /* Pods-ReactiveSprint_Example-dummy.m */; };
@@ -710,8 +712,10 @@
 		E56767C61C85DC4200ABF66E /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		E56767CD1C86AE2F00ABF66E /* ArrayViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayViewModel.swift; sourceTree = "<group>"; };
 		E56CAC6AD1B70D061F4488ECB6B1864A /* UIBarButtonItem+RACCommandSupport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIBarButtonItem+RACCommandSupport.m"; path = "ReactiveCocoa/Objective-C/UIBarButtonItem+RACCommandSupport.m"; sourceTree = "<group>"; };
+		E56DE9711C99913200EECBA3 /* LoadingViewType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewType.swift; sourceTree = "<group>"; };
 		E588EEC21C949DC4004BCD7E /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		E59D17481C94A2D100ADB6CF /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		E59D17481C94A2D100ADB6CF /* ViewType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewType.swift; sourceTree = "<group>"; };
+		E5F546EE1C997B6C00DC721C /* UIAlertController+ViewModelErrorType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+ViewModelErrorType.swift"; sourceTree = "<group>"; };
 		E6AE8F4B0034EE6A936C1352D0AE88AB /* Result-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Result-prefix.pch"; sourceTree = "<group>"; };
 		E76421F0E741E2E5AD2A5A93C985B423 /* Pods-ReactiveSprint_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ReactiveSprint_Example-umbrella.h"; sourceTree = "<group>"; };
 		E8039A8C738C8E71E5589759F4F6490C /* RACSignal+Operations.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "RACSignal+Operations.h"; path = "ReactiveCocoa/Objective-C/RACSignal+Operations.h"; sourceTree = "<group>"; };
@@ -923,14 +927,8 @@
 		5244D6805D59D77C90C605F94E0E1C71 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				4B5179C6FCFB280EF642E39F9957C4B0 /* SignalManipulation.swift */,
-				C012D2426F929873DA17304853B051C9 /* ViewModel.swift */,
-				E56767C41C85D5AE00ABF66E /* ModelViewModel.swift */,
-				E56767C61C85DC4200ABF66E /* Model.swift */,
-				E56767CD1C86AE2F00ABF66E /* ArrayViewModel.swift */,
-				E547894E1C8819890075B0F5 /* FetchedArrayViewModel.swift */,
-				E59D17481C94A2D100ADB6CF /* View.swift */,
-				E588EEC21C949DC4004BCD7E /* ViewController.swift */,
+				E5F546EA1C98098D00DC721C /* Views */,
+				E5F546E91C98098100DC721C /* ViewModels */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1358,6 +1356,38 @@
 			name = "no-arc";
 			sourceTree = "<group>";
 		};
+		E5F546E91C98098100DC721C /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				4B5179C6FCFB280EF642E39F9957C4B0 /* SignalManipulation.swift */,
+				C012D2426F929873DA17304853B051C9 /* ViewModel.swift */,
+				E56767C41C85D5AE00ABF66E /* ModelViewModel.swift */,
+				E56767CD1C86AE2F00ABF66E /* ArrayViewModel.swift */,
+				E547894E1C8819890075B0F5 /* FetchedArrayViewModel.swift */,
+				E5F546EB1C9809A100DC721C /* Models */,
+			);
+			name = ViewModels;
+			sourceTree = "<group>";
+		};
+		E5F546EA1C98098D00DC721C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E59D17481C94A2D100ADB6CF /* ViewType.swift */,
+				E588EEC21C949DC4004BCD7E /* ViewController.swift */,
+				E5F546EE1C997B6C00DC721C /* UIAlertController+ViewModelErrorType.swift */,
+				E56DE9711C99913200EECBA3 /* LoadingViewType.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		E5F546EB1C9809A100DC721C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E56767C61C85DC4200ABF66E /* Model.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		F1BFFE856C8E255656BC996551DEE8F1 /* ReactiveCocoa */ = {
 			isa = PBXGroup;
 			children = (
@@ -1750,11 +1780,13 @@
 				E56767C71C85DC4200ABF66E /* Model.swift in Sources */,
 				E56767C51C85D5AE00ABF66E /* ModelViewModel.swift in Sources */,
 				E56767CF1C86AE5D00ABF66E /* ArrayViewModel.swift in Sources */,
+				E56DE9721C99913200EECBA3 /* LoadingViewType.swift in Sources */,
 				9C5CF0DF6BD103CC3FAA55E9F54E58C4 /* ReactiveSprint-dummy.m in Sources */,
 				E54789501C8819990075B0F5 /* FetchedArrayViewModel.swift in Sources */,
-				E59D17491C94A2D100ADB6CF /* View.swift in Sources */,
+				E59D17491C94A2D100ADB6CF /* ViewType.swift in Sources */,
 				E588EEC31C949DC4004BCD7E /* ViewController.swift in Sources */,
 				88496613194BB9A6A0886430D47E6979 /* SignalManipulation.swift in Sources */,
+				E5F546EF1C997B6C00DC721C /* UIAlertController+ViewModelErrorType.swift in Sources */,
 				938B4ADB64721B80BAFF8AFD8BE6DAB7 /* ViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

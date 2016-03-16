@@ -1,5 +1,5 @@
 //
-//  View.swift
+//  ViewType.swift
 //  Pods
 //
 //  Created by Ahmad Baraka on 3/12/16.
@@ -7,7 +7,7 @@
 //
 
 /// Represents a View in MVVM pattern.
-public protocol View
+public protocol ViewType
 {
     /// Type of `ViewModel`
     typealias ViewModel: ViewModelType
