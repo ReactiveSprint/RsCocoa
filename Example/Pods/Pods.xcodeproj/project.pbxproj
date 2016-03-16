@@ -287,6 +287,7 @@
 		E56DE9721C99913200EECBA3 /* LoadingViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56DE9711C99913200EECBA3 /* LoadingViewType.swift */; };
 		E56DE9811C99B6F300EECBA3 /* ViewControllerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56DE9801C99B6F300EECBA3 /* ViewControllerType.swift */; };
 		E56DE9831C99C24100EECBA3 /* NSObject+RAC4Deallocating.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56DE9821C99C24100EECBA3 /* NSObject+RAC4Deallocating.swift */; };
+		E56DE9971C99E84B00EECBA3 /* UIActivityIndicatorView+LoadingViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56DE9961C99E84B00EECBA3 /* UIActivityIndicatorView+LoadingViewType.swift */; };
 		E588EEC31C949DC4004BCD7E /* RSPUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E588EEC21C949DC4004BCD7E /* RSPUIViewController.swift */; };
 		E59D17491C94A2D100ADB6CF /* ViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59D17481C94A2D100ADB6CF /* ViewType.swift */; };
 		E5F546EF1C997B6C00DC721C /* UIAlertController+ViewModelErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F546EE1C997B6C00DC721C /* UIAlertController+ViewModelErrorType.swift */; };
@@ -717,6 +718,7 @@
 		E56DE9711C99913200EECBA3 /* LoadingViewType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewType.swift; sourceTree = "<group>"; };
 		E56DE9801C99B6F300EECBA3 /* ViewControllerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerType.swift; sourceTree = "<group>"; };
 		E56DE9821C99C24100EECBA3 /* NSObject+RAC4Deallocating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+RAC4Deallocating.swift"; sourceTree = "<group>"; };
+		E56DE9961C99E84B00EECBA3 /* UIActivityIndicatorView+LoadingViewType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIActivityIndicatorView+LoadingViewType.swift"; sourceTree = "<group>"; };
 		E588EEC21C949DC4004BCD7E /* RSPUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSPUIViewController.swift; sourceTree = "<group>"; };
 		E59D17481C94A2D100ADB6CF /* ViewType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewType.swift; sourceTree = "<group>"; };
 		E5F546EE1C997B6C00DC721C /* UIAlertController+ViewModelErrorType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+ViewModelErrorType.swift"; sourceTree = "<group>"; };
@@ -1362,6 +1364,26 @@
 			name = "no-arc";
 			sourceTree = "<group>";
 		};
+		E56DE9931C99E7EB00EECBA3 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				E59D17481C94A2D100ADB6CF /* ViewType.swift */,
+				E56DE9801C99B6F300EECBA3 /* ViewControllerType.swift */,
+				E56DE9711C99913200EECBA3 /* LoadingViewType.swift */,
+			);
+			name = Base;
+			sourceTree = "<group>";
+		};
+		E56DE9941C99E7F600EECBA3 /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				E5F546EE1C997B6C00DC721C /* UIAlertController+ViewModelErrorType.swift */,
+				E588EEC21C949DC4004BCD7E /* RSPUIViewController.swift */,
+				E56DE9961C99E84B00EECBA3 /* UIActivityIndicatorView+LoadingViewType.swift */,
+			);
+			name = UIView;
+			sourceTree = "<group>";
+		};
 		E5F546E91C98098100DC721C /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -1377,11 +1399,8 @@
 		E5F546EA1C98098D00DC721C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E59D17481C94A2D100ADB6CF /* ViewType.swift */,
-				E56DE9801C99B6F300EECBA3 /* ViewControllerType.swift */,
-				E588EEC21C949DC4004BCD7E /* RSPUIViewController.swift */,
-				E5F546EE1C997B6C00DC721C /* UIAlertController+ViewModelErrorType.swift */,
-				E56DE9711C99913200EECBA3 /* LoadingViewType.swift */,
+				E56DE9931C99E7EB00EECBA3 /* Base */,
+				E56DE9941C99E7F600EECBA3 /* UIView */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -1795,6 +1814,7 @@
 				E588EEC31C949DC4004BCD7E /* RSPUIViewController.swift in Sources */,
 				88496613194BB9A6A0886430D47E6979 /* SignalManipulation.swift in Sources */,
 				E5F546EF1C997B6C00DC721C /* UIAlertController+ViewModelErrorType.swift in Sources */,
+				E56DE9971C99E84B00EECBA3 /* UIActivityIndicatorView+LoadingViewType.swift in Sources */,
 				938B4ADB64721B80BAFF8AFD8BE6DAB7 /* ViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

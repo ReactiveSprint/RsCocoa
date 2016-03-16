@@ -1,5 +1,5 @@
 //
-//  LoadingViewTypeSpec.swift
+//  UIActivityIndicatorViewSpec.swift
 //  ReactiveSprint
 //
 //  Created by Ahmad Baraka on 3/16/16.
@@ -11,7 +11,7 @@ import Quick
 import Nimble
 import ReactiveSprint
 
-class LoadingViewTypeSpec: QuickSpec {
+class UIActivityIndicatorViewSpec: QuickSpec {
     
     override func spec() {
         
