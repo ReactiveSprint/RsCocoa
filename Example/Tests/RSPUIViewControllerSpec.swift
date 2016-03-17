@@ -20,7 +20,7 @@ class RSPUIViewControllerSpec: QuickSpec {
         describe("ViewController active") {
             
             var viewModel: ViewModel!
-            var viewController: RSPUIViewController<ViewModel>!
+            var viewController: RSPUIViewController!
             
             var loadingSignal: Signal<Bool, NoError>!
             var loadingObserver: Observer<Bool, NoError>!

@@ -11,7 +11,7 @@ import ReactiveCocoa
 import Result
 
 /// UIViewController which wraps `ViewModel`.
-public class RSPUIViewController<ViewModel: ViewModelType>: UIViewController, ViewControllerType
+public class RSPUIViewController: UIViewController, ViewControllerType
 {
     /// ViewModel which will be used as context for this "View."
     ///
