@@ -290,6 +290,7 @@
 		E56DE9971C99E84B00EECBA3 /* UIActivityIndicatorView+LoadingViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56DE9961C99E84B00EECBA3 /* UIActivityIndicatorView+LoadingViewType.swift */; };
 		E588EEC31C949DC4004BCD7E /* RSPUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E588EEC21C949DC4004BCD7E /* RSPUIViewController.swift */; };
 		E59D17491C94A2D100ADB6CF /* ViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59D17481C94A2D100ADB6CF /* ViewType.swift */; };
+		E5D134481C9ABC1A0069226E /* UIRefreshController+LoadingViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D134471C9ABC1A0069226E /* UIRefreshController+LoadingViewType.swift */; };
 		E5F546EF1C997B6C00DC721C /* UIAlertController+ViewModelErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F546EE1C997B6C00DC721C /* UIAlertController+ViewModelErrorType.swift */; };
 		E6C30CCB20844B69B667093CE8726B94 /* UIImagePickerController+RACSignalSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 33CCA71E164BCF3D3BC7AE58DE6C24D8 /* UIImagePickerController+RACSignalSupport.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E6E7B15FAD6C56681511813DB2666478 /* AssertionRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF552F08854F74F72C125DDD3C086D6 /* AssertionRecorder.swift */; };
@@ -721,6 +722,7 @@
 		E56DE9961C99E84B00EECBA3 /* UIActivityIndicatorView+LoadingViewType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIActivityIndicatorView+LoadingViewType.swift"; sourceTree = "<group>"; };
 		E588EEC21C949DC4004BCD7E /* RSPUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSPUIViewController.swift; sourceTree = "<group>"; };
 		E59D17481C94A2D100ADB6CF /* ViewType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewType.swift; sourceTree = "<group>"; };
+		E5D134471C9ABC1A0069226E /* UIRefreshController+LoadingViewType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIRefreshController+LoadingViewType.swift"; sourceTree = "<group>"; };
 		E5F546EE1C997B6C00DC721C /* UIAlertController+ViewModelErrorType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+ViewModelErrorType.swift"; sourceTree = "<group>"; };
 		E6AE8F4B0034EE6A936C1352D0AE88AB /* Result-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Result-prefix.pch"; sourceTree = "<group>"; };
 		E76421F0E741E2E5AD2A5A93C985B423 /* Pods-ReactiveSprint_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ReactiveSprint_Example-umbrella.h"; sourceTree = "<group>"; };
@@ -1377,9 +1379,10 @@
 		E56DE9941C99E7F600EECBA3 /* UIView */ = {
 			isa = PBXGroup;
 			children = (
-				E5F546EE1C997B6C00DC721C /* UIAlertController+ViewModelErrorType.swift */,
 				E588EEC21C949DC4004BCD7E /* RSPUIViewController.swift */,
+				E5F546EE1C997B6C00DC721C /* UIAlertController+ViewModelErrorType.swift */,
 				E56DE9961C99E84B00EECBA3 /* UIActivityIndicatorView+LoadingViewType.swift */,
+				E5D134471C9ABC1A0069226E /* UIRefreshController+LoadingViewType.swift */,
 			);
 			name = UIView;
 			sourceTree = "<group>";
@@ -1803,6 +1806,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E56767C71C85DC4200ABF66E /* Model.swift in Sources */,
+				E5D134481C9ABC1A0069226E /* UIRefreshController+LoadingViewType.swift in Sources */,
 				E56767C51C85D5AE00ABF66E /* ModelViewModel.swift in Sources */,
 				E56767CF1C86AE5D00ABF66E /* ArrayViewModel.swift in Sources */,
 				E56DE9721C99913200EECBA3 /* LoadingViewType.swift in Sources */,
