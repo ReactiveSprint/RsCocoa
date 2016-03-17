@@ -107,6 +107,8 @@ public class FetchedArrayViewModel<Element: ViewModel, PaginationType, FetchErro
     ///
     /// Default implementation initializes an Action that is enabled when the receiver is,
     /// and executes `fetchClosure` with nil page.
+    ///
+    /// `CocoaAction.unsafeCocoaAction` is set with a safe one ignoring any input.
     /// 
     /// The returned action is also bound to the receiver using `bindAction`
     public func initRefreshAction() -> Action<(), [Element], FetchError>
@@ -118,6 +120,8 @@ public class FetchedArrayViewModel<Element: ViewModel, PaginationType, FetchErro
         
         bindAction(action)
         
+        action.unsafeCocoaAction = CocoaAction(action, input: ())
+        
         return action
     }
     
@@ -125,6 +129,8 @@ public class FetchedArrayViewModel<Element: ViewModel, PaginationType, FetchErro
     ///
     /// Default implementation initializes an Action that is enabled when the receiver is,
     /// and executes `fetchClosure` with `nextPage`.
+    ///
+    /// `CocoaAction.unsafeCocoaAction` is set with a safe one ignoring any input.
     ///
     /// The returned action is also bound to the receiver using `bindAction`
     public func initFetchAction() -> Action<(), [Element], FetchError>
@@ -142,6 +148,8 @@ public class FetchedArrayViewModel<Element: ViewModel, PaginationType, FetchErro
         }
         
         bindAction(action)
+        
+        action.unsafeCocoaAction = CocoaAction(action, input: ())
         
         return action
     }

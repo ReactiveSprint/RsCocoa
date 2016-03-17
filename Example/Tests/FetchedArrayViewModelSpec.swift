@@ -135,6 +135,16 @@ class FetchedArrayViewModelSpec: QuickSpec {
                     expect(viewModel[6].title.value) == "7"
                     expect(viewModel[7].title.value) == "8"
                 }
+                
+                it("should execute CocoaAction") {
+                    viewModel.refreshAction.unsafeCocoaAction.execute(UIView())
+                    
+                    expect(viewModel.count.value).toEventually(equal(4), timeout: 2)
+                    
+                    viewModel.fetchAction.unsafeCocoaAction.execute(UIView())
+                    
+                    expect(viewModel.count.value).toEventually(equal(8), timeout: 2)
+                }
             }
         }
     }
