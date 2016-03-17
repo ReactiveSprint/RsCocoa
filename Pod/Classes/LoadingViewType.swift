@@ -8,6 +8,7 @@
 
 import Foundation
 
+@objc
 public protocol LoadingViewType
 {
     var loading: Bool { get set }

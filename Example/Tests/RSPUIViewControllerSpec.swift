@@ -74,26 +74,6 @@ class RSPUIViewControllerSpec: QuickSpec {
                 expect(viewController.title) == "Test2"
             }
             
-            it("should set Loading View loading") {
-                let loadingView = UIView()
-                
-                viewController.loadingView = loadingView
-                
-                expect(loadingView.hidden) == false
-                
-                viewController.viewWillAppear(true)
-
-                expect(loadingView.hidden) == true
-                
-                loadingObserver.sendNext(true)
-                
-                expect(loadingView.hidden) == false
-                
-                loadingObserver.sendNext(false)
-                
-                expect(loadingView.hidden) == true
-            }
-            
             it("should set LoadingViewType loading") {
                 let activityIndicator = UIActivityIndicatorView()
                 

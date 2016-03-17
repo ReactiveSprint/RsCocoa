@@ -23,7 +23,7 @@ public class RSPUIViewController<ViewModel: ViewModelType>: UIViewController, Vi
         }
     }
     
-    @IBOutlet public var loadingView: UIView?
+    @IBOutlet public var loadingView: LoadingViewType?
     
     public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?)
     {
@@ -112,16 +112,7 @@ public func _presentLoading<ViewModel: ViewModelType, ViewController: ViewContro
 {
     if let loadingView = viewController.loadingView
     {
-        if loadingView is LoadingViewType
-        {
-            var loadingViewType = loadingView as! LoadingViewType
-            
-            loadingViewType.loading = loading
-        }
-        else
-        {
-            loadingView.hidden = !loading
-        }
+        loadingView.loading = loading
     }
 }
 

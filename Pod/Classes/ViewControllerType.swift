@@ -12,10 +12,10 @@ import Result
 /// Represents a ViewController.
 public protocol ViewControllerType: class, ViewType
 {
-    /// A UIView that is used to present loading to user.
-    ///
-    /// Your UIView may optionally conform to `LoadingViewType` protocol.
-    var loadingView: UIView? { get }
+    typealias LoadingView: LoadingViewType
+    
+    /// A LoadingViewType that is used to present loading to user.
+    var loadingView: LoadingView? { get }
     
     /// Binds ViewModel's `active` property from the receiver.
     ///
