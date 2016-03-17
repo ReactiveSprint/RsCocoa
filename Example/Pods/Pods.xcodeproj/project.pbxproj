@@ -1376,7 +1376,7 @@
 			name = Base;
 			sourceTree = "<group>";
 		};
-		E56DE9941C99E7F600EECBA3 /* UIView */ = {
+		E56DE9941C99E7F600EECBA3 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
 				E588EEC21C949DC4004BCD7E /* RSPUIViewController.swift */,
@@ -1384,7 +1384,7 @@
 				E56DE9961C99E84B00EECBA3 /* UIActivityIndicatorView+LoadingViewType.swift */,
 				E5D134471C9ABC1A0069226E /* UIRefreshController+LoadingViewType.swift */,
 			);
-			name = UIView;
+			name = UIKit;
 			sourceTree = "<group>";
 		};
 		E5F546E91C98098100DC721C /* ViewModels */ = {
@@ -1403,7 +1403,7 @@
 			isa = PBXGroup;
 			children = (
 				E56DE9931C99E7EB00EECBA3 /* Base */,
-				E56DE9941C99E7F600EECBA3 /* UIView */,
+				E56DE9941C99E7F600EECBA3 /* UIKit */,
 			);
 			name = Views;
 			sourceTree = "<group>";

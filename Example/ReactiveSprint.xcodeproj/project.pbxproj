@@ -178,7 +178,7 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		E56DE9991C99E9E700EECBA3 /* UIView */ = {
+		E56DE9991C99E9E700EECBA3 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
 				E5F546F21C997CC900DC721C /* RSPUIViewControllerSpec.swift */,
@@ -186,13 +186,13 @@
 				E56DE9731C99A3AE00EECBA3 /* UIActivityIndicatorViewSpec.swift */,
 				E5D134491C9B1B370069226E /* UIRefreshControlSpec.swift */,
 			);
-			name = UIView;
+			name = UIKit;
 			sourceTree = "<group>";
 		};
 		E5F546F01C997C9F00DC721C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E56DE9991C99E9E700EECBA3 /* UIView */,
+				E56DE9991C99E9E700EECBA3 /* UIKit */,
 			);
 			name = Views;
 			sourceTree = "<group>";
