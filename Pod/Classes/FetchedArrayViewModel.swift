@@ -1,4 +1,4 @@
- //
+//
 //  FetchedArrayViewModel.Swift
 //  Pods
 //
@@ -9,13 +9,9 @@
 import ReactiveCocoa
 import Result
 
-/// ArrayViewModel which its array is lazily fetched, or even paginated.
-public protocol FetchedArrayViewModelType: class, ArrayViewModelType
+/// Non-generic FetchedArrayViewModelType used with Cocoa.
+public protocol _FetchedArrayViewModelType: _ArrayViewModelType
 {
-    typealias FetchInput
-    typealias PaginationType
-    typealias FetchError: ViewModelErrorType
-    
     /// Whether the ViewModel is refreshing.
     var refreshing: AnyProperty<Bool> { get }
     
@@ -24,6 +20,14 @@ public protocol FetchedArrayViewModelType: class, ArrayViewModelType
     
     /// Whether the ViewModel has next page.
     var hasNextPage: AnyProperty<Bool> { get }
+}
+
+/// ArrayViewModel which its array is lazily fetched, or even paginated.
+public protocol FetchedArrayViewModelType: ArrayViewModelType, _FetchedArrayViewModelType
+{
+    typealias FetchInput
+    typealias PaginationType
+    typealias FetchError: ViewModelErrorType
     
     /// Next Page
     var nextPage: PaginationType? { get }
@@ -60,7 +64,7 @@ public extension FetchedArrayViewModelType
 }
 
 /// An implementation of FetchedArrayViewModelType that fetches ViewModels by calling `fetchClosure.`
-public class FetchedArrayViewModel<Element: ViewModel, PaginationType, FetchError: ViewModelErrorType>: ViewModel, FetchedArrayViewModelType
+public class FetchedArrayViewModel<Element: ViewModelType, PaginationType, FetchError: ViewModelErrorType>: ViewModel, FetchedArrayViewModelType
 {
     private let _viewModels: MutableProperty<[Element]> = MutableProperty([])
     public var viewModels: [Element] {
@@ -109,7 +113,7 @@ public class FetchedArrayViewModel<Element: ViewModel, PaginationType, FetchErro
     /// and executes `fetchClosure` with nil page.
     ///
     /// `CocoaAction.unsafeCocoaAction` is set with a safe one ignoring any input.
-    /// 
+    ///
     /// The returned action is also bound to the receiver using `bindAction`
     public func initRefreshAction() -> Action<(), [Element], FetchError>
     {
