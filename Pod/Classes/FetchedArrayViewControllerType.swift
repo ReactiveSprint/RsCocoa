@@ -20,6 +20,13 @@ public protocol FetchedArrayViewControllerType: ArrayViewControllerType
     func bindRefreshing(arrayViewModel: CocoaFetchedArrayViewModelType)
 }
 
+public extension FetchedArrayViewControllerType
+{
+    public var fetchedArrayViewModel: CocoaFetchedArrayViewModelType {
+        return arrayViewModel as! CocoaFetchedArrayViewModelType
+    }
+}
+
 /// Binds arrayViewModel refreshing by setting RefreshView.loading
 public func _bindRefreshing<ViewController: FetchedArrayViewControllerType where ViewController: NSObject>(arrayViewModel: CocoaFetchedArrayViewModelType, viewController: ViewController)
 {

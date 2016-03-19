@@ -14,3 +14,8 @@ public protocol ViewType
     
     var viewModel: ViewModel! { get }
 }
+
+/// General reuse Identifier.
+///
+/// This may be used for UITableViewCell or similar.
+let ViewModelIdentifier = "ViewModelIdentifier"
