@@ -20,6 +20,12 @@ public protocol _FetchedArrayViewModelType: _ArrayViewModelType
     
     /// Whether the ViewModel has next page.
     var hasNextPage: AnyProperty<Bool> { get }
+    
+    var refreshCocoaAction: CocoaAction { get }
+    
+    var fetchCocoaAction: CocoaAction { get }
+
+    var fetchIfNeededCocoaAction: CocoaAction { get }
 }
 
 /// ArrayViewModel which its array is lazily fetched, or even paginated.
@@ -41,7 +47,7 @@ public protocol FetchedArrayViewModelType: ArrayViewModelType, _FetchedArrayView
     var fetchAction: Action<FetchInput, [Element], FetchError> { get }
     
     /// Applies `fetchAction` only if next page is availabe or returns `SignalProducer.empty`
-    func fetchIfNeeded(input: FetchInput) -> SignalProducer<[Element], ActionError<FetchError>>
+    var fetchIfNeededAction: Action<FetchInput, [Element], ActionError<FetchError>> { get }
 }
 
 public extension FetchedArrayViewModelType
@@ -50,8 +56,6 @@ public extension FetchedArrayViewModelType
         return nextPage != nil
     }
     
-    /// Applies `fetchAction` only if next page is availabe or returns `SignalProducer.empty`
-    @warn_unused_result(message="Did you forget to call `start` on the producer?")
     public func fetchIfNeeded(input: FetchInput) -> SignalProducer<[Element], ActionError<FetchError>>
     {
         if willFetchNextPage && hasNextPage.value
@@ -61,6 +65,12 @@ public extension FetchedArrayViewModelType
         
         return SignalProducer.empty
     }
+    
+    public var fetchCocoaAction: CocoaAction { return fetchAction.unsafeCocoaAction }
+    
+    public var refreshCocoaAction: CocoaAction { return refreshAction.unsafeCocoaAction }
+    
+    public var fetchIfNeededCocoaAction: CocoaAction { return fetchIfNeededAction.unsafeCocoaAction }
 }
 
 /// An implementation of FetchedArrayViewModelType that fetches ViewModels by calling `fetchClosure.`
@@ -90,6 +100,17 @@ public class FetchedArrayViewModel<Element: ViewModelType, PaginationType, Fetch
     public let fetchClosure: PaginationType? -> SignalProducer<([Element], PaginationType?), FetchError>
     private(set) public lazy var refreshAction: Action<(), [Element], FetchError> = self.initRefreshAction()
     private(set) public lazy var fetchAction: Action<(), [Element], FetchError> = self.initFetchAction()
+    
+    private(set) public lazy var fetchIfNeededAction: Action<(), [Element], ActionError<FetchError>> = { _ in
+        
+        let action = Action<(), [Element], ActionError<FetchError>>(enabledIf: self.enabled) { [unowned self] _ in
+            return self.fetchIfNeeded()
+        }
+        
+        action.unsafeCocoaAction = CocoaAction(action, input: ())
+        
+        return action
+    }()
     
     /// Initializes an instance with `fetchClosure`
     ///
