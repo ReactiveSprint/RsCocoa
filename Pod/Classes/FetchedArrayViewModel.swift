@@ -10,7 +10,7 @@ import ReactiveCocoa
 import Result
 
 /// Non-generic FetchedArrayViewModelType used with Cocoa.
-public protocol _FetchedArrayViewModelType: _ArrayViewModelType
+public protocol CocoaFetchedArrayViewModelType: CocoaArrayViewModelType
 {
     /// Whether the ViewModel is refreshing.
     var refreshing: AnyProperty<Bool> { get }
@@ -29,7 +29,7 @@ public protocol _FetchedArrayViewModelType: _ArrayViewModelType
 }
 
 /// ArrayViewModel which its array is lazily fetched, or even paginated.
-public protocol FetchedArrayViewModelType: ArrayViewModelType, _FetchedArrayViewModelType
+public protocol FetchedArrayViewModelType: ArrayViewModelType, CocoaFetchedArrayViewModelType
 {
     typealias FetchInput
     typealias PaginationType
@@ -65,7 +65,10 @@ public extension FetchedArrayViewModelType
         
         return SignalProducer.empty
     }
-    
+}
+
+public extension FetchedArrayViewModelType
+{
     public var fetchCocoaAction: CocoaAction { return fetchAction.unsafeCocoaAction }
     
     public var refreshCocoaAction: CocoaAction { return refreshAction.unsafeCocoaAction }

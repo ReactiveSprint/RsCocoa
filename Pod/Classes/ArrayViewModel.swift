@@ -10,7 +10,7 @@ import ReactiveCocoa
 import Result
 
 /// Non-generic ArrayViewModelType used with Cocoa.
-public protocol _ArrayViewModelType: ViewModelType
+public protocol CocoaArrayViewModelType: ViewModelType
 {
     /// Returns count of ViewModels.
     var count: AnyProperty<Int> { get }
@@ -20,7 +20,7 @@ public protocol _ArrayViewModelType: ViewModelType
 }
 
 /// Represents an ViewModel which wraps an Array of ViewModels of type `Element`
-public protocol ArrayViewModelType: _ArrayViewModelType
+public protocol ArrayViewModelType: CocoaArrayViewModelType
 {
     /// Type of ViewModels Array
     typealias Element: ViewModelType
@@ -36,7 +36,7 @@ public protocol ArrayViewModelType: _ArrayViewModelType
     subscript(index: Int) -> Element { get }
 }
 
-public extension _ArrayViewModelType
+public extension CocoaArrayViewModelType
 {
     /// Returns true if Array is empty, false otherwise.
     public var isEmpty: AnyProperty<Bool> {
@@ -76,32 +76,3 @@ public class ArrayViewModel<Element: ViewModelType>: ViewModel, ArrayViewModelTy
     
     public subscript(index: Int) -> Element { return viewModels[index] }
 }
-
-//public class CocoaArrayViewModel: NSObject, _ArrayViewModelType
-//{
-//    public let count: AnyProperty<Int>
-//    
-//    private let _viewModels: () -> [AnyObject]
-//    public var viewModels: [AnyObject] {
-//        return _viewModels()
-//    }
-//    
-//    public let localizedEmptyMessage: MutableProperty<String?>
-//    
-//    private let _subscript: (Int) -> AnyObject
-//    
-//    public init<ArrayViewModel: ArrayViewModelType>(_ viewModel: ArrayViewModel)
-//    {
-//        _viewModels = { _ in
-//            return viewModel.viewModels
-//        }
-//        
-//        count = viewModel.count
-//        
-//        localizedEmptyMessage = viewModel.localizedEmptyMessage
-//        
-//        _subscript = { viewModel[$0] }
-//    }
-//    
-//    public subscript(index: Int) -> AnyObject { return _subscript(index) }
-//}
