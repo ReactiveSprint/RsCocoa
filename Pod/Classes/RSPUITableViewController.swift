@@ -17,6 +17,7 @@ public extension ArrayViewControllerType where Self.ArrayView == UITableView
     }
 }
 
+/// An implementation of `ArrayViewControllerType` as UITableViewController.
 public class RSPUITableViewController: RSPUIViewController, ArrayViewControllerType
 {
     public var arrayViewModel: CocoaArrayViewModelType {
@@ -37,9 +38,12 @@ public class RSPUITableViewController: RSPUIViewController, ArrayViewControllerT
     }
 }
 
+/// An implementation RSPUITableViewController where `arrayViewModel` supports fetching and refreshing.
 public class RSPUIFetchedTableViewController: RSPUITableViewController, FetchedArrayViewControllerType
 {
     @IBOutlet public var refreshView: LoadingViewType?
+    
+    @IBOutlet public var fetchingNextPageView: LoadingViewType?
     
     public override func viewDidLoad()
     {
@@ -49,16 +53,25 @@ public class RSPUIFetchedTableViewController: RSPUITableViewController, FetchedA
         {
             refreshView.addTarget(fetchedArrayViewModel.refreshCocoaAction, action: CocoaAction.selector, forControlEvents: UIControlEvents.ValueChanged)
         }
+        
+        arrayView.rac_didScrollToHorizontalEnd().startWithNext { [unowned self] _ in
+            self.fetchedArrayViewModel.fetchIfNeededCocoaAction.execute(nil)
+        }
     }
     
     public override func bindArrayViewModel(arrayViewModel: CocoaArrayViewModelType)
     {
         super.bindArrayViewModel(arrayViewModel)
         bindRefreshing(fetchedArrayViewModel)
+        bindFetchingNextPage(fetchedArrayViewModel)
     }
     
     public func bindRefreshing(arrayViewModel: CocoaFetchedArrayViewModelType)
     {
         _bindRefreshing(arrayViewModel, viewController: self)
+    }
+    
+    public func bindFetchingNextPage(arrayViewModel: CocoaFetchedArrayViewModelType) {
+        _bindFetchingNextPage(arrayViewModel, viewController: self)
     }
 }

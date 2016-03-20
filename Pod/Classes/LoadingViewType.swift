@@ -8,8 +8,9 @@
 
 import Foundation
 
-@objc
-public protocol LoadingViewType
+/// Represents a View that displays loading state.
+@objc public protocol LoadingViewType
 {
+    /// Gets or sets whether the receiver is loading.
     var loading: Bool { get set }
 }
