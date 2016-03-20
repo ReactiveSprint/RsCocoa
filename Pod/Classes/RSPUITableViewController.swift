@@ -26,7 +26,7 @@ public class RSPUITableViewController: RSPUIViewController, ArrayViewControllerT
     
     @IBOutlet public var arrayView: UITableView!
     
-    public override func bindViewModel(viewModel: ViewModel)
+    public override func bindViewModel(viewModel: ViewModelType)
     {
         super.bindViewModel(viewModel)
         bindArrayViewModel(arrayViewModel)

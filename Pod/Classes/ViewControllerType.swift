@@ -14,9 +14,6 @@ public protocol ViewControllerType: class, ViewType
 {
     typealias LoadingView: LoadingViewType
     
-    /// A LoadingViewType that is used to present loading to user.
-    var loadingView: LoadingView? { get }
-    
     /// Binds ViewModel's `active` property from the receiver.
     ///
     /// When `viewDidAppear(_:)` is called or `UIApplicationDidBecomeActiveNotification` is sent
@@ -24,7 +21,7 @@ public protocol ViewControllerType: class, ViewType
     ///
     /// When `viewWillDisappear(_:)` is called or `UIApplicationWillResignActiveNotification` is sent
     /// ViewModel's active is set to `false.`
-    func bindActive(viewModel: ViewModel)
+    func bindActive(viewModel: ViewModelType)
     
     /// Binds `viewModel` to the receiver.
     ///
@@ -32,15 +29,18 @@ public protocol ViewControllerType: class, ViewType
     ///
     /// Default implementation calls `bindActive(_:)` , `bindTitle(_:)`, `bindLoading(_:)`
     /// and `bindErrors(_:)`
-    func bindViewModel(viewModel: ViewModel)
+    func bindViewModel(viewModel: ViewModelType)
+    
+    /// A LoadingViewType that is used to present loading to user.
+    var loadingView: LoadingView? { get }
     
     /// Binds viewModel's title to the receiver title.
-    func bindTitle(viewModel: ViewModel)
+    func bindTitle(viewModel: ViewModelType)
     
     /// Binds viewModel's loading to `showLoading(_:)`
     ///
     /// Default binding uses `forwardWhileActive(_:).`
-    func bindLoading(viewModel: ViewModel)
+    func bindLoading(viewModel: ViewModelType)
     
     /// Shows or hides loading view.
     ///
@@ -52,7 +52,7 @@ public protocol ViewControllerType: class, ViewType
     /// Binds viewModel's errors to `showErrors(_:)`
     ///
     /// Default binding uses `forwardWhileActive(_:).`
-    func bindErrors(viewModel: ViewModel)
+    func bindErrors(viewModel: ViewModelType)
     
     /// Presents `error` in an UIAlertController.
     func presentError(error: ViewModelErrorType)
@@ -61,7 +61,7 @@ public protocol ViewControllerType: class, ViewType
 // Composition is required since Swift *currently* doesn't support methods overriding
 // if they were implemented/declared in extensions.
 
-public func _bindViewModel<ViewModel: ViewModelType, ViewController: ViewControllerType where ViewController.ViewModel == ViewModel>(viewModel: ViewModel, viewController: ViewController)
+public func _bindViewModel<ViewController: ViewControllerType>(viewModel: ViewModelType, viewController: ViewController)
 {
     viewController.bindActive(viewModel)
     viewController.bindTitle(viewModel)
@@ -69,13 +69,13 @@ public func _bindViewModel<ViewModel: ViewModelType, ViewController: ViewControl
     viewController.bindErrors(viewModel)
 }
 
-public func _bindLoading<ViewModel: ViewModelType, ViewController: ViewControllerType where ViewController.ViewModel == ViewModel>(viewModel: ViewModel, viewController: ViewController)
+public func _bindLoading<ViewController: ViewControllerType>(viewModel: ViewModelType, viewController: ViewController)
 {
     let loadingProducer = viewModel.loading.producer.forwardWhileActive(viewModel)
     loadingProducer.startWithNext(viewController.presentLoading)
 }
 
-public func _bindErrors<ViewModel: ViewModelType, ViewController: ViewControllerType where ViewController.ViewModel == ViewModel>(viewModel: ViewModel, viewController: ViewController)
+public func _bindErrors<ViewController: ViewControllerType>(viewModel: ViewModelType, viewController: ViewController)
 {
     viewModel.errors.forwardWhileActive(viewModel).observeNext(viewController.presentError)
 }

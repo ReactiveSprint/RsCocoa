@@ -16,7 +16,7 @@ public class RSPUIViewController: UIViewController, ViewControllerType
     /// ViewModel which will be used as context for this "View."
     ///
     /// This property is expected to be set only once with a non-nil value.
-    public var viewModel: ViewModel! {
+    public var viewModel: ViewModelType! {
         didSet {
             precondition(oldValue == nil)
             bindViewModel(viewModel)
@@ -35,22 +35,22 @@ public class RSPUIViewController: UIViewController, ViewControllerType
         super.init(coder: aDecoder)
     }
     
-    public func bindViewModel(viewModel: ViewModel)
+    public func bindViewModel(viewModel: ViewModelType)
     {
         _bindViewModel(viewModel, viewController: self)
     }
     
-    public func bindActive(viewModel: ViewModel)
+    public func bindActive(viewModel: ViewModelType)
     {
         _bindActive(viewModel, viewController: self)
     }
     
-    public func bindTitle(viewModel: ViewModel)
+    public func bindTitle(viewModel: ViewModelType)
     {
         _bindTitle(viewModel, viewController: self)
     }
     
-    public func bindLoading(viewModel: ViewModel)
+    public func bindLoading(viewModel: ViewModelType)
     {
         _bindLoading(viewModel, viewController: self)
     }
@@ -60,7 +60,7 @@ public class RSPUIViewController: UIViewController, ViewControllerType
         _presentLoading(loading, viewController: self)
     }
     
-    public func bindErrors(viewModel: ViewModel)
+    public func bindErrors(viewModel: ViewModelType)
     {
         _bindErrors(viewModel, viewController: self)
     }
@@ -71,7 +71,7 @@ public class RSPUIViewController: UIViewController, ViewControllerType
     }
 }
 
-public func _bindActive<ViewModel: ViewModelType, ViewController: ViewControllerType where ViewController.ViewModel == ViewModel, ViewController: UIViewController>(viewModel: ViewModelType, viewController: ViewController)
+public func _bindActive<ViewController: ViewControllerType where ViewController: UIViewController>(viewModel: ViewModelType, viewController: ViewController)
 {
     let presented = RACSignal.merge([
         viewController.rac_signalForSelector(Selector("viewWillAppear:")).mapReplace(true)
@@ -101,14 +101,14 @@ public func _bindActive<ViewModel: ViewModelType, ViewController: ViewController
     viewModel.active <~ activeSignal
 }
 
-public func _bindTitle<ViewModel: ViewModelType, ViewController: ViewControllerType where ViewController.ViewModel == ViewModel, ViewController: UIViewController>(viewModel: ViewModel, viewController: ViewController)
+public func _bindTitle<ViewController: ViewControllerType where ViewController: UIViewController>(viewModel: ViewModelType, viewController: ViewController)
 {
     viewModel.title.producer
         .takeUntil(viewController.rac_willDeallocSignalProducer())
         .startWithNext { [unowned viewController] in viewController.title = $0 }
 }
 
-public func _presentLoading<ViewModel: ViewModelType, ViewController: ViewControllerType where ViewController.ViewModel == ViewModel, ViewController: UIViewController>(loading: Bool, viewController: ViewController)
+public func _presentLoading<ViewController: ViewControllerType where ViewController: UIViewController>(loading: Bool, viewController: ViewController)
 {
     if let loadingView = viewController.loadingView
     {
@@ -116,7 +116,7 @@ public func _presentLoading<ViewModel: ViewModelType, ViewController: ViewContro
     }
 }
 
-public func _presentError<ViewModel: ViewModelType, ViewController: ViewControllerType where ViewController.ViewModel == ViewModel, ViewController: UIViewController>(error: ViewModelErrorType, viewController: ViewController)
+public func _presentError<ViewController: ViewControllerType where ViewController: UIViewController>(error: ViewModelErrorType, viewController: ViewController)
 {
     viewController.presentViewController(UIAlertController(error: error), animated: true, completion: nil)
 }

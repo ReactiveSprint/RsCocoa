@@ -9,10 +9,8 @@
 /// Represents a View in MVVM pattern.
 public protocol ViewType
 {
-    /// Type of `ViewModel`
-    typealias ViewModel: ViewModelType
-    
-    var viewModel: ViewModel! { get }
+    /// ViewModel used in the receiver.
+    var viewModel: ViewModelType! { get }
 }
 
 /// General reuse Identifier.
