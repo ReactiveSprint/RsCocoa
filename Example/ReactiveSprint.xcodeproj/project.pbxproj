@@ -20,11 +20,11 @@
 		E56767C31C83453A00ABF66E /* SignalManipulationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56767C21C83453A00ABF66E /* SignalManipulationSpec.swift */; };
 		E56767C91C862F6700ABF66E /* ModelViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56767C81C862F6700ABF66E /* ModelViewModelSpec.swift */; };
 		E56767CC1C869D3C00ABF66E /* TestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56767CA1C869AE400ABF66E /* TestModel.swift */; };
-		E56DE9741C99A3AE00EECBA3 /* UIActivityIndicatorViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56DE9731C99A3AE00EECBA3 /* UIActivityIndicatorViewSpec.swift */; };
-		E56DE9761C99A45900EECBA3 /* UIAlertControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56DE9751C99A45900EECBA3 /* UIAlertControllerSpec.swift */; };
-		E5D1344A1C9B1B370069226E /* UIRefreshControlSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D134491C9B1B370069226E /* UIRefreshControlSpec.swift */; };
-		E5D134661C9EF09C0069226E /* UIScrollViewDidScrollSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D134651C9EF09C0069226E /* UIScrollViewDidScrollSpec.swift */; };
-		E5F546F31C997CC900DC721C /* RSPViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F546F21C997CC900DC721C /* RSPViewControllerSpec.swift */; };
+		E5D134BF1C9F68420069226E /* RSPViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D134B51C9F68340069226E /* RSPViewControllerSpec.swift */; };
+		E5D134C01C9F68420069226E /* UIActivityIndicatorViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D134B61C9F68340069226E /* UIActivityIndicatorViewSpec.swift */; };
+		E5D134C11C9F68420069226E /* UIAlertControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D134B71C9F68340069226E /* UIAlertControllerSpec.swift */; };
+		E5D134C21C9F68420069226E /* UIRefreshControlSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D134B81C9F68340069226E /* UIRefreshControlSpec.swift */; };
+		E5D134C31C9F68420069226E /* UIScrollViewDidScrollSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D134B91C9F68340069226E /* UIScrollViewDidScrollSpec.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,11 +60,11 @@
 		E56767C21C83453A00ABF66E /* SignalManipulationSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignalManipulationSpec.swift; sourceTree = "<group>"; };
 		E56767C81C862F6700ABF66E /* ModelViewModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelViewModelSpec.swift; sourceTree = "<group>"; };
 		E56767CA1C869AE400ABF66E /* TestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestModel.swift; sourceTree = "<group>"; };
-		E56DE9731C99A3AE00EECBA3 /* UIActivityIndicatorViewSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIActivityIndicatorViewSpec.swift; sourceTree = "<group>"; };
-		E56DE9751C99A45900EECBA3 /* UIAlertControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAlertControllerSpec.swift; sourceTree = "<group>"; };
-		E5D134491C9B1B370069226E /* UIRefreshControlSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIRefreshControlSpec.swift; sourceTree = "<group>"; };
-		E5D134651C9EF09C0069226E /* UIScrollViewDidScrollSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIScrollViewDidScrollSpec.swift; sourceTree = "<group>"; };
-		E5F546F21C997CC900DC721C /* RSPViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSPViewControllerSpec.swift; sourceTree = "<group>"; };
+		E5D134B51C9F68340069226E /* RSPViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSPViewControllerSpec.swift; sourceTree = "<group>"; };
+		E5D134B61C9F68340069226E /* UIActivityIndicatorViewSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIActivityIndicatorViewSpec.swift; sourceTree = "<group>"; };
+		E5D134B71C9F68340069226E /* UIAlertControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAlertControllerSpec.swift; sourceTree = "<group>"; };
+		E5D134B81C9F68340069226E /* UIRefreshControlSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIRefreshControlSpec.swift; sourceTree = "<group>"; };
+		E5D134B91C9F68340069226E /* UIScrollViewDidScrollSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIScrollViewDidScrollSpec.swift; sourceTree = "<group>"; };
 		EDBC012B32416B5D72F1E8E5 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		F53A2D43A411F7EBF3C7FF5C /* Pods_ReactiveSprint_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReactiveSprint_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -180,22 +180,22 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		E56DE9991C99E9E700EECBA3 /* UIKit */ = {
+		E5D134B41C9F68340069226E /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
-				E5F546F21C997CC900DC721C /* RSPViewControllerSpec.swift */,
-				E56DE9751C99A45900EECBA3 /* UIAlertControllerSpec.swift */,
-				E56DE9731C99A3AE00EECBA3 /* UIActivityIndicatorViewSpec.swift */,
-				E5D134491C9B1B370069226E /* UIRefreshControlSpec.swift */,
-				E5D134651C9EF09C0069226E /* UIScrollViewDidScrollSpec.swift */,
+				E5D134B51C9F68340069226E /* RSPViewControllerSpec.swift */,
+				E5D134B61C9F68340069226E /* UIActivityIndicatorViewSpec.swift */,
+				E5D134B71C9F68340069226E /* UIAlertControllerSpec.swift */,
+				E5D134B81C9F68340069226E /* UIRefreshControlSpec.swift */,
+				E5D134B91C9F68340069226E /* UIScrollViewDidScrollSpec.swift */,
 			);
-			name = UIKit;
+			path = UIKit;
 			sourceTree = "<group>";
 		};
 		E5F546F01C997C9F00DC721C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E56DE9991C99E9E700EECBA3 /* UIKit */,
+				E5D134B41C9F68340069226E /* UIKit */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -423,15 +423,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				E56767C31C83453A00ABF66E /* SignalManipulationSpec.swift in Sources */,
-				E5F546F31C997CC900DC721C /* RSPViewControllerSpec.swift in Sources */,
-				E56DE9741C99A3AE00EECBA3 /* UIActivityIndicatorViewSpec.swift in Sources */,
-				E56DE9761C99A45900EECBA3 /* UIAlertControllerSpec.swift in Sources */,
 				E547894D1C880F620075B0F5 /* ArrayViewModelSpec.swift in Sources */,
 				E56767C91C862F6700ABF66E /* ModelViewModelSpec.swift in Sources */,
-				E5D1344A1C9B1B370069226E /* UIRefreshControlSpec.swift in Sources */,
-				E5D134661C9EF09C0069226E /* UIScrollViewDidScrollSpec.swift in Sources */,
+				E5D134C11C9F68420069226E /* UIAlertControllerSpec.swift in Sources */,
 				E5406A131C7B2DF90035C40E /* ViewModelSpec.swift in Sources */,
+				E5D134BF1C9F68420069226E /* RSPViewControllerSpec.swift in Sources */,
+				E5D134C21C9F68420069226E /* UIRefreshControlSpec.swift in Sources */,
+				E5D134C31C9F68420069226E /* UIScrollViewDidScrollSpec.swift in Sources */,
 				E56767CC1C869D3C00ABF66E /* TestModel.swift in Sources */,
+				E5D134C01C9F68420069226E /* UIActivityIndicatorViewSpec.swift in Sources */,
 				E54789541C8B552F0075B0F5 /* FetchedArrayViewModelSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
