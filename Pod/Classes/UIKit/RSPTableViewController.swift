@@ -1,5 +1,5 @@
 //
-//  RSPUITableViewController.swift
+//  RSPTableViewController.swift
 //  Pods
 //
 //  Created by Ahmad Baraka on 3/17/16.
@@ -18,7 +18,7 @@ public extension ArrayViewControllerType where Self.ArrayView == UITableView
 }
 
 /// An implementation of `ArrayViewControllerType` as UITableViewController.
-public class RSPUITableViewController: RSPUIViewController, ArrayViewControllerType
+public class RSPTableViewController: RSPViewController, ArrayViewControllerType
 {
     public var arrayViewModel: CocoaArrayViewModelType {
         return viewModel as! CocoaArrayViewModelType
@@ -39,7 +39,7 @@ public class RSPUITableViewController: RSPUIViewController, ArrayViewControllerT
 }
 
 /// An implementation RSPUITableViewController where `arrayViewModel` supports fetching and refreshing.
-public class RSPUIFetchedTableViewController: RSPUITableViewController, FetchedArrayViewControllerType
+public class RSPFetchedTableViewController: RSPTableViewController, FetchedArrayViewControllerType
 {
     @IBOutlet public var refreshView: LoadingViewType?
     
