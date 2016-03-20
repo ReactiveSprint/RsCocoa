@@ -296,6 +296,7 @@
 		E5D134AD1C9F5DC20069226E /* UIAlertController+ViewModelErrorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D1349A1C9F5DB90069226E /* UIAlertController+ViewModelErrorType.swift */; };
 		E5D134AE1C9F5DC20069226E /* UIRefreshController+LoadingViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D1349B1C9F5DB90069226E /* UIRefreshController+LoadingViewType.swift */; };
 		E5D134AF1C9F5DC20069226E /* UIScrollView+DidScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D1349C1C9F5DB90069226E /* UIScrollView+DidScroll.swift */; };
+		E5D134B31C9F61EB0069226E /* UITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D134B11C9F61B80069226E /* UITableViewController.swift */; };
 		E6C30CCB20844B69B667093CE8726B94 /* UIImagePickerController+RACSignalSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 33CCA71E164BCF3D3BC7AE58DE6C24D8 /* UIImagePickerController+RACSignalSupport.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E6E7B15FAD6C56681511813DB2666478 /* AssertionRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF552F08854F74F72C125DDD3C086D6 /* AssertionRecorder.swift */; };
 		E70BBA9EA67CEC670CA0E562ECEAF3CB /* Pods-ReactiveSprint_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F331C3368A597220747711B75A9A59 /* Pods-ReactiveSprint_Example-dummy.m */; };
@@ -732,6 +733,7 @@
 		E5D1349A1C9F5DB90069226E /* UIAlertController+ViewModelErrorType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+ViewModelErrorType.swift"; sourceTree = "<group>"; };
 		E5D1349B1C9F5DB90069226E /* UIRefreshController+LoadingViewType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIRefreshController+LoadingViewType.swift"; sourceTree = "<group>"; };
 		E5D1349C1C9F5DB90069226E /* UIScrollView+DidScroll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+DidScroll.swift"; sourceTree = "<group>"; };
+		E5D134B11C9F61B80069226E /* UITableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewController.swift; sourceTree = "<group>"; };
 		E6AE8F4B0034EE6A936C1352D0AE88AB /* Result-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Result-prefix.pch"; sourceTree = "<group>"; };
 		E76421F0E741E2E5AD2A5A93C985B423 /* Pods-ReactiveSprint_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ReactiveSprint_Example-umbrella.h"; sourceTree = "<group>"; };
 		E8039A8C738C8E71E5589759F4F6490C /* RACSignal+Operations.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "RACSignal+Operations.h"; path = "ReactiveCocoa/Objective-C/RACSignal+Operations.h"; sourceTree = "<group>"; };
@@ -1391,6 +1393,7 @@
 			children = (
 				E5D134961C9F5DB90069226E /* RSPViewController.swift */,
 				E5D134941C9F5DB90069226E /* RSPTableViewController.swift */,
+				E5D134B11C9F61B80069226E /* UITableViewController.swift */,
 				E5D134991C9F5DB90069226E /* UIActivityIndicatorView+LoadingViewType.swift */,
 				E5D1349A1C9F5DB90069226E /* UIAlertController+ViewModelErrorType.swift */,
 				E5D1349B1C9F5DB90069226E /* UIRefreshController+LoadingViewType.swift */,
@@ -1831,6 +1834,7 @@
 				E5D134A91C9F5DC20069226E /* RSPViewController.swift in Sources */,
 				E5D1344C1C9B20C20069226E /* ArrayViewControllerType.swift in Sources */,
 				E54789501C8819990075B0F5 /* FetchedArrayViewModel.swift in Sources */,
+				E5D134B31C9F61EB0069226E /* UITableViewController.swift in Sources */,
 				E59D17491C94A2D100ADB6CF /* ViewType.swift in Sources */,
 				E5D134AD1C9F5DC20069226E /* UIAlertController+ViewModelErrorType.swift in Sources */,
 				88496613194BB9A6A0886430D47E6979 /* SignalManipulation.swift in Sources */,

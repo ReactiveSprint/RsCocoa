@@ -18,6 +18,10 @@ public extension ArrayViewControllerType where Self.ArrayView == UITableView
 }
 
 /// An implementation of `ArrayViewControllerType` as UITableViewController.
+///
+/// Unlike ReactiveSprint.UITableViewController, this implementation doesn't require
+/// your view to be UITableView.
+/// And it doesn't create/modify your TableView.
 public class RSPTableViewController: RSPViewController, ArrayViewControllerType
 {
     public var arrayViewModel: CocoaArrayViewModelType {
@@ -38,7 +42,7 @@ public class RSPTableViewController: RSPViewController, ArrayViewControllerType
     }
 }
 
-/// An implementation RSPUITableViewController where `arrayViewModel` supports fetching and refreshing.
+/// An implementation RSPTableViewController where `arrayViewModel` supports fetching and refreshing.
 public class RSPFetchedTableViewController: RSPTableViewController, FetchedArrayViewControllerType
 {
     @IBOutlet public var refreshView: LoadingViewType?
