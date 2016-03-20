@@ -19,7 +19,7 @@ public extension ArrayViewControllerType where Self.ArrayView == UITableView
 
 /// An implementation of `ArrayViewControllerType` as UITableViewController.
 ///
-/// Unlike ReactiveSprint.UITableViewController, this implementation doesn't require
+/// Unlike RSPUITableViewController, this implementation doesn't require
 /// your view to be UITableView.
 /// And it doesn't create/modify your TableView.
 public class RSPTableViewController: RSPViewController, ArrayViewControllerType

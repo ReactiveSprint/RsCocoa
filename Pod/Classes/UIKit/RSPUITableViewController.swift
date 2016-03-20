@@ -1,5 +1,5 @@
 //
-//  UITableViewController.swift
+//  RSPUITableViewController.swift
 //  Pods
 //
 //  Created by Ahmad Baraka on 3/16/16.
@@ -10,7 +10,7 @@ import Foundation
 import ReactiveCocoa
 
 /// UITableViewController that implements ArrayViewControllerType.
-public class UITableViewController: UIKit.UITableViewController, ArrayViewControllerType
+public class RSPUITableViewController: UITableViewController, ArrayViewControllerType
 {
     /// ViewModel which will be used as context for this "View."
     ///
@@ -75,7 +75,7 @@ public class UITableViewController: UIKit.UITableViewController, ArrayViewContro
 }
 
 /// UITableViewController subclass where `arrayViewModel` supports fetching and refreshing.
-public class UIFetchedTableViewController: UITableViewController, FetchedArrayViewControllerType
+public class RSPUIFetchedTableViewController: RSPUITableViewController, FetchedArrayViewControllerType
 {
     @IBOutlet public var refreshView: LoadingViewType?
     
@@ -84,7 +84,6 @@ public class UIFetchedTableViewController: UITableViewController, FetchedArrayVi
     public override func viewDidLoad()
     {
         super.viewDidLoad()
-        
         
         if let refreshView = self.refreshView as? UIControl
         {
