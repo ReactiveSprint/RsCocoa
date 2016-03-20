@@ -14,23 +14,6 @@ public protocol ViewControllerType: class, ViewType
 {
     typealias LoadingView: LoadingViewType
     
-    /// Binds ViewModel's `active` property from the receiver.
-    ///
-    /// When `viewDidAppear(_:)` is called or `UIApplicationDidBecomeActiveNotification` is sent
-    /// ViewModel's active is set to `true.`
-    ///
-    /// When `viewWillDisappear(_:)` is called or `UIApplicationWillResignActiveNotification` is sent
-    /// ViewModel's active is set to `false.`
-    func bindActive(viewModel: ViewModelType)
-    
-    /// Binds `viewModel` to the receiver.
-    ///
-    /// This is called at `didSet` for viewModel property.
-    ///
-    /// Default implementation calls `bindActive(_:)` , `bindTitle(_:)`, `bindLoading(_:)`
-    /// and `bindErrors(_:)`
-    func bindViewModel(viewModel: ViewModelType)
-    
     /// A LoadingViewType that is used to present loading to user.
     var loadingView: LoadingView? { get }
     
@@ -61,6 +44,12 @@ public protocol ViewControllerType: class, ViewType
 // Composition is required since Swift *currently* doesn't support methods overriding
 // if they were implemented/declared in extensions.
 
+/// Binds `viewModel` to the `viewController.`
+///
+/// This is called at `didSet` for viewModel property.
+///
+/// Default implementation calls `bindActive(_:)` , `bindTitle(_:)`, `bindLoading(_:)`
+/// and `bindErrors(_:)`
 public func _bindViewModel<ViewController: ViewControllerType>(viewModel: ViewModelType, viewController: ViewController)
 {
     viewController.bindActive(viewModel)

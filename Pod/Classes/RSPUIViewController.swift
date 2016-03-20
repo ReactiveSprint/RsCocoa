@@ -71,6 +71,13 @@ public class RSPUIViewController: UIViewController, ViewControllerType
     }
 }
 
+/// Binds ViewModel's `active` property from `viewController`.
+///
+/// When `viewDidAppear(_:)` is called or `UIApplicationDidBecomeActiveNotification` is sent
+/// ViewModel's active is set to `true.`
+///
+/// When `viewWillDisappear(_:)` is called or `UIApplicationWillResignActiveNotification` is sent
+/// ViewModel's active is set to `false.`
 public func _bindActive<ViewController: ViewControllerType where ViewController: UIViewController>(viewModel: ViewModelType, viewController: ViewController)
 {
     let presented = RACSignal.merge([
