@@ -9,7 +9,7 @@
 /// General reuse Identifier.
 ///
 /// This may be used for UITableViewCell or similar.
-let ViewModelIdentifier = "ViewModelIdentifier"
+public let ViewModelIdentifier = "ViewModelIdentifier"
 
 /// Represents a View in MVVM pattern
 public protocol ViewType

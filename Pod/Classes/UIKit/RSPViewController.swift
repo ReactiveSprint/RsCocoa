@@ -82,22 +82,17 @@ public func _bindActive<ViewController: ViewControllerType where ViewController:
 {
     let presented = RACSignal.merge([
         viewController.rac_signalForSelector(Selector("viewWillAppear:")).mapReplace(true)
-            .doNext { NSLog("viewWillAppear: %@", $0.description) }
         , viewController.rac_signalForSelector(Selector("viewWillDisappear:")).mapReplace(false)
-            .doNext { NSLog("viewWillDisappear: %@", $0.description) }
         ])
     
     let appActive = RACSignal.merge([
         NSNotificationCenter.defaultCenter()
             .rac_addObserverForName(UIApplicationDidBecomeActiveNotification, object: nil)
             .mapReplace(true)
-            .doNext { NSLog("UIApplicationDidBecomeActiveNotification: %@", $0.description) }
         , NSNotificationCenter.defaultCenter()
             .rac_addObserverForName(UIApplicationWillResignActiveNotification, object: nil)
             .mapReplace(false)
-            .doNext { NSLog("UIApplicationWillResignActiveNotification: %@", $0.description) }
         ]).startWith(true)
-        .doNext { NSLog("appActive: %@", $0.description) }
     
     let activeSignal = RACSignal.combineLatest([presented, appActive])
         .and()

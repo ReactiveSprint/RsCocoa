@@ -12,6 +12,7 @@ import ReactiveCocoa
 import Result
 import ReactiveSprint
 
+/// Generates `count` of ViewModels, each ViewModel will have title of `index + startValue`
 func generateViewModels(count: Int, startValue: Int = 0) -> [ViewModel]
 {
     var viewModels = [ViewModel]()

@@ -25,6 +25,7 @@
 		E5D134C11C9F68420069226E /* UIAlertControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D134B71C9F68340069226E /* UIAlertControllerSpec.swift */; };
 		E5D134C21C9F68420069226E /* UIRefreshControlSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D134B81C9F68340069226E /* UIRefreshControlSpec.swift */; };
 		E5D134C31C9F68420069226E /* UIScrollViewDidScrollSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D134B91C9F68340069226E /* UIScrollViewDidScrollSpec.swift */; };
+		E5D134CA1C9F73310069226E /* RSPTableViewCellSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D134C91C9F73310069226E /* RSPTableViewCellSpec.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		E5D134B71C9F68340069226E /* UIAlertControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAlertControllerSpec.swift; sourceTree = "<group>"; };
 		E5D134B81C9F68340069226E /* UIRefreshControlSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIRefreshControlSpec.swift; sourceTree = "<group>"; };
 		E5D134B91C9F68340069226E /* UIScrollViewDidScrollSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIScrollViewDidScrollSpec.swift; sourceTree = "<group>"; };
+		E5D134C91C9F73310069226E /* RSPTableViewCellSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSPTableViewCellSpec.swift; sourceTree = "<group>"; };
 		EDBC012B32416B5D72F1E8E5 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		F53A2D43A411F7EBF3C7FF5C /* Pods_ReactiveSprint_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReactiveSprint_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -184,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				E5D134B51C9F68340069226E /* RSPViewControllerSpec.swift */,
+				E5D134C91C9F73310069226E /* RSPTableViewCellSpec.swift */,
 				E5D134B61C9F68340069226E /* UIActivityIndicatorViewSpec.swift */,
 				E5D134B71C9F68340069226E /* UIAlertControllerSpec.swift */,
 				E5D134B81C9F68340069226E /* UIRefreshControlSpec.swift */,
@@ -431,6 +434,7 @@
 				E5D134C21C9F68420069226E /* UIRefreshControlSpec.swift in Sources */,
 				E5D134C31C9F68420069226E /* UIScrollViewDidScrollSpec.swift in Sources */,
 				E56767CC1C869D3C00ABF66E /* TestModel.swift in Sources */,
+				E5D134CA1C9F73310069226E /* RSPTableViewCellSpec.swift in Sources */,
 				E5D134C01C9F68420069226E /* UIActivityIndicatorViewSpec.swift in Sources */,
 				E54789541C8B552F0075B0F5 /* FetchedArrayViewModelSpec.swift in Sources */,
 			);
