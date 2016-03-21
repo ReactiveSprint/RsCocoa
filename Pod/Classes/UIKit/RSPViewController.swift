@@ -35,6 +35,12 @@ public class RSPViewController: UIViewController, ViewControllerType
         super.init(coder: aDecoder)
     }
     
+    public override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        bindLoading(viewModel)
+    }
+    
     public func bindViewModel(viewModel: ViewModelType)
     {
         _bindViewModel(viewModel, viewController: self)

@@ -15,15 +15,15 @@ public protocol ArrayViewControllerType: ViewControllerType
     /// Returns a ViewModel used as "ArrayViewModel"
     var arrayViewModel: CocoaArrayViewModelType { get }
     
-    /// Binds `arrayViewModel` to the reciever.
-    func bindArrayViewModel(arrayViewModel: CocoaArrayViewModelType)
+    /// Binds `arrayViewModel.count` to the receiver.
+    func bindCount(arrayViewModel: CocoaArrayViewModelType)
     
     /// Reloads `arrayView`
     func reloadData()
 }
 
 /// Binds ArrayViewModel count property by invoking `reloadData()` for each distinct change.
-public func _bindArrayViewModel<ViewController: ArrayViewControllerType where ViewController: NSObject>(arrayViewModel: CocoaArrayViewModelType, viewController: ViewController)
+public func _bindCount<ViewController: ArrayViewControllerType where ViewController: NSObject>(arrayViewModel: CocoaArrayViewModelType, viewController: ViewController)
 {
     arrayViewModel.count.producer
         .takeUntil(viewController.rac_willDeallocSignalProducer())

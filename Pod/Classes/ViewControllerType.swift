@@ -37,15 +37,15 @@ public protocol ViewControllerType: class, ViewType
 
 /// Binds `viewModel` to the `viewController.`
 ///
-/// This is called at `didSet` for viewModel property.
+/// This should be called at `didSet` for viewModel property.
+/// Should be used to bind properties that are not related to views.
+/// For view-related bindings, use `viewDidLoad()`
 ///
-/// Default implementation calls `bindActive(_:)` , `bindTitle(_:)`, `bindLoading(_:)`
-/// and `bindErrors(_:)`
+/// Invokes `bindActive(_:)`, `bindTitle(_:)` and `bindErrors(_:)`
 public func _bindViewModel<ViewController: ViewControllerType>(viewModel: ViewModelType, viewController: ViewController)
 {
     viewController.bindActive(viewModel)
     viewController.bindTitle(viewModel)
-    viewController.bindLoading(viewModel)
     viewController.bindErrors(viewModel)
 }
 

@@ -66,7 +66,7 @@ class RSPViewControllerSpec: QuickSpec {
                 expect(viewModel.active.value) == true
             }
             
-            it("should set ViewController title") {
+            it("should set ViewController title") {                
                 expect(viewController.title) == viewModel.title.value
                 
                 viewModel.title.value = "Test2"
@@ -75,6 +75,7 @@ class RSPViewControllerSpec: QuickSpec {
             }
             
             it("should set LoadingViewType loading") {
+                viewController.viewDidLoad()
                 let activityIndicator = UIActivityIndicatorView()
                 
                 viewController.loadingView = activityIndicator

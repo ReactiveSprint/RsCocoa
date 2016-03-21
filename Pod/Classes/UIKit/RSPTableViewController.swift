@@ -22,15 +22,16 @@ public class RSPTableViewController: RSPViewController, ArrayViewControllerType
     
     @IBOutlet public var arrayView: UITableView!
     
-    public override func bindViewModel(viewModel: ViewModelType)
+    public override func viewDidLoad()
     {
-        super.bindViewModel(viewModel)
-        bindArrayViewModel(arrayViewModel)
+        super.viewDidLoad()
+        bindLoading(viewModel)
+        bindCount(arrayViewModel)
     }
     
-    public func bindArrayViewModel(arrayViewModel: CocoaArrayViewModelType)
+    public func bindCount(arrayViewModel: CocoaArrayViewModelType)
     {
-        _bindArrayViewModel(arrayViewModel, viewController: self)
+        _bindCount(arrayViewModel, viewController: self)
     }
     
     public func reloadData()
@@ -50,6 +51,9 @@ public class RSPFetchedTableViewController: RSPTableViewController, FetchedArray
     {
         super.viewDidLoad()
         
+        bindRefreshing(fetchedArrayViewModel)
+        bindFetchingNextPage(fetchedArrayViewModel)
+        
         if let refreshView = self.refreshView as? UIControl
         {
             refreshView.addTarget(fetchedArrayViewModel.refreshCocoaAction, action: CocoaAction.selector, forControlEvents: UIControlEvents.ValueChanged)
@@ -58,13 +62,6 @@ public class RSPFetchedTableViewController: RSPTableViewController, FetchedArray
         arrayView.rac_didScrollToHorizontalEnd().startWithNext { [unowned self] _ in
             self.fetchedArrayViewModel.fetchIfNeededCocoaAction.execute(nil)
         }
-    }
-    
-    public override func bindArrayViewModel(arrayViewModel: CocoaArrayViewModelType)
-    {
-        super.bindArrayViewModel(arrayViewModel)
-        bindRefreshing(fetchedArrayViewModel)
-        bindFetchingNextPage(fetchedArrayViewModel)
     }
     
     public func bindRefreshing(arrayViewModel: CocoaFetchedArrayViewModelType)

@@ -32,10 +32,16 @@ public class RSPUITableViewController: UITableViewController, ArrayViewControlle
         return viewModel as! CocoaArrayViewModelType
     }
     
+    public override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        bindLoading(viewModel)
+        bindCount(arrayViewModel)
+    }
+    
     public func bindViewModel(viewModel: ViewModelType)
     {
         _bindViewModel(viewModel, viewController: self)
-        bindArrayViewModel(arrayViewModel)
     }
     
     public func bindActive(viewModel: ViewModelType)
@@ -71,9 +77,9 @@ public class RSPUITableViewController: UITableViewController, ArrayViewControlle
         _presentError(error, viewController: self)
     }
     
-    public func bindArrayViewModel(arrayViewModel: CocoaArrayViewModelType)
+    public func bindCount(arrayViewModel: CocoaArrayViewModelType)
     {
-        _bindArrayViewModel(arrayViewModel, viewController: self)
+        _bindCount(arrayViewModel, viewController: self)
     }
     
     public func reloadData()
@@ -93,6 +99,9 @@ public class RSPUIFetchedTableViewController: RSPUITableViewController, FetchedA
     {
         super.viewDidLoad()
         
+        bindRefreshing(fetchedArrayViewModel)
+        bindFetchingNextPage(fetchedArrayViewModel)
+        
         if let refreshView = self.refreshView as? UIControl
         {
             refreshView.addTarget(fetchedArrayViewModel.refreshCocoaAction, action: CocoaAction.selector, forControlEvents: UIControlEvents.ValueChanged)
@@ -101,13 +110,6 @@ public class RSPUIFetchedTableViewController: RSPUITableViewController, FetchedA
         arrayView.rac_didScrollToHorizontalEnd().startWithNext { [unowned self] _ in
             self.fetchedArrayViewModel.fetchIfNeededCocoaAction.execute(nil)
         }
-    }
-    
-    public override func bindArrayViewModel(arrayViewModel: CocoaArrayViewModelType)
-    {
-        super.bindArrayViewModel(arrayViewModel)
-        bindRefreshing(fetchedArrayViewModel)
-        bindFetchingNextPage(fetchedArrayViewModel)
     }
     
     public func bindRefreshing(arrayViewModel: CocoaFetchedArrayViewModelType)
