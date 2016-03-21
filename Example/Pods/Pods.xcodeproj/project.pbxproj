@@ -287,6 +287,8 @@
 		E56DE9721C99913200EECBA3 /* LoadingViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56DE9711C99913200EECBA3 /* LoadingViewType.swift */; };
 		E56DE9811C99B6F300EECBA3 /* ViewControllerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56DE9801C99B6F300EECBA3 /* ViewControllerType.swift */; };
 		E56DE9831C99C24100EECBA3 /* NSObject+RAC4Deallocating.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56DE9821C99C24100EECBA3 /* NSObject+RAC4Deallocating.swift */; };
+		E583E36E1C9F911A00FB2BA5 /* RSPCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E583E36D1C9F911A00FB2BA5 /* RSPCollectionViewController.swift */; };
+		E583E3701C9F91E200FB2BA5 /* RSPUICollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E583E36F1C9F91E200FB2BA5 /* RSPUICollectionViewController.swift */; };
 		E59D17491C94A2D100ADB6CF /* ViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59D17481C94A2D100ADB6CF /* ViewType.swift */; };
 		E5D1344C1C9B20C20069226E /* ArrayViewControllerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D1344B1C9B20C20069226E /* ArrayViewControllerType.swift */; };
 		E5D1344E1C9B21DA0069226E /* FetchedArrayViewControllerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D1344D1C9B21DA0069226E /* FetchedArrayViewControllerType.swift */; };
@@ -726,6 +728,8 @@
 		E56DE9711C99913200EECBA3 /* LoadingViewType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewType.swift; sourceTree = "<group>"; };
 		E56DE9801C99B6F300EECBA3 /* ViewControllerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerType.swift; sourceTree = "<group>"; };
 		E56DE9821C99C24100EECBA3 /* NSObject+RAC4Deallocating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+RAC4Deallocating.swift"; sourceTree = "<group>"; };
+		E583E36D1C9F911A00FB2BA5 /* RSPCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSPCollectionViewController.swift; sourceTree = "<group>"; };
+		E583E36F1C9F91E200FB2BA5 /* RSPUICollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSPUICollectionViewController.swift; sourceTree = "<group>"; };
 		E59D17481C94A2D100ADB6CF /* ViewType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewType.swift; sourceTree = "<group>"; };
 		E5D1344B1C9B20C20069226E /* ArrayViewControllerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayViewControllerType.swift; sourceTree = "<group>"; };
 		E5D1344D1C9B21DA0069226E /* FetchedArrayViewControllerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedArrayViewControllerType.swift; sourceTree = "<group>"; };
@@ -1400,6 +1404,8 @@
 				E5D134B11C9F61B80069226E /* RSPUITableViewController.swift */,
 				E5D134C61C9F6DBC0069226E /* RSPTableViewCell.swift */,
 				E5D134CB1C9F7B080069226E /* RSPTableViewDataSource.swift */,
+				E583E36D1C9F911A00FB2BA5 /* RSPCollectionViewController.swift */,
+				E583E36F1C9F91E200FB2BA5 /* RSPUICollectionViewController.swift */,
 				E5D134991C9F5DB90069226E /* UIActivityIndicatorView+LoadingViewType.swift */,
 				E5D1349A1C9F5DB90069226E /* UIAlertController+ViewModelErrorType.swift */,
 				E5D1349B1C9F5DB90069226E /* UIRefreshController+LoadingViewType.swift */,
@@ -1830,6 +1836,7 @@
 				E5D134AC1C9F5DC20069226E /* UIActivityIndicatorView+LoadingViewType.swift in Sources */,
 				E5D134AF1C9F5DC20069226E /* UIScrollView+DidScroll.swift in Sources */,
 				E5D134A71C9F5DC20069226E /* RSPTableViewController.swift in Sources */,
+				E583E3701C9F91E200FB2BA5 /* RSPUICollectionViewController.swift in Sources */,
 				E56767C51C85D5AE00ABF66E /* ModelViewModel.swift in Sources */,
 				E56767CF1C86AE5D00ABF66E /* ArrayViewModel.swift in Sources */,
 				E56DE9721C99913200EECBA3 /* LoadingViewType.swift in Sources */,
@@ -1837,6 +1844,7 @@
 				9C5CF0DF6BD103CC3FAA55E9F54E58C4 /* ReactiveSprint-dummy.m in Sources */,
 				E56DE9831C99C24100EECBA3 /* NSObject+RAC4Deallocating.swift in Sources */,
 				E5D134AE1C9F5DC20069226E /* UIRefreshController+LoadingViewType.swift in Sources */,
+				E583E36E1C9F911A00FB2BA5 /* RSPCollectionViewController.swift in Sources */,
 				E5D134A91C9F5DC20069226E /* RSPViewController.swift in Sources */,
 				E5D134CD1C9F7B3E0069226E /* RSPTableViewDataSource.swift in Sources */,
 				E5D134C81C9F6DE80069226E /* RSPTableViewCell.swift in Sources */,
