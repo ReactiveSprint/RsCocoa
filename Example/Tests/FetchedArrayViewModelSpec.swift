@@ -92,29 +92,29 @@ class FetchedArrayViewModelSpec: QuickSpec {
                     
                     expect(viewModel.refreshing.value) == true
                     expect(viewModel.fetchingNextPage.value) == false
-                    expect(viewModel.viewModels.count).toEventually(equal(4), timeout: 2)
-                    expect(viewModel.count.value).toEventually(equal(4), timeout: 2)
+                    expect(viewModel.viewModels.count).toEventually(equal(4), timeout: 3)
+                    expect(viewModel.count.value).toEventually(equal(4), timeout: 3)
                     
                     viewModel.fetchAction.apply().start()
                     
                     expect(viewModel.refreshing.value) == false
                     expect(viewModel.fetchingNextPage.value) == true
-                    expect(viewModel.viewModels.count).toEventually(equal(8), timeout: 2)
-                    expect(viewModel.count.value).toEventually(equal(8), timeout: 2)
+                    expect(viewModel.viewModels.count).toEventually(equal(8), timeout: 3)
+                    expect(viewModel.count.value).toEventually(equal(8), timeout: 3)
                     
                     viewModel.fetchIfNeeded().start()
                     
                     expect(viewModel.refreshing.value) == false
                     expect(viewModel.fetchingNextPage.value) == true
-                    expect(viewModel.viewModels.count).toEventually(equal(12), timeout: 2)
-                    expect(viewModel.count.value).toEventually(equal(12), timeout: 2)
+                    expect(viewModel.viewModels.count).toEventually(equal(12), timeout: 3)
+                    expect(viewModel.count.value).toEventually(equal(12), timeout: 3)
                     
                     //Refresh should start from 0
                     viewModel.refreshAction.apply().start()
                     expect(viewModel.refreshing.value) == true
                     expect(viewModel.fetchingNextPage.value) == false
-                    expect(viewModel.viewModels.count).toEventually(equal(4), timeout: 2)
-                    expect(viewModel.count.value).toEventually(equal(4), timeout: 2)
+                    expect(viewModel.viewModels.count).toEventually(equal(4), timeout: 3)
+                    expect(viewModel.count.value).toEventually(equal(4), timeout: 3)
                 }
                 
                 it("should keep same order") {
