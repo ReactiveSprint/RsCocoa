@@ -9,14 +9,6 @@
 import UIKit
 import ReactiveCocoa
 
-public extension ArrayViewControllerType where Self.ArrayView == UICollectionView
-{
-    public func reloadData()
-    {
-        arrayView.reloadData()
-    }
-}
-
 /// An implementation of `ArrayViewControllerType` as UICollectionViewController.
 ///
 /// Unlike RSPUICollectionViewController, this implementation doesn't require
@@ -39,6 +31,11 @@ public class RSPCollectionViewController: RSPViewController, ArrayViewController
     public func bindArrayViewModel(arrayViewModel: CocoaArrayViewModelType)
     {
         _bindArrayViewModel(arrayViewModel, viewController: self)
+    }
+    
+    public func reloadData()
+    {
+        arrayView.reloadData()
     }
 }
 

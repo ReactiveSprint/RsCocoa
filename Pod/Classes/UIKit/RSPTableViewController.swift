@@ -9,14 +9,6 @@
 import UIKit
 import ReactiveCocoa
 
-public extension ArrayViewControllerType where Self.ArrayView == UITableView
-{
-    public func reloadData()
-    {
-        arrayView.reloadData()
-    }
-}
-
 /// An implementation of `ArrayViewControllerType` as UITableViewController.
 ///
 /// Unlike RSPUITableViewController, this implementation doesn't require
@@ -39,6 +31,11 @@ public class RSPTableViewController: RSPViewController, ArrayViewControllerType
     public func bindArrayViewModel(arrayViewModel: CocoaArrayViewModelType)
     {
         _bindArrayViewModel(arrayViewModel, viewController: self)
+    }
+    
+    public func reloadData()
+    {
+        arrayView.reloadData()
     }
 }
 

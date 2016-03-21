@@ -75,6 +75,11 @@ public class RSPUITableViewController: UITableViewController, ArrayViewControlle
     {
         _bindArrayViewModel(arrayViewModel, viewController: self)
     }
+    
+    public func reloadData()
+    {
+        arrayView.reloadData()
+    }
 }
 
 /// UITableViewController subclass where `arrayViewModel` supports fetching and refreshing.

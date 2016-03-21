@@ -75,6 +75,11 @@ public class RSPUICollectionViewController: UICollectionViewController, ArrayVie
     {
         _bindArrayViewModel(arrayViewModel, viewController: self)
     }
+    
+    public func reloadData()
+    {
+        arrayView.reloadData()
+    }
 }
 
 /// UICollectionViewController subclass where `arrayViewModel` supports fetching and refreshing.
