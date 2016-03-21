@@ -23,7 +23,6 @@ public class RSPTableViewCell: UITableViewCell, ViewType
             if viewModel != nil
             {
                 bindViewModel(viewModel)
-                rac_prepareForReuseSignal
             }
         }
     }
