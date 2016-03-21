@@ -111,4 +111,3 @@ public class RSPUIFetchedCollectionViewController: RSPUICollectionViewController
         _bindFetchingNextPage(arrayViewModel, viewController: self)
     }
 }
-
