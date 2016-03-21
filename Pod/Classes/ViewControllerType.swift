@@ -12,24 +12,15 @@ import Result
 /// Represents a ViewController.
 public protocol ViewControllerType: class, ViewType
 {
-    typealias LoadingView: LoadingViewType
-    
-    /// A LoadingViewType that is used to present loading to user.
-    var loadingView: LoadingView? { get }
-    
     /// Binds viewModel's title to the receiver title.
     func bindTitle(viewModel: ViewModelType)
     
-    /// Binds viewModel's loading to `showLoading(_:)`
+    /// Binds viewModel's loading to `presentLoading(_:)`
     ///
     /// Default binding uses `forwardWhileActive(_:).`
     func bindLoading(viewModel: ViewModelType)
     
-    /// Shows or hides loading view.
-    ///
-    /// Default implementation shows or hides `loadingView` if set.
-    ///
-    /// If loadingView is LoadingViewType, then `LoadingViewType.loading` will be set.
+    /// Shows or hides a view that represents loading.
     func presentLoading(loading: Bool)
     
     /// Binds viewModel's errors to `showErrors(_:)`

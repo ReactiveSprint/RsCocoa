@@ -8,30 +8,23 @@
 
 import Foundation
 
-/// Represents a ViewController that wraps FetchedArrayViewModel and "ArrayView"
+/// Represents a ViewController that wraps FetchedArrayViewModel
 public protocol FetchedArrayViewControllerType: ArrayViewControllerType
 {
-    typealias RefreshView: LoadingViewType
-    
-    typealias FetchingNextPageView: LoadingViewType
-    
     /// Returns `arrayViewModel`
     var fetchedArrayViewModel: CocoaFetchedArrayViewModelType { get }
-    
-    /// A view that presents "refreshing" state.
-    ///
-    /// This is typically a UIRefreshControl or similar
-    /// but you can provide a custom class by implementing LoadingViewType
-    var refreshView: RefreshView? { get }
-    
-    /// A view that presents requesting next page state.
-    var fetchingNextPageView: FetchingNextPageView? { get }
     
     /// Binds `arrayViewModel.refreshing` to the receiver.
     func bindRefreshing(arrayViewModel: CocoaFetchedArrayViewModelType)
     
+    /// Shows or hides a view that represents refreshing.
+    func presentRefreshing(refreshing: Bool)
+    
     /// Binds `arrayViewModel.fetchingNextPage` to the receiver.
     func bindFetchingNextPage(arrayViewModel: CocoaFetchedArrayViewModelType)
+    
+    /// Shows or hides a view that represents fetching next page.
+    func presentFetchingNextPage(fetchingNextPage: Bool)
 }
 
 public extension FetchedArrayViewControllerType
@@ -41,32 +34,22 @@ public extension FetchedArrayViewControllerType
     }
 }
 
-/// Binds arrayViewModel refreshing by setting RefreshView.loading
+/// Binds `arrayViewModel.refreshing` to `presentRefreshing(_:)`
 public func _bindRefreshing<ViewController: FetchedArrayViewControllerType where ViewController: NSObject>(arrayViewModel: CocoaFetchedArrayViewModelType, viewController: ViewController)
 {
     arrayViewModel.refreshing.producer
         .takeUntil(viewController.rac_willDeallocSignalProducer())
         .skipRepeats()
         .forwardWhileActive(viewController.arrayViewModel)
-        .startWithNext { [unowned viewController] refreshing in
-            if let refreshView = viewController.refreshView
-            {
-                refreshView.loading = refreshing
-            }
-    }
+        .startWithNext(viewController.presentRefreshing)
 }
 
-/// Binds arrayViewModel fetchingNextPage by setting FetchingNextPageView.loading
+/// Binds `arrayViewModel.fetchingNextPage` to `presentFetchingNextPage(_:)`
 public func _bindFetchingNextPage<ViewController: FetchedArrayViewControllerType where ViewController: NSObject>(arrayViewModel: CocoaFetchedArrayViewModelType, viewController: ViewController)
 {
     arrayViewModel.fetchingNextPage.producer
         .takeUntil(viewController.rac_willDeallocSignalProducer())
         .skipRepeats()
         .forwardWhileActive(viewController.arrayViewModel)
-        .startWithNext { [unowned viewController] fetching in
-            if let loadingView = viewController.fetchingNextPageView
-            {
-                loadingView.loading = fetching
-            }
-    }
+        .startWithNext (viewController.presentFetchingNextPage)
 }

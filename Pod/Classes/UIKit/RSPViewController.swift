@@ -57,7 +57,10 @@ public class RSPViewController: UIViewController, ViewControllerType
     
     public func presentLoading(loading: Bool)
     {
-        _presentLoading(loading, viewController: self)
+        if let loadingView = self.loadingView
+        {
+            loadingView.loading = loading
+        }
     }
     
     public func bindErrors(viewModel: ViewModelType)
@@ -108,14 +111,6 @@ public func _bindTitle<ViewController: ViewControllerType where ViewController: 
     viewModel.title.producer
         .takeUntil(viewController.rac_willDeallocSignalProducer())
         .startWithNext { [unowned viewController] in viewController.title = $0 }
-}
-
-public func _presentLoading<ViewController: ViewControllerType where ViewController: UIViewController>(loading: Bool, viewController: ViewController)
-{
-    if let loadingView = viewController.loadingView
-    {
-        loadingView.loading = loading
-    }
 }
 
 public func _presentError<ViewController: ViewControllerType where ViewController: UIViewController>(error: ViewModelErrorType, viewController: ViewController)

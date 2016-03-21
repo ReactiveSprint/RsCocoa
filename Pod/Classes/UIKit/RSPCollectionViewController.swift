@@ -75,7 +75,24 @@ public class RSPFetchedCollectionViewController: RSPCollectionViewController, Fe
         _bindRefreshing(arrayViewModel, viewController: self)
     }
     
-    public func bindFetchingNextPage(arrayViewModel: CocoaFetchedArrayViewModelType) {
+    public func presentRefreshing(refreshing: Bool)
+    {
+        if let refreshView = self.refreshView
+        {
+            refreshView.loading = refreshing
+        }
+    }
+    
+    public func bindFetchingNextPage(arrayViewModel: CocoaFetchedArrayViewModelType)
+    {
         _bindFetchingNextPage(arrayViewModel, viewController: self)
+    }
+    
+    public func presentFetchingNextPage(fetchingNextPage: Bool)
+    {
+        if let fetchingNextPageView = self.fetchingNextPageView
+        {
+            fetchingNextPageView.loading = fetchingNextPage
+        }
     }
 }

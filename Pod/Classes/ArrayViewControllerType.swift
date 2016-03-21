@@ -37,5 +37,6 @@ public func _bindArrayViewModel<ViewController: ArrayViewControllerType where Vi
         .takeUntil(viewController.rac_willDeallocSignalProducer())
         .skipRepeats()
         .forwardWhileActive(viewController.arrayViewModel)
-        .startWithNext { [unowned viewController] _ in viewController.reloadData() }
+        .map { _ in () }
+        .startWithNext(viewController.reloadData)
 }
