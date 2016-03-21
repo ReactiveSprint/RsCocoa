@@ -17,6 +17,11 @@ public protocol CocoaArrayViewModelType: ViewModelType
     
     /// Returns localized message to be used when the array is empty.
     var localizedEmptyMessage: MutableProperty<String?> { get }
+    
+    /// Access the indexth element.
+    ///
+    /// - Parameter index: Must be > 0 and < count.
+    subscript(index: Int) -> ViewModelType { get }
 }
 
 /// Represents an ViewModel which wraps an Array of ViewModels of type `Element`
@@ -34,6 +39,11 @@ public protocol ArrayViewModelType: CocoaArrayViewModelType
     ///
     /// - Parameter index: Must be > 0 and < count.
     subscript(index: Int) -> Element { get }
+}
+
+public extension ArrayViewModelType
+{
+    public subscript(index: Int) -> ViewModelType { return self[index] }
 }
 
 public extension CocoaArrayViewModelType

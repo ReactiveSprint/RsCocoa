@@ -20,6 +20,7 @@
 		E56767C31C83453A00ABF66E /* SignalManipulationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56767C21C83453A00ABF66E /* SignalManipulationSpec.swift */; };
 		E56767C91C862F6700ABF66E /* ModelViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56767C81C862F6700ABF66E /* ModelViewModelSpec.swift */; };
 		E56767CC1C869D3C00ABF66E /* TestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56767CA1C869AE400ABF66E /* TestModel.swift */; };
+		E583E36C1C9F852500FB2BA5 /* RSPTableViewDataSourceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E583E36B1C9F852500FB2BA5 /* RSPTableViewDataSourceSpec.swift */; };
 		E5D134BF1C9F68420069226E /* RSPViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D134B51C9F68340069226E /* RSPViewControllerSpec.swift */; };
 		E5D134C01C9F68420069226E /* UIActivityIndicatorViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D134B61C9F68340069226E /* UIActivityIndicatorViewSpec.swift */; };
 		E5D134C11C9F68420069226E /* UIAlertControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D134B71C9F68340069226E /* UIAlertControllerSpec.swift */; };
@@ -61,6 +62,7 @@
 		E56767C21C83453A00ABF66E /* SignalManipulationSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignalManipulationSpec.swift; sourceTree = "<group>"; };
 		E56767C81C862F6700ABF66E /* ModelViewModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelViewModelSpec.swift; sourceTree = "<group>"; };
 		E56767CA1C869AE400ABF66E /* TestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestModel.swift; sourceTree = "<group>"; };
+		E583E36B1C9F852500FB2BA5 /* RSPTableViewDataSourceSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSPTableViewDataSourceSpec.swift; sourceTree = "<group>"; };
 		E5D134B51C9F68340069226E /* RSPViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSPViewControllerSpec.swift; sourceTree = "<group>"; };
 		E5D134B61C9F68340069226E /* UIActivityIndicatorViewSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIActivityIndicatorViewSpec.swift; sourceTree = "<group>"; };
 		E5D134B71C9F68340069226E /* UIAlertControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAlertControllerSpec.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 			children = (
 				E5D134B51C9F68340069226E /* RSPViewControllerSpec.swift */,
 				E5D134C91C9F73310069226E /* RSPTableViewCellSpec.swift */,
+				E583E36B1C9F852500FB2BA5 /* RSPTableViewDataSourceSpec.swift */,
 				E5D134B61C9F68340069226E /* UIActivityIndicatorViewSpec.swift */,
 				E5D134B71C9F68340069226E /* UIAlertControllerSpec.swift */,
 				E5D134B81C9F68340069226E /* UIRefreshControlSpec.swift */,
@@ -427,6 +430,7 @@
 			files = (
 				E56767C31C83453A00ABF66E /* SignalManipulationSpec.swift in Sources */,
 				E547894D1C880F620075B0F5 /* ArrayViewModelSpec.swift in Sources */,
+				E583E36C1C9F852500FB2BA5 /* RSPTableViewDataSourceSpec.swift in Sources */,
 				E56767C91C862F6700ABF66E /* ModelViewModelSpec.swift in Sources */,
 				E5D134C11C9F68420069226E /* UIAlertControllerSpec.swift in Sources */,
 				E5406A131C7B2DF90035C40E /* ViewModelSpec.swift in Sources */,
