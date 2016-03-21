@@ -201,4 +201,9 @@ public class FetchedArrayViewModel<Element: ViewModelType, PaginationType, Fetch
                 })
             .map { $0.0 }
     }
+
+    public func indexOf(predicate: Element -> Bool) -> Int?
+    {
+        return viewModels.indexOf(predicate)
+    }
 }

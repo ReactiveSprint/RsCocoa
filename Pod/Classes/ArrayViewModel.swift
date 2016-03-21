@@ -22,6 +22,10 @@ public protocol CocoaArrayViewModelType: ViewModelType
     ///
     /// - Parameter index: Must be > 0 and < count.
     subscript(index: Int) -> ViewModelType { get }
+    
+    /// Returns the first index where `predicate` returns `true` for the
+    /// corresponding value, or `nil` if such value is not found.
+    func indexOf(predicate: ViewModelType -> Bool) -> Int?
 }
 
 /// Represents an ViewModel which wraps an Array of ViewModels of type `Element`
@@ -39,11 +43,32 @@ public protocol ArrayViewModelType: CocoaArrayViewModelType
     ///
     /// - Parameter index: Must be > 0 and < count.
     subscript(index: Int) -> Element { get }
+    
+    /// Returns the first index where `predicate` returns `true` for the
+    /// corresponding value, or `nil` if such value is not found.
+    func indexOf(predicate: Element -> Bool) -> Int?
+}
+
+public extension ArrayViewModelType where Self.Element: Equatable
+{
+    /// Returns the first index where `value` equals `element` or `nil`
+    /// `value` is not found.
+    func indexOf(element: Element) -> Int?
+    {
+        return indexOf { $0 == element }
+    }
 }
 
 public extension ArrayViewModelType
 {
     public subscript(index: Int) -> ViewModelType { return self[index] }
+    
+    public func indexOf(predicate: ViewModelType -> Bool) -> Int?
+    {
+        return indexOf { viewModel in
+            predicate(viewModel)
+        }
+    }
 }
 
 public extension CocoaArrayViewModelType
@@ -85,4 +110,9 @@ public class ArrayViewModel<Element: ViewModelType>: ViewModel, ArrayViewModelTy
     }
     
     public subscript(index: Int) -> Element { return viewModels[index] }
+    
+    public func indexOf(predicate: Element -> Bool) -> Int?
+    {
+        return viewModels.indexOf(predicate)
+    }
 }

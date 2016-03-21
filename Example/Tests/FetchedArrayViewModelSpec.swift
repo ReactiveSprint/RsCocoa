@@ -12,20 +12,6 @@ import ReactiveCocoa
 import Result
 import ReactiveSprint
 
-/// Generates `count` of ViewModels, each ViewModel will have title of `index + startValue`
-func generateViewModels(count: Int, startValue: Int = 0) -> [ViewModel]
-{
-    var viewModels = [ViewModel]()
-    
-    for index in 1...count
-    {
-        let viewModel = ViewModel(title: String(index + startValue))
-        viewModels.append(viewModel)
-    }
-    
-    return viewModels
-}
-
 class FetchedArrayViewModelSpec: QuickSpec {
     
     override func spec() {
@@ -34,7 +20,7 @@ class FetchedArrayViewModelSpec: QuickSpec {
         
         describe("fetchAction") {
             it("should fetch with no pagination") {
-                let viewModel = FetchedArrayViewModel { _ -> SignalProducer<([ViewModel], Int?), NSError> in
+                let viewModel = FetchedArrayViewModel { _ -> SignalProducer<([TestViewModel], Int?), NSError> in
                     SignalProducer(value: (generateViewModels(4), nil))
                         .delay(1, onScheduler: QueueScheduler.mainQueueScheduler)
                 }
@@ -70,10 +56,10 @@ class FetchedArrayViewModelSpec: QuickSpec {
             }
             
             context("pagination") {
-                var viewModel: FetchedArrayViewModel<ViewModel, Int, NSError>!
+                var viewModel: FetchedArrayViewModel<TestViewModel, Int, NSError>!
 
                 beforeEach {
-                    viewModel = FetchedArrayViewModel { previousPage -> SignalProducer<([ViewModel], Int?), NSError> in
+                    viewModel = FetchedArrayViewModel { previousPage -> SignalProducer<([TestViewModel], Int?), NSError> in
                         var nextPage = 0
                         
                         if let page = previousPage

@@ -17,16 +17,14 @@ class ArrayViewModelSpec: QuickSpec {
     override func spec() {
         
         describe("ArrayViewModel") {
-            var arrayViewModel: ArrayViewModel<ViewModel>!
-            var viewModels: [ViewModel]!
+            var arrayViewModel: ArrayViewModel<TestViewModel>!
+            var viewModels: [TestViewModel]!
             let title = "TestArrayViewModel"
             
             beforeEach {
                 arrayViewModel = nil
                 
-                viewModels = [ViewModel(title: "Test1"),
-                    ViewModel(title: "Test2"),
-                    ViewModel(title: "Test3")]
+                viewModels = generateViewModels(3)
             }
             
             it("default values") {
@@ -62,11 +60,28 @@ class ArrayViewModelSpec: QuickSpec {
             it("subscript should return item") {
                 arrayViewModel = ArrayViewModel(viewModels)
                 
-                expect(arrayViewModel[0].title.value) == "Test1"
-                expect(arrayViewModel[1].title.value) == "Test2"
-                expect(arrayViewModel[2].title.value) == "Test3"
+                expect(arrayViewModel[0].title.value) == "1"
+                expect(arrayViewModel[1].title.value) == "2"
+                expect(arrayViewModel[2].title.value) == "3"
             }
             
+            it("should return index of object") {
+                arrayViewModel = ArrayViewModel(viewModels)
+                
+                let viewModel = viewModels[1]
+                
+                expect(arrayViewModel.indexOf { $0 == viewModel }) == 1
+                
+                expect(arrayViewModel.indexOf(viewModel)) == 1
+            }
+            
+            it("should return nil index") {
+                arrayViewModel = ArrayViewModel(viewModels)
+                
+                let viewModel = TestViewModel(title: "4")
+                
+                expect(arrayViewModel.indexOf(viewModel)).to(beNil())
+            }
         }
     }
     

@@ -21,6 +21,7 @@
 		E56767C91C862F6700ABF66E /* ModelViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56767C81C862F6700ABF66E /* ModelViewModelSpec.swift */; };
 		E56767CC1C869D3C00ABF66E /* TestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56767CA1C869AE400ABF66E /* TestModel.swift */; };
 		E583E36C1C9F852500FB2BA5 /* RSPTableViewDataSourceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E583E36B1C9F852500FB2BA5 /* RSPTableViewDataSourceSpec.swift */; };
+		E5BD17E71CA03836004F6D5D /* TestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BD17E61CA03836004F6D5D /* TestViewModel.swift */; };
 		E5D134BF1C9F68420069226E /* RSPViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D134B51C9F68340069226E /* RSPViewControllerSpec.swift */; };
 		E5D134C01C9F68420069226E /* UIActivityIndicatorViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D134B61C9F68340069226E /* UIActivityIndicatorViewSpec.swift */; };
 		E5D134C11C9F68420069226E /* UIAlertControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D134B71C9F68340069226E /* UIAlertControllerSpec.swift */; };
@@ -63,6 +64,7 @@
 		E56767C81C862F6700ABF66E /* ModelViewModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelViewModelSpec.swift; sourceTree = "<group>"; };
 		E56767CA1C869AE400ABF66E /* TestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestModel.swift; sourceTree = "<group>"; };
 		E583E36B1C9F852500FB2BA5 /* RSPTableViewDataSourceSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSPTableViewDataSourceSpec.swift; sourceTree = "<group>"; };
+		E5BD17E61CA03836004F6D5D /* TestViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewModel.swift; sourceTree = "<group>"; };
 		E5D134B51C9F68340069226E /* RSPViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSPViewControllerSpec.swift; sourceTree = "<group>"; };
 		E5D134B61C9F68340069226E /* UIActivityIndicatorViewSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIActivityIndicatorViewSpec.swift; sourceTree = "<group>"; };
 		E5D134B71C9F68340069226E /* UIAlertControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAlertControllerSpec.swift; sourceTree = "<group>"; };
@@ -209,10 +211,11 @@
 		E5F546F11C997CA400DC721C /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				E5BD17E61CA03836004F6D5D /* TestViewModel.swift */,
+				E56767CA1C869AE400ABF66E /* TestModel.swift */,
 				E56767C21C83453A00ABF66E /* SignalManipulationSpec.swift */,
 				E5406A121C7B2DF90035C40E /* ViewModelSpec.swift */,
 				E56767C81C862F6700ABF66E /* ModelViewModelSpec.swift */,
-				E56767CA1C869AE400ABF66E /* TestModel.swift */,
 				E547894C1C880F620075B0F5 /* ArrayViewModelSpec.swift */,
 				E54789531C8B552F0075B0F5 /* FetchedArrayViewModelSpec.swift */,
 			);
@@ -440,6 +443,7 @@
 				E56767CC1C869D3C00ABF66E /* TestModel.swift in Sources */,
 				E5D134CA1C9F73310069226E /* RSPTableViewCellSpec.swift in Sources */,
 				E5D134C01C9F68420069226E /* UIActivityIndicatorViewSpec.swift in Sources */,
+				E5BD17E71CA03836004F6D5D /* TestViewModel.swift in Sources */,
 				E54789541C8B552F0075B0F5 /* FetchedArrayViewModelSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
