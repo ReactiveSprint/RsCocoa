@@ -105,14 +105,14 @@ class FetchedArrayViewModelSpec: QuickSpec {
                 
                 it("should keep same order") {
                     viewModel.fetchAction.apply().start()
-                    expect(viewModel.count.value).toEventually(equal(4), timeout: 2)
+                    expect(viewModel.count.value).toEventually(equal(4), timeout: 3)
                     expect(viewModel[0].title.value) == "1"
                     expect(viewModel[1].title.value) == "2"
                     expect(viewModel[2].title.value) == "3"
                     expect(viewModel[3].title.value) == "4"
                     
                     viewModel.fetchIfNeeded().start()
-                    expect(viewModel.count.value).toEventually(equal(8), timeout: 2)
+                    expect(viewModel.count.value).toEventually(equal(8), timeout: 3)
                     expect(viewModel[0].title.value) == "1"
                     expect(viewModel[1].title.value) == "2"
                     expect(viewModel[2].title.value) == "3"
@@ -126,11 +126,11 @@ class FetchedArrayViewModelSpec: QuickSpec {
                 it("should execute CocoaAction") {
                     viewModel.refreshAction.unsafeCocoaAction.execute(UIView())
                     
-                    expect(viewModel.count.value).toEventually(equal(4), timeout: 2)
+                    expect(viewModel.count.value).toEventually(equal(4), timeout: 3)
                     
                     viewModel.fetchAction.unsafeCocoaAction.execute(UIView())
                     
-                    expect(viewModel.count.value).toEventually(equal(8), timeout: 2)
+                    expect(viewModel.count.value).toEventually(equal(8), timeout: 3)
                 }
             }
         }
