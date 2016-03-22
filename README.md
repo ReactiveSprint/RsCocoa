@@ -2,7 +2,7 @@
 
 [![CI Status](https://travis-ci.org/ReactiveSprint/ReactiveSprint-Swift.svg?branch=master)](https://travis-ci.org/ReactiveSprint/ReactiveSprint-Swift)  
 
-ReactiveSprint (RSP) is a framework which provides API for developing apps with Model-View-ViewModel pattern.
+ReactiveSprint (RSP) is a framework which provides API for developing apps with [Model-View-ViewModel](https://en.wikipedia.org/wiki/Model–view–viewmodel) (MVVM).
 
 ReactiveSprint will be available for different platforms (Cocoa, Android, Windows.. etc) to unify the structure of projects for each platform and speedup the development process.
 
