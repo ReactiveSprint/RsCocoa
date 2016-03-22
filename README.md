@@ -24,7 +24,7 @@ Here's what we typically need (In MVVM):
  1. [`PostsViewModel`](#postsviewmodel) for fetching posts, handling refresh, maintaining an array of `PostViewModel` instaces.. etc.
  1. [`PostTableViewCell.`](#posttableviewcell)
  1. [`UITableViewDataSource.`](#poststableviewdatasource)
- 1. Finally, [`PostsTableViewController.`](poststableviewcontroller)
+ 1. Finally, [`PostsTableViewController.`](#poststableviewcontroller)
 
 ### Post Model
 
