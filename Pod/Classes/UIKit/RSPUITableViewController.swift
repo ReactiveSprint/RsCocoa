@@ -91,7 +91,14 @@ public class RSPUITableViewController: UITableViewController, ArrayViewControlle
 /// UITableViewController subclass where `arrayViewModel` supports fetching and refreshing.
 public class RSPUIFetchedTableViewController: RSPUITableViewController, FetchedArrayViewControllerType
 {
-    @IBOutlet public var refreshView: LoadingViewType?
+    @IBOutlet public var refreshView: UIRefreshControl? {
+        get {
+            return refreshControl
+        }
+        set {
+            refreshControl = newValue
+        }
+    }
     
     @IBOutlet public var fetchingNextPageView: LoadingViewType?
     
@@ -102,7 +109,7 @@ public class RSPUIFetchedTableViewController: RSPUITableViewController, FetchedA
         bindRefreshing(fetchedArrayViewModel)
         bindFetchingNextPage(fetchedArrayViewModel)
         
-        if let refreshView = self.refreshView as? UIControl
+        if let refreshView = self.refreshView
         {
             refreshView.addTarget(fetchedArrayViewModel.refreshCocoaAction, action: CocoaAction.selector, forControlEvents: UIControlEvents.ValueChanged)
         }
