@@ -16,10 +16,18 @@ import Foundation
 public class RSPTableViewDataSource: NSObject, UITableViewDataSource
 {
     /// ArrayViewModel source for the TableView.
-    public let arrayViewModel: CocoaArrayViewModelType
+    public var arrayViewModel: CocoaArrayViewModelType!
     
     /// A closure which is invoked to return a reusue identifier to dequeue cells.
-    public let cellIdentifierClosure: ((ViewModelType, NSIndexPath) -> String)?
+    public var cellIdentifierClosure: ((ViewModelType, NSIndexPath) -> String)?
+    
+    /// Initializes an instance.
+    ///
+    /// When this initializer is used, `arrayViewModel` must be set.
+    public override init()
+    {
+        
+    }
     
     /// Initializes an instance with a dynamic cell identifier.
     ///
