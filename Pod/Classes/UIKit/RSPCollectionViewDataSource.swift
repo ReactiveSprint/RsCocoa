@@ -66,9 +66,9 @@ public class RSPCollectionViewDataSource: NSObject, UICollectionViewDataSource
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: indexPath)
         
-        if cell is RSPCollectionViewCell
+        if cell is ViewType
         {
-            (cell as! RSPCollectionViewCell).viewModel = viewModel
+            (cell as! ViewType).viewModel = viewModel
         }
         
         return cell

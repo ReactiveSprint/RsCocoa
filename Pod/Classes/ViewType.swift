@@ -15,7 +15,7 @@ public let ViewModelIdentifier = "ViewModelIdentifier"
 public protocol ViewType: class
 {
     /// ViewModel used in the receiver.
-    var viewModel: ViewModelType! { get }
+    var viewModel: ViewModelType! { get set }
     
     /// Binds `viewModel` to the receiver.
     func bindViewModel(viewModel: ViewModelType)

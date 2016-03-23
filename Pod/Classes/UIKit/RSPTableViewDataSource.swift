@@ -66,9 +66,9 @@ public class RSPTableViewDataSource: NSObject, UITableViewDataSource
         
         let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath)
         
-        if cell is RSPTableViewCell
+        if cell is ViewType
         {
-            (cell as! RSPTableViewCell).viewModel = viewModel
+            (cell as! ViewType).viewModel = viewModel
         }
         
         return cell
