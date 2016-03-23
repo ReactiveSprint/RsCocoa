@@ -10,7 +10,7 @@ import ReactiveCocoa
 import Result
 
 /// Represents a ViewController.
-public protocol ViewControllerType: class, ViewType
+public protocol ViewControllerType: ViewType
 {
     /// Binds viewModel's title to the receiver title.
     func bindTitle(viewModel: ViewModelType)
