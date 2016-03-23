@@ -72,7 +72,7 @@ This gives us a ViewModel which supports fetching, refreshing and pagination of 
 
 ### PostTableViewCell
 
-We can subclass [RSPTableViewCell](/Pods/Classes/UIKit/RSPTableViewCell.swift) to implement `PostTableViewcell` and override `bindViewModel(_:)` to bind our ViewModel's properties to our cells.
+We can subclass [RSPTableViewCell](/Pod/Classes/UIKit/RSPTableViewCell.swift) to implement `PostTableViewcell` and override `bindViewModel(_:)` to bind our ViewModel's properties to our cells.
 
 ```swift
 class PostTableViewcell: RSPTableViewCell {
@@ -96,19 +96,19 @@ class PostTableViewcell: RSPTableViewCell {
 
 ### PostsTableViewDataSource
 
-We can subclass or initialize [RSPTableViewDataSource](/Pods/Classes/UIKit/RSPTableViewDataSource.swift) to implement a `UITableViewDataSource` which uses `postsViewModel`.
+We can subclass or initialize [RSPTableViewDataSource](/Pod/Classes/UIKit/RSPTableViewDataSource.swift) to implement a `UITableViewDataSource` which uses `postsViewModel`.
 
 ```swift
 let postsDataSource = RSPTableViewDataSource(arrayViewModel: arrayViewModel)
 ```
 
 `RSPTableViewDataSource` uses `arrayViewModel.count` as count of rows.
-And dequeues a cell with identifier [ViewModelIdentifier](/Pods/Classes/ViewType.swift) and set an instance of `PostViewModel` for each cell.
+And dequeues a cell with identifier [ViewModelIdentifier](/Pod/Classes/ViewType.swift) and set an instance of `PostViewModel` for each cell.
 
 ### PostsTableViewController
 
-We can subclass [RSPUIFetchedTableViewController](/Pods/Classes/UIKit/RSPUITableViewController.swift) to implement `PostsTableViewController` as a subclass of `UITableViewController.`
-Or [RSPFetchedTableViewController](/Pods/Classes/UIKit/RSPTableViewController.swift) for a custom UIViewController with a `UITableView.` 
+We can subclass [RSPUIFetchedTableViewController](/Pod/Classes/UIKit/RSPUITableViewController.swift) to implement `PostsTableViewController` as a subclass of `UITableViewController.`
+Or [RSPFetchedTableViewController](/Pod/Classes/UIKit/RSPTableViewController.swift) for a custom UIViewController with a `UITableView.` 
 
 ```swift
 class PostsTableViewController: RSPUIFetchedTableViewController {
