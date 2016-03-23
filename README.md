@@ -39,7 +39,7 @@ struct Post: AnyModel {
 
 ### PostViewModel
 
-We can subclass [ModelViewModel](/Pod/Classes/ModelViewModel.swift) `PostViewModel` is which will be used for each table view cell.
+We can subclass [ModelViewModel](/Pod/Classes/ModelViewModel.swift) to implement `PostViewModel` which will be used for each table view cell.
 
 ```swift
 class PostViewModel: ModelViewModel<Post> {
