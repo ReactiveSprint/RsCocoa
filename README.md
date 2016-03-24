@@ -103,7 +103,7 @@ let postsDataSource = RSPTableViewDataSource(arrayViewModel: arrayViewModel)
 ```
 
 `RSPTableViewDataSource` uses `arrayViewModel.count` as count of rows.
-And dequeues a cell with identifier [ViewModelIdentifier](/Pod/Classes/ViewType.swift) and set an instance of `PostViewModel` for each cell.
+And dequeues a cell with identifier [ViewModelIdentifier](/Pod/Classes/ViewType.swift) and sets an instance of `PostViewModel` for each cell.
 
 ### PostsTableViewController
 
