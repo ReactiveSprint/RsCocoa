@@ -10,7 +10,7 @@ import Foundation
 import ReactiveCocoa
 import Result
 
-let UIScrollViewDelegateProxyKey = UnsafePointer<Void>()
+let UIScrollViewDelegateProxyKey = UnsafePointer<Void>(nilLiteral: ())
 
 public extension UIScrollView
 {
