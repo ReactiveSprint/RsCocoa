@@ -1,6 +1,6 @@
 # ReactiveSprint
 
-[![CI Status](https://travis-ci.org/ReactiveSprint/ReactiveSprint-Swift.svg?branch=master)](https://travis-ci.org/ReactiveSprint/ReactiveSprint-Swift)  
+[![CI Status](https://travis-ci.org/ReactiveSprint/CocoaReactiveSprint.svg?branch=master)](https://travis-ci.org/ReactiveSprint/CocoaReactiveSprint)  
 
 ReactiveSprint (RSP) is a framework which provides API for developing apps with [Model-View-ViewModel](https://en.wikipedia.org/wiki/Model–view–viewmodel) (MVVM).
 

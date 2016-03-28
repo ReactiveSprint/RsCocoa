@@ -18,11 +18,11 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!  
   s.description      = "ReactiveSprint aims to speed up development by implementing MVVM pattern."
 
-  s.homepage         = "https://github.com/ReactiveSprint/ReactiveSprint-Swift"
+  s.homepage         = "https://github.com/ReactiveSprint/CocoaReactiveSprint"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.author           = { "Ahmad Baraka" => "ah-baraka@live.com" }
-  s.source           = { :git => "https://github.com/ReactiveSprint/ReactiveSprint-Swift.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/ReactiveSprint/CocoaReactiveSprint.git", :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.platform     = :ios, '8.0'
