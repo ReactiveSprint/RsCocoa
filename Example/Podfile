@@ -9,6 +9,6 @@ end
 target 'ReactiveSprint_Tests' do
   pod 'ReactiveSprint', :path => '../'
 
-  pod 'Quick', '~> 0.8.0'
-  pod 'Nimble', '3.0.0'
+  pod 'Quick', '~> 0.9'
+  pod 'Nimble', '~> 3.2'
 end
