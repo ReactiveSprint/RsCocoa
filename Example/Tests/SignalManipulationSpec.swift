@@ -40,7 +40,7 @@ class SignalManipulationSpec: QuickSpec {
                     
                     expect(viewModel.active.value) == true
                     
-                    nextEvents++
+                    nextEvents += 1
                 }
                 
                 expect(nextEvents) == 0
@@ -66,7 +66,7 @@ class SignalManipulationSpec: QuickSpec {
                     
                     expect(viewModel.active.value) == false
                     
-                    nextEvents++
+                    nextEvents += 1
                 }
                 
                 expect(nextEvents) == 1
