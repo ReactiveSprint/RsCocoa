@@ -42,7 +42,7 @@ public extension UIScrollView
     /// Creates a SignalProducer which sends the receiver whenever `scrollViewDidScroll:` is called
     /// and completes when the receiver is deinitialized.
     public var rac_didScroll: SignalProducer<UIScrollView, NoError> {
-        let producer = rac_delegateProxy.signalForSelector(Selector("scrollViewDidScroll:"))
+        let producer = rac_delegateProxy.signalForSelector(#selector(UIScrollViewDelegate.scrollViewDidScroll(_:)))
             .takeUntil(rac_willDeallocSignal())
             .toSignalProducer()
             .map { ($0 as! RACTuple).first as! UIScrollView }

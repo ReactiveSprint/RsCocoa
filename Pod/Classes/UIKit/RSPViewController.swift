@@ -90,8 +90,8 @@ public class RSPViewController: UIViewController, ViewControllerType
 public func _bindActive<ViewController: ViewControllerType where ViewController: UIViewController>(viewModel: ViewModelType, viewController: ViewController)
 {
     let presented = RACSignal.merge([
-        viewController.rac_signalForSelector(Selector("viewWillAppear:")).mapReplace(true)
-        , viewController.rac_signalForSelector(Selector("viewWillDisappear:")).mapReplace(false)
+        viewController.rac_signalForSelector(#selector(UIViewController.viewWillAppear(_:))).mapReplace(true)
+        , viewController.rac_signalForSelector(#selector(UIViewController.viewWillDisappear(_:))).mapReplace(false)
         ])
     
     let appActive = RACSignal.merge([
