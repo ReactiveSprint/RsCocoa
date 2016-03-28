@@ -17,8 +17,8 @@ public protocol AnyModel
 /// Represents a Model that can be saved.
 public protocol ModelSaving: AnyModel
 {
-    typealias SaveInput
-    typealias SaveError: ErrorType
+    associatedtype SaveInput
+    associatedtype SaveError: ErrorType
     
     func save(input: SaveInput) -> SignalProducer<Self, SaveError>
 }
@@ -26,8 +26,8 @@ public protocol ModelSaving: AnyModel
 /// Represents a Model that can be fetched.
 public protocol ModelFetching: AnyModel
 {
-    typealias FetchInput
-    typealias FetchError: ErrorType
+    associatedtype FetchInput
+    associatedtype FetchError: ErrorType
     
     func fetch(input: FetchInput) -> SignalProducer<Self, FetchError>
 }
@@ -35,8 +35,8 @@ public protocol ModelFetching: AnyModel
 /// Represents a Model that can be deleted.
 public protocol ModelDeleting: AnyModel
 {
-    typealias DeleteInput
-    typealias DeleteError: ErrorType
+    associatedtype DeleteInput
+    associatedtype DeleteError: ErrorType
     
     func delete(input: DeleteInput) -> SignalProducer<Self, DeleteError>
 }

@@ -15,7 +15,7 @@ import Result
 public protocol ModelViewModelType: class, ViewModelType
 {
     /// Type of Model
-    typealias Model: AnyModel
+    associatedtype Model: AnyModel
     
     var model: Model { get }
 }

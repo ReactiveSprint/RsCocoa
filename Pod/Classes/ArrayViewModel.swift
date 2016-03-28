@@ -32,7 +32,7 @@ public protocol CocoaArrayViewModelType: ViewModelType
 public protocol ArrayViewModelType: CocoaArrayViewModelType
 {
     /// Type of ViewModels Array
-    typealias Element: ViewModelType
+    associatedtype Element: ViewModelType
     
     /// Returns an Array of `Elements.`
     ///

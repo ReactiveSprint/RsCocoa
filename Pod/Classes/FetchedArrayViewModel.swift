@@ -31,9 +31,9 @@ public protocol CocoaFetchedArrayViewModelType: CocoaArrayViewModelType
 /// ArrayViewModel which its array is lazily fetched, or even paginated.
 public protocol FetchedArrayViewModelType: ArrayViewModelType, CocoaFetchedArrayViewModelType
 {
-    typealias FetchInput
-    typealias PaginationType
-    typealias FetchError: ViewModelErrorType
+    associatedtype FetchInput
+    associatedtype PaginationType
+    associatedtype FetchError: ViewModelErrorType
     
     /// Next Page
     var nextPage: PaginationType? { get }
