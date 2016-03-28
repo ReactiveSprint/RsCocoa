@@ -8,7 +8,7 @@ ReactiveSprint will be available for different platforms (Cocoa, Android, Window
 
 #### Compatibility
 
-ReactiveSprint targets `Swift 2.1.x`, [ReactiveCocoa 4](https://github.com/ReactiveCocoa/ReactiveCocoa).
+ReactiveSprint targets `Swift 2.2`, [ReactiveCocoa 4](https://github.com/ReactiveCocoa/ReactiveCocoa).
 
 ## Introduction
 
