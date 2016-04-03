@@ -84,8 +84,7 @@ public class FetchedArrayViewModel<Element: ViewModelType, PaginationType, Fetch
         return _viewModels.value
     }
     
-    private lazy var _count: AnyProperty<Int> = AnyProperty(initialValue: 0, producer: self._viewModels.producer.map { $0.count })
-    private(set) public lazy var count: AnyProperty<Int> = AnyProperty(self._count)
+    private(set) public lazy var count: AnyProperty<Int> = AnyProperty(initialValue: 0, producer: self._viewModels.producer.map { $0.count })
     
     public let localizedEmptyMessage = MutableProperty<String?>(nil)
     
