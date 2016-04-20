@@ -32,6 +32,7 @@ public protocol CocoaFetchedArrayViewModelType: CocoaArrayViewModelType
 public protocol FetchedArrayViewModelType: ArrayViewModelType, CocoaFetchedArrayViewModelType
 {
     associatedtype FetchInput
+    associatedtype FetchOutput
     associatedtype PaginationType
     associatedtype FetchError: ViewModelErrorType
     
@@ -39,15 +40,15 @@ public protocol FetchedArrayViewModelType: ArrayViewModelType, CocoaFetchedArray
     var nextPage: PaginationType? { get }
     
     /// Action which refreshes ViewModels.
-    var refreshAction: Action<FetchInput, [Element], FetchError> { get }
+    var refreshAction: Action<FetchInput, FetchOutput, FetchError> { get }
     
     /// Action which fetches ViewModels.
     ///
     /// If `nextPage` is nil, then this action will refresh, else this action should fetch next page.
-    var fetchAction: Action<FetchInput, [Element], FetchError> { get }
+    var fetchAction: Action<FetchInput, FetchOutput, FetchError> { get }
     
     /// Applies `fetchAction` only if next page is availabe or returns `SignalProducer.empty`
-    var fetchIfNeededAction: Action<FetchInput, [Element], ActionError<FetchError>> { get }
+    var fetchIfNeededAction: Action<FetchInput, FetchOutput, ActionError<FetchError>> { get }
 }
 
 public extension FetchedArrayViewModelType
@@ -56,7 +57,7 @@ public extension FetchedArrayViewModelType
         return nextPage != nil
     }
     
-    public func fetchIfNeeded(input: FetchInput) -> SignalProducer<[Element], ActionError<FetchError>>
+    public func fetchIfNeeded(input: FetchInput) -> SignalProducer<FetchOutput, ActionError<FetchError>>
     {
         if willFetchNextPage && hasNextPage.value
         {
@@ -99,7 +100,7 @@ public class FetchedArrayViewModel<Element: ViewModelType, PaginationType, Fetch
     
     private(set) public var nextPage: PaginationType? = nil
     
-    public let fetchClosure: PaginationType? -> SignalProducer<([Element], PaginationType?), FetchError>
+    public let fetchClosure: PaginationType? -> SignalProducer<(PaginationType?, [Element]), FetchError>
     private(set) public lazy var refreshAction: Action<(), [Element], FetchError> = self.initRefreshAction()
     private(set) public lazy var fetchAction: Action<(), [Element], FetchError> = self.initFetchAction()
     
@@ -118,9 +119,9 @@ public class FetchedArrayViewModel<Element: ViewModelType, PaginationType, Fetch
     ///
     /// - Parameter fetchClosure: A closure which is called each time `refreshAction` or `fetchAction`
     /// are called passing latest PaginationType
-    /// and returns a `SignalProducer` which sends an array of `Element` and PaginationType.
+    /// and returns a `SignalProducer` which sends PaginationType and an array of `Element`.
     /// If the returned SignalProducer sends nil PaginationType, then no pagination will be handled.
-    public init(_ fetchClosure: PaginationType? -> SignalProducer<([Element], PaginationType?), FetchError>)
+    public init(_ fetchClosure: PaginationType? -> SignalProducer<(PaginationType?, [Element]), FetchError>)
     {
         self.fetchClosure = fetchClosure
         super.init()
@@ -184,7 +185,7 @@ public class FetchedArrayViewModel<Element: ViewModelType, PaginationType, Fetch
     private func _fetch(page: PaginationType?) -> SignalProducer<[Element], FetchError>
     {
         return self.fetchClosure(page)
-            .on(next: { [unowned self] viewModels, page in
+            .on(next: { [unowned self] page, viewModels in
                 if self.refreshing.value
                 {
                     self._viewModels.value.removeAll()
@@ -198,7 +199,7 @@ public class FetchedArrayViewModel<Element: ViewModelType, PaginationType, Fetch
                     self._refreshing.value = false
                     self._fetchingNextPage.value = false
                 })
-            .map { $0.0 }
+            .map { $0.1 }
     }
 
     public func indexOf(predicate: Element -> Bool) -> Int?

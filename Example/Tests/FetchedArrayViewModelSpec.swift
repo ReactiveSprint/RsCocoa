@@ -20,8 +20,8 @@ class FetchedArrayViewModelSpec: QuickSpec {
         
         describe("fetchAction") {
             it("should fetch with no pagination") {
-                let viewModel = FetchedArrayViewModel { _ -> SignalProducer<([TestViewModel], Int?), NSError> in
-                    SignalProducer(value: (generateViewModels(4), nil))
+                let viewModel = FetchedArrayViewModel { _ -> SignalProducer<(Int?, [TestViewModel]), NSError> in
+                    SignalProducer(value: (nil, generateViewModels(4)))
                         .delay(1, onScheduler: QueueScheduler.mainQueueScheduler)
                 }
                 
@@ -59,7 +59,7 @@ class FetchedArrayViewModelSpec: QuickSpec {
                 var viewModel: FetchedArrayViewModel<TestViewModel, Int, NSError>!
 
                 beforeEach {
-                    viewModel = FetchedArrayViewModel { previousPage -> SignalProducer<([TestViewModel], Int?), NSError> in
+                    viewModel = FetchedArrayViewModel { previousPage -> SignalProducer<( Int?, [TestViewModel]), NSError> in
                         var nextPage = 0
                         
                         if let page = previousPage
@@ -67,7 +67,7 @@ class FetchedArrayViewModelSpec: QuickSpec {
                             nextPage = page + 1
                         }
                         
-                        return SignalProducer(value: (generateViewModels(4, startValue: nextPage * 4), nextPage))
+                        return SignalProducer(value: (nextPage, generateViewModels(4, startValue: nextPage * 4)))
                             .delay(1, onScheduler: QueueScheduler.mainQueueScheduler)
                     }
                 }
