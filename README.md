@@ -59,7 +59,7 @@ We also need to implement a ViewModel which fetches posts, maintains an Array of
 We can either subclass [FetchedArrayViewModel](/Pod/Classes/FetchedArrayViewModel.swift) or initialize an instance:
 
 ```swift
-let postsViewModel = FetchedArrayViewModel { page -> SignalProducer<([PostViewModel], Int?), NSError> in
+let postsViewModel = FetchedArrayViewModel { page -> SignalProducer<(Int?, [PostViewModel]), NSError> in
     // requests posts for `page`
     return ApiClient.requestPosts(page)
 }
