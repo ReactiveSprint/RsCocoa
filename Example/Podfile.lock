@@ -1,20 +1,20 @@
 PODS:
   - Nimble (3.2.0)
   - Quick (0.9.1)
-  - ReactiveCocoa (4.0.1):
-    - ReactiveCocoa/UI (= 4.0.1)
-    - Result (~> 1.0.2)
-  - ReactiveCocoa/Core (4.0.1):
+  - ReactiveCocoa (4.1.0):
+    - ReactiveCocoa/UI (= 4.1.0)
+    - Result (~> 2.0)
+  - ReactiveCocoa/Core (4.1.0):
     - ReactiveCocoa/no-arc
-    - Result (~> 1.0.2)
-  - ReactiveCocoa/no-arc (4.0.1):
-    - Result (~> 1.0.2)
-  - ReactiveCocoa/UI (4.0.1):
+    - Result (~> 2.0)
+  - ReactiveCocoa/no-arc (4.1.0):
+    - Result (~> 2.0)
+  - ReactiveCocoa/UI (4.1.0):
     - ReactiveCocoa/Core
-    - Result (~> 1.0.2)
+    - Result (~> 2.0)
   - ReactiveSprint (0.1.0):
-    - ReactiveCocoa (~> 4.0)
-  - Result (1.0.2)
+    - ReactiveCocoa (~> 4.1)
+  - Result (2.0.0)
 
 DEPENDENCIES:
   - Nimble (~> 3.2)
@@ -28,10 +28,10 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Nimble: 703854335d181df169bbca9c97117b5cf8c47c1d
   Quick: a5221fc21788b6aeda934805e68b061839bc3165
-  ReactiveCocoa: f7011630aee4deeb16352fcb1b50d6bde9db4f90
-  ReactiveSprint: 067620a246aad17a91f58c0ea01e0f008902c8db
-  Result: dd3dd71af3fa2e262f1a999e14fba2c25ec14f16
+  ReactiveCocoa: d70004d7a366a7b8e87e60ce2347182c77701949
+  ReactiveSprint: a7c528d9e8bec4d864604e8a7a22c1d5957e4261
+  Result: 9e75e1111c774c6ac594e14907b15057053a7959
 
 PODFILE CHECKSUM: 8ddcdb4ede1509cf19f1029376a89d5396244239
 
-COCOAPODS: 1.0.0.beta.3
+COCOAPODS: 1.0.0.beta.8
