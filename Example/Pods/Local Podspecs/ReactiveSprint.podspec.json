@@ -2,14 +2,14 @@
   "name": "ReactiveSprint",
   "version": "0.1.0",
   "summary": "ReactiveSprint aims to speed up development by implementing MVVM pattern.",
-  "description": "ReactiveSprint aims to speed up development by implementing MVVM pattern.",
-  "homepage": "https://github.com/ReactiveSprint/ReactiveSprint-Swift",
+  "description": "ReactiveSprint (RSP) is a framework which provides API for developing apps with MVVM",
+  "homepage": "https://github.com/ReactiveSprint/CocoaReactiveSprint",
   "license": "MIT",
   "authors": {
     "Ahmad Baraka": "ah-baraka@live.com"
   },
   "source": {
-    "git": "https://github.com/ReactiveSprint/ReactiveSprint-Swift.git",
+    "git": "https://github.com/ReactiveSprint/CocoaReactiveSprint.git",
     "tag": "0.1.0"
   },
   "platforms": {

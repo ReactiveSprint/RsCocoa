@@ -16,13 +16,13 @@ Pod::Spec.new do |s|
 #   * Try to keep it short, snappy and to the point.
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!  
-  s.description      = "ReactiveSprint aims to speed up development by implementing MVVM pattern."
+s.description      = "ReactiveSprint (RSP) is a framework which provides API for developing apps with MVVM "
 
-  s.homepage         = "https://github.com/ReactiveSprint/CocoaReactiveSprint"
+  s.homepage         = "https://github.com/ReactiveSprint/RsCocoa"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.author           = { "Ahmad Baraka" => "ah-baraka@live.com" }
-  s.source           = { :git => "https://github.com/ReactiveSprint/CocoaReactiveSprint.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/ReactiveSprint/RsCocoa.git", :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.platform     = :ios, '8.0'
