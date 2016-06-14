@@ -80,7 +80,7 @@ public class FetchedArrayViewModel<Element: ViewModelType, PaginationType, Fetch
     
     private(set) public lazy var count: AnyProperty<Int> = AnyProperty(initialValue: 0, producer: self._viewModels.producer.map { $0.count })
     
-    public let localizedEmptyMessage = MutableProperty<String?>(nil)
+    private(set) public lazy var localizedEmptyMessage = MutableProperty<String?>(nil)
     
     private let _refreshing = MutableProperty(false)
     private(set) public lazy var refreshing: AnyProperty<Bool> = AnyProperty(self._refreshing)
