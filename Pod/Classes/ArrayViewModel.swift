@@ -50,7 +50,7 @@ public protocol ArrayViewModelType: CocoaArrayViewModelType {
 public extension ArrayViewModelType where Self.Element: Equatable {
     /// Returns the first index where `value` equals `element` or `nil`
     /// `value` is not found.
-    func indexOf(element: Element) -> Int? {
+    public func indexOf(element: Element) -> Int? {
         return indexOf { $0 == element }
     }
 }
@@ -78,24 +78,12 @@ public class ArrayViewModel<Element: ViewModelType>: ViewModel, ArrayViewModelTy
     
     public let viewModels: [Element]
     
-    public let localizedEmptyMessage = MutableProperty<String?>(nil)
+    private(set) public lazy var localizedEmptyMessage = MutableProperty<String?>(nil)
     
     /// Initializes ArrayViewModel with array of Element.
     public init(_ viewModels: [Element]) {
         self.viewModels = viewModels
         count = AnyProperty(initialValue: viewModels.count, producer: SignalProducer.empty)
-    }
-    
-    /// Initializes ArrayViewModel with array of Element and title.
-    public convenience init(_ viewModels: [Element], title: String?) {
-        self.init(viewModels)
-        self.title.value = title
-    }
-    
-    /// Initializes ArrayViewModel with array of Element, title and localizedEmptyMessage.
-    public convenience init(_ viewModels: [Element], title: String?, localizedEmptyMessage: String?) {
-        self.init(viewModels, title: title)
-        self.localizedEmptyMessage.value = localizedEmptyMessage
     }
     
     public subscript(index: Int) -> Element { return viewModels[index] }

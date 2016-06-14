@@ -19,7 +19,6 @@ class ArrayViewModelSpec: QuickSpec {
         describe("ArrayViewModel") {
             var arrayViewModel: ArrayViewModel<TestViewModel>!
             var viewModels: [TestViewModel]!
-            let title = "TestArrayViewModel"
             
             beforeEach {
                 arrayViewModel = nil
@@ -34,27 +33,6 @@ class ArrayViewModelSpec: QuickSpec {
                 expect(arrayViewModel.localizedEmptyMessage.value).to(beNil())
                 expect(arrayViewModel.count.value) == 0
                 expect(arrayViewModel.isEmpty.value) == true
-            }
-            
-            it("should set values from init(_, title:)") {
-                arrayViewModel = ArrayViewModel(viewModels, title: title)
-                
-                expect(arrayViewModel.title.value) == title
-                expect(arrayViewModel.localizedEmptyMessage.value).to(beNil())
-                expect(arrayViewModel.count.value) == viewModels.count
-                expect(arrayViewModel.isEmpty.value) == false
-            }
-            
-            it("should set values from init(_, title:, localizedEmptyMessage:)") {
-                let message = "No Items Available"
-                arrayViewModel = ArrayViewModel(viewModels,
-                    title: title,
-                    localizedEmptyMessage: message)
-                
-                expect(arrayViewModel.title.value) == title
-                expect(arrayViewModel.localizedEmptyMessage.value) == message
-                expect(arrayViewModel.count.value) == viewModels.count
-                expect(arrayViewModel.isEmpty.value) == false
             }
             
             it("subscript should return item") {
