@@ -12,7 +12,10 @@ import Result
 /// Represents a ViewModel.
 public protocol ViewModelType {
     /// Used as general `title`
-    var title: ReactiveCocoa.MutableProperty<String?> { get }
+    var title: MutableProperty<String?> { get }
+    
+    /// Used as detail or subtitle.
+    var subtitle: MutableProperty<String?> { get }
     
     /// Whether the view model is currently "active."
     var active: MutableProperty<Bool> { get }
@@ -38,8 +41,9 @@ public protocol ViewModelType {
 
 /// Abstract implementation of `ViewModel` used in `MVVM pattern`
 public class ViewModel: ViewModelType {
-    /// Used as general `title`
-    public let title = MutableProperty<String?>(nil)
+    private(set) public lazy var title = MutableProperty<String?>(nil)
+    
+    private(set) public lazy var subtitle = MutableProperty<String?>(nil)
     
     /// Whether the view model is currently "active."
     ///
@@ -50,7 +54,7 @@ public class ViewModel: ViewModelType {
     /// [ReactiveViewModel.](https://github.com/ReactiveCocoa/ReactiveViewModel)
     ///
     /// This property defaults to false.
-    public let active = MutableProperty(false)
+    private(set) public lazy var active = MutableProperty(false)
     
     /// Observes the receiver's `active` property, and sends the receiver whenever it
     /// changes from false to true.
@@ -108,9 +112,19 @@ public class ViewModel: ViewModelType {
     /// Initializes a ViewModel with `title`
     ///
     /// - Parameter title: Title to be used for the reciever.
-    public convenience init(title: String?) {
+    public convenience init(title: String) {
         self.init()
         self.title.value = title
+    }
+    
+    /// Initializes a ViewModel with `title`
+    ///
+    /// - Parameter title: Title to be used for the reciever.
+    /// - Parameter subtitle: Details or Subtitle to be used for the reciever.
+    public convenience init(title: String, subtitle: String) {
+        self.init()
+        self.title.value = title
+        self.subtitle.value = subtitle
     }
     
     deinit {
