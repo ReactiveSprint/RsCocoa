@@ -13,8 +13,7 @@ import UIKit
 /// This implementation shows 1 section with `CocoaArrayViewModelType.count` rows.
 /// `collectionView.dequeueReusableCellWithReuseIdentifier(_:forIndexPath:)` is used to dequeue cell
 /// and a ViewModel is set to it.
-public class RSPCollectionViewDataSource: NSObject, UICollectionViewDataSource
-{
+public class RSPCollectionViewDataSource: NSObject, UICollectionViewDataSource {
     /// ArrayViewModel source for the TableView.
     public var arrayViewModel: CocoaArrayViewModelType!
     
@@ -24,8 +23,7 @@ public class RSPCollectionViewDataSource: NSObject, UICollectionViewDataSource
     /// Initializes an instance.
     ///
     /// When this initializer is used, `arrayViewModel` must be set.
-    public override init()
-    {
+    public override init() {
         
     }
     
@@ -36,38 +34,31 @@ public class RSPCollectionViewDataSource: NSObject, UICollectionViewDataSource
     /// with `dequeueReusableCellWithReuseIdentifier(_:forIndexPath:)`
     ///
     /// If nil was sent, then `ViewModelIdentifier` is used instead.
-    public init(arrayViewModel: CocoaArrayViewModelType, _ cellIdentifierClosure: (( ViewModelType, NSIndexPath) -> String)? = nil)
-    {
+    public init(arrayViewModel: CocoaArrayViewModelType, _ cellIdentifierClosure: (( ViewModelType, NSIndexPath) -> String)? = nil) {
         self.arrayViewModel = arrayViewModel
         self.cellIdentifierClosure = cellIdentifierClosure
     }
     
     /// Returns ArrayViewModel.count
-    public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
-    {
+    public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.arrayViewModel.count.value
     }
     
     /// Dequeues cell and sets ViewModel at `indexPath.row`.
-    public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
-    {
+    public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let viewModel = arrayViewModel[indexPath.row]
         
         let identifier: String
         
-        if let cellIdentifierClosure = self.cellIdentifierClosure
-        {
+        if let cellIdentifierClosure = self.cellIdentifierClosure {
             identifier = cellIdentifierClosure(viewModel, indexPath)
-        }
-        else
-        {
+        } else {
             identifier = ViewModelIdentifier
         }
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(identifier, forIndexPath: indexPath)
         
-        if cell is ViewType
-        {
+        if cell is ViewType {
             (cell as! ViewType).viewModel = viewModel
         }
         

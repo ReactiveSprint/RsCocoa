@@ -9,8 +9,7 @@
 import Foundation
 
 /// Represents a ViewController that wraps FetchedArrayViewModel
-public protocol FetchedArrayViewControllerType: ArrayViewControllerType
-{
+public protocol FetchedArrayViewControllerType: ArrayViewControllerType {
     /// Returns `arrayViewModel`
     var fetchedArrayViewModel: CocoaFetchedArrayViewModelType { get }
     
@@ -27,16 +26,14 @@ public protocol FetchedArrayViewControllerType: ArrayViewControllerType
     func presentFetchingNextPage(fetchingNextPage: Bool)
 }
 
-public extension FetchedArrayViewControllerType
-{
+public extension FetchedArrayViewControllerType {
     public var fetchedArrayViewModel: CocoaFetchedArrayViewModelType {
         return arrayViewModel as! CocoaFetchedArrayViewModelType
     }
 }
 
 /// Binds `arrayViewModel.refreshing` to `presentRefreshing(_:)`
-public func _bindRefreshing<ViewController: FetchedArrayViewControllerType where ViewController: NSObject>(arrayViewModel: CocoaFetchedArrayViewModelType, viewController: ViewController)
-{
+public func _bindRefreshing<ViewController: FetchedArrayViewControllerType where ViewController: NSObject>(arrayViewModel: CocoaFetchedArrayViewModelType, viewController: ViewController) {
     arrayViewModel.refreshing.producer
         .takeUntil(viewController.rac_willDeallocSignalProducer())
         .skipRepeats()
@@ -45,8 +42,7 @@ public func _bindRefreshing<ViewController: FetchedArrayViewControllerType where
 }
 
 /// Binds `arrayViewModel.fetchingNextPage` to `presentFetchingNextPage(_:)`
-public func _bindFetchingNextPage<ViewController: FetchedArrayViewControllerType where ViewController: NSObject>(arrayViewModel: CocoaFetchedArrayViewModelType, viewController: ViewController)
-{
+public func _bindFetchingNextPage<ViewController: FetchedArrayViewControllerType where ViewController: NSObject>(arrayViewModel: CocoaFetchedArrayViewModelType, viewController: ViewController) {
     arrayViewModel.fetchingNextPage.producer
         .takeUntil(viewController.rac_willDeallocSignalProducer())
         .skipRepeats()

@@ -10,8 +10,7 @@ import ReactiveCocoa
 import Result
 
 /// Non-generic FetchedArrayViewModelType used with Cocoa.
-public protocol CocoaFetchedArrayViewModelType: CocoaArrayViewModelType
-{
+public protocol CocoaFetchedArrayViewModelType: CocoaArrayViewModelType {
     /// Whether the ViewModel is refreshing.
     var refreshing: AnyProperty<Bool> { get }
     
@@ -24,13 +23,12 @@ public protocol CocoaFetchedArrayViewModelType: CocoaArrayViewModelType
     var refreshCocoaAction: CocoaAction { get }
     
     var fetchCocoaAction: CocoaAction { get }
-
+    
     var fetchIfNeededCocoaAction: CocoaAction { get }
 }
 
 /// ArrayViewModel which its array is lazily fetched, or even paginated.
-public protocol FetchedArrayViewModelType: ArrayViewModelType, CocoaFetchedArrayViewModelType
-{
+public protocol FetchedArrayViewModelType: ArrayViewModelType, CocoaFetchedArrayViewModelType {
     associatedtype FetchInput
     associatedtype FetchOutput
     associatedtype PaginationType
@@ -51,16 +49,13 @@ public protocol FetchedArrayViewModelType: ArrayViewModelType, CocoaFetchedArray
     var fetchIfNeededAction: Action<FetchInput, FetchOutput, ActionError<FetchError>> { get }
 }
 
-public extension FetchedArrayViewModelType
-{
+public extension FetchedArrayViewModelType {
     private var willFetchNextPage: Bool {
         return nextPage != nil
     }
     
-    public func fetchIfNeeded(input: FetchInput) -> SignalProducer<FetchOutput, ActionError<FetchError>>
-    {
-        if willFetchNextPage && hasNextPage.value
-        {
+    public func fetchIfNeeded(input: FetchInput) -> SignalProducer<FetchOutput, ActionError<FetchError>> {
+        if willFetchNextPage && hasNextPage.value {
             return fetchAction.apply(input)
         }
         
@@ -68,8 +63,7 @@ public extension FetchedArrayViewModelType
     }
 }
 
-public extension FetchedArrayViewModelType
-{
+public extension FetchedArrayViewModelType {
     public var fetchCocoaAction: CocoaAction { return fetchAction.unsafeCocoaAction }
     
     public var refreshCocoaAction: CocoaAction { return refreshAction.unsafeCocoaAction }
@@ -78,8 +72,7 @@ public extension FetchedArrayViewModelType
 }
 
 /// An implementation of FetchedArrayViewModelType that fetches ViewModels by calling `fetchClosure.`
-public class FetchedArrayViewModel<Element: ViewModelType, PaginationType, FetchError: ViewModelErrorType>: ViewModel, FetchedArrayViewModelType
-{
+public class FetchedArrayViewModel<Element: ViewModelType, PaginationType, FetchError: ViewModelErrorType>: ViewModel, FetchedArrayViewModelType {
     private let _viewModels: MutableProperty<[Element]> = MutableProperty([])
     public var viewModels: [Element] {
         return _viewModels.value
@@ -121,8 +114,7 @@ public class FetchedArrayViewModel<Element: ViewModelType, PaginationType, Fetch
     /// are called passing latest PaginationType
     /// and returns a `SignalProducer` which sends PaginationType and an array of `Element`.
     /// If the returned SignalProducer sends nil PaginationType, then no pagination will be handled.
-    public init(_ fetchClosure: PaginationType? -> SignalProducer<(PaginationType?, [Element]), FetchError>)
-    {
+    public init(_ fetchClosure: PaginationType? -> SignalProducer<(PaginationType?, [Element]), FetchError>) {
         self.fetchClosure = fetchClosure
         super.init()
     }
@@ -139,8 +131,7 @@ public class FetchedArrayViewModel<Element: ViewModelType, PaginationType, Fetch
     /// `CocoaAction.unsafeCocoaAction` is set with a safe one ignoring any input.
     ///
     /// The returned action is also bound to the receiver using `bindAction`
-    public func initRefreshAction() -> Action<(), [Element], FetchError>
-    {
+    public func initRefreshAction() -> Action<(), [Element], FetchError> {
         let action: Action<(), [Element], FetchError> = Action(enabledIf: self.enabled) { [unowned self] _ in
             self._refreshing.value = true
             return self._fetch(nil)
@@ -161,15 +152,11 @@ public class FetchedArrayViewModel<Element: ViewModelType, PaginationType, Fetch
     /// `CocoaAction.unsafeCocoaAction` is set with a safe one ignoring any input.
     ///
     /// The returned action is also bound to the receiver using `bindAction`
-    public func initFetchAction() -> Action<(), [Element], FetchError>
-    {
+    public func initFetchAction() -> Action<(), [Element], FetchError> {
         let action: Action<(), [Element], FetchError> = Action(enabledIf: self.enabled) { [unowned self] _ in
-            if self.willFetchNextPage
-            {
+            if self.willFetchNextPage {
                 self._fetchingNextPage.value = true
-            }
-            else
-            {
+            } else {
                 self._refreshing.value = true
             }
             return self._fetch(self.nextPage)
@@ -182,12 +169,10 @@ public class FetchedArrayViewModel<Element: ViewModelType, PaginationType, Fetch
         return action
     }
     
-    private func _fetch(page: PaginationType?) -> SignalProducer<[Element], FetchError>
-    {
+    private func _fetch(page: PaginationType?) -> SignalProducer<[Element], FetchError> {
         return self.fetchClosure(page)
             .on(next: { [unowned self] page, viewModels in
-                if self.refreshing.value
-                {
+                if self.refreshing.value {
                     self._viewModels.value.removeAll()
                 }
                 self._viewModels.value.appendContentsOf(viewModels)
@@ -201,9 +186,8 @@ public class FetchedArrayViewModel<Element: ViewModelType, PaginationType, Fetch
                 })
             .map { $0.1 }
     }
-
-    public func indexOf(predicate: Element -> Bool) -> Int?
-    {
+    
+    public func indexOf(predicate: Element -> Bool) -> Int? {
         return viewModels.indexOf(predicate)
     }
 }

@@ -13,8 +13,7 @@ import Result
 /// UITableViewCell which uses a ViewModel.
 ///
 /// Subclasses need to override `bindViewModel(_:).`
-public class RSPTableViewCell: UITableViewCell, ViewType
-{
+public class RSPTableViewCell: UITableViewCell, ViewType {
     /// The Wrapped ViewModel.
     ///
     /// A setter is available to allow cell reuse.
@@ -34,20 +33,17 @@ public class RSPTableViewCell: UITableViewCell, ViewType
     public let rac_prepareForReuseSignalProducer: SignalProducer<(), NoError>
     private let rac_prepareForReuseObserver: Observer<(), NoError>
     
-    public override init(style: UITableViewCellStyle, reuseIdentifier: String?)
-    {
+    public override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         (self.rac_prepareForReuseSignalProducer, self.rac_prepareForReuseObserver) = SignalProducer.buffer(0)
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
     
-    public required init?(coder aDecoder: NSCoder)
-    {
+    public required init?(coder aDecoder: NSCoder) {
         (self.rac_prepareForReuseSignalProducer, self.rac_prepareForReuseObserver) = SignalProducer.buffer(0)
         super.init(coder: aDecoder)
     }
     
-    public override func prepareForReuse()
-    {
+    public override func prepareForReuse() {
         super.prepareForReuse()
         viewModel = nil
         self.rac_prepareForReuseObserver.sendNext()
@@ -58,10 +54,8 @@ public class RSPTableViewCell: UITableViewCell, ViewType
     /// This is invoked at viewModel property's didSet.
     ///
     /// Default implementation binds `viewModel.title` to `textLabel.text`
-    public func bindViewModel(viewModel: ViewModelType)
-    {
-        if let textLabel = self.textLabel
-        {
+    public func bindViewModel(viewModel: ViewModelType) {
+        if let textLabel = self.textLabel {
             viewModel.title.producer
                 .takeUntil(rac_prepareForReuseSignalProducer)
                 .startWithNext { [unowned textLabel] text in
@@ -72,8 +66,7 @@ public class RSPTableViewCell: UITableViewCell, ViewType
         bindActive(viewModel)
     }
     
-    public func bindActive(viewModel: ViewModelType)
-    {
+    public func bindActive(viewModel: ViewModelType) {
         let appActive = RACSignal.merge([
             NSNotificationCenter.defaultCenter()
                 .rac_addObserverForName(UIApplicationDidBecomeActiveNotification, object: nil)

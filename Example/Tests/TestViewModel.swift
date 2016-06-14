@@ -9,12 +9,10 @@
 import ReactiveSprint
 
 /// Generates `count` of ViewModels, each ViewModel will have title of `index + startValue`
-func generateViewModels(count: Int, startValue: Int = 0) -> [TestViewModel]
-{
+func generateViewModels(count: Int, startValue: Int = 0) -> [TestViewModel] {
     var viewModels = [TestViewModel]()
     
-    for index in 1...count
-    {
+    for index in 1...count {
         let viewModel = TestViewModel(title: String(index + startValue))
         viewModels.append(viewModel)
     }
@@ -22,17 +20,14 @@ func generateViewModels(count: Int, startValue: Int = 0) -> [TestViewModel]
     return viewModels
 }
 
-class TestViewModel: ViewModel
-{
+class TestViewModel: ViewModel {
 
 }
 
-func == (lhs: TestViewModel, rhs: TestViewModel) -> Bool
-{
+func == (lhs: TestViewModel, rhs: TestViewModel) -> Bool {
     return lhs.title.value == rhs.title.value
 }
 
-extension TestViewModel: Equatable
-{
+extension TestViewModel: Equatable {
     
 }

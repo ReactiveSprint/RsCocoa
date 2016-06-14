@@ -8,20 +8,16 @@
 
 import Foundation
 
-extension UIActivityIndicatorView: LoadingViewType
-{
+extension UIActivityIndicatorView: LoadingViewType {
     public var loading: Bool {
         get {
             return isAnimating()
         }
         
         set {
-            if newValue
-            {
+            if newValue {
                 startAnimating()
-            }
-            else
-            {
+            } else {
                 stopAnimating()
             }
         }

@@ -8,20 +8,16 @@
 
 import UIKit
 
-extension UIRefreshControl: LoadingViewType
-{
+extension UIRefreshControl: LoadingViewType {
     public var loading: Bool {
         get {
             return refreshing
         }
         
         set {
-            if newValue
-            {
+            if newValue {
                 beginRefreshing()
-            }
-            else
-            {
+            } else {
                 endRefreshing()
             }
         }

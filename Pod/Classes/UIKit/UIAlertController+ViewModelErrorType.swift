@@ -8,20 +8,16 @@
 
 import Foundation
 
-public extension UIAlertController
-{
+public extension UIAlertController {
     /// Initializes an instance with error.
-    public convenience init(error: ViewModelErrorType)
-    {
+    public convenience init(error: ViewModelErrorType) {
         self.init(title: error.localizedDescription,
-            message: error.localizedRecoverySuggestion,
-            preferredStyle: .Alert)
+                  message: error.localizedRecoverySuggestion,
+                  preferredStyle: .Alert)
         
         //TODO: Properly add and handle recovery options..
-        if let recoveryOptions = error.localizedRecoveryOptions
-        {
-            for option in recoveryOptions
-            {
+        if let recoveryOptions = error.localizedRecoveryOptions {
+            for option in recoveryOptions {
                 let action = UIAlertAction(title: option, style: .Default, handler: nil)
                 
                 addAction(action)

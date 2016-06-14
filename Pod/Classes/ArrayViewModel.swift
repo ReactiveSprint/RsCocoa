@@ -10,8 +10,7 @@ import ReactiveCocoa
 import Result
 
 /// Non-generic ArrayViewModelType used with Cocoa.
-public protocol CocoaArrayViewModelType: ViewModelType
-{
+public protocol CocoaArrayViewModelType: ViewModelType {
     /// Returns count of ViewModels.
     var count: AnyProperty<Int> { get }
     
@@ -29,8 +28,7 @@ public protocol CocoaArrayViewModelType: ViewModelType
 }
 
 /// Represents an ViewModel which wraps an Array of ViewModels of type `Element`
-public protocol ArrayViewModelType: CocoaArrayViewModelType
-{
+public protocol ArrayViewModelType: CocoaArrayViewModelType {
     /// Type of ViewModels Array
     associatedtype Element: ViewModelType
     
@@ -49,30 +47,25 @@ public protocol ArrayViewModelType: CocoaArrayViewModelType
     func indexOf(predicate: Element -> Bool) -> Int?
 }
 
-public extension ArrayViewModelType where Self.Element: Equatable
-{
+public extension ArrayViewModelType where Self.Element: Equatable {
     /// Returns the first index where `value` equals `element` or `nil`
     /// `value` is not found.
-    func indexOf(element: Element) -> Int?
-    {
+    func indexOf(element: Element) -> Int? {
         return indexOf { $0 == element }
     }
 }
 
-public extension ArrayViewModelType
-{
+public extension ArrayViewModelType {
     public subscript(index: Int) -> ViewModelType { return self[index] }
     
-    public func indexOf(predicate: ViewModelType -> Bool) -> Int?
-    {
+    public func indexOf(predicate: ViewModelType -> Bool) -> Int? {
         return indexOf { viewModel in
             predicate(viewModel)
         }
     }
 }
 
-public extension CocoaArrayViewModelType
-{
+public extension CocoaArrayViewModelType {
     /// Returns true if Array is empty, false otherwise.
     public var isEmpty: AnyProperty<Bool> {
         return AnyProperty(initialValue: count.value <= 0, producer: count.producer.map { $0 <= 0 })
@@ -80,8 +73,7 @@ public extension CocoaArrayViewModelType
 }
 
 /// ViewModel that has a Constant array of ViewModels.
-public class ArrayViewModel<Element: ViewModelType>: ViewModel, ArrayViewModelType
-{
+public class ArrayViewModel<Element: ViewModelType>: ViewModel, ArrayViewModelType {
     public let count: AnyProperty<Int>
     
     public let viewModels: [Element]
@@ -89,30 +81,26 @@ public class ArrayViewModel<Element: ViewModelType>: ViewModel, ArrayViewModelTy
     public let localizedEmptyMessage = MutableProperty<String?>(nil)
     
     /// Initializes ArrayViewModel with array of Element.
-    public init(_ viewModels: [Element])
-    {
+    public init(_ viewModels: [Element]) {
         self.viewModels = viewModels
         count = AnyProperty(initialValue: viewModels.count, producer: SignalProducer.empty)
     }
     
     /// Initializes ArrayViewModel with array of Element and title.
-    public convenience init(_ viewModels: [Element], title: String?)
-    {
+    public convenience init(_ viewModels: [Element], title: String?) {
         self.init(viewModels)
         self.title.value = title
     }
     
     /// Initializes ArrayViewModel with array of Element, title and localizedEmptyMessage.
-    public convenience init(_ viewModels: [Element], title: String?, localizedEmptyMessage: String?)
-    {
+    public convenience init(_ viewModels: [Element], title: String?, localizedEmptyMessage: String?) {
         self.init(viewModels, title: title)
         self.localizedEmptyMessage.value = localizedEmptyMessage
     }
     
     public subscript(index: Int) -> Element { return viewModels[index] }
     
-    public func indexOf(predicate: Element -> Bool) -> Int?
-    {
+    public func indexOf(predicate: Element -> Bool) -> Int? {
         return viewModels.indexOf(predicate)
     }
 }

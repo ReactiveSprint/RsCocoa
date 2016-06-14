@@ -13,8 +13,7 @@ import Foundation
 /// This implementation shows 1 section with `CocoaArrayViewModelType.count` rows.
 /// `tableView.dequeueReusableCellWithIdentifier(_:forIndexPath:)` is used to dequeue cell
 /// and a ViewModel is set to it.
-public class RSPTableViewDataSource: NSObject, UITableViewDataSource
-{
+public class RSPTableViewDataSource: NSObject, UITableViewDataSource {
     /// ArrayViewModel source for the TableView.
     public var arrayViewModel: CocoaArrayViewModelType!
     
@@ -24,8 +23,7 @@ public class RSPTableViewDataSource: NSObject, UITableViewDataSource
     /// Initializes an instance.
     ///
     /// When this initializer is used, `arrayViewModel` must be set.
-    public override init()
-    {
+    public override init() {
         
     }
     
@@ -36,38 +34,31 @@ public class RSPTableViewDataSource: NSObject, UITableViewDataSource
     /// with `dequeueReusableCellWithIdentifier(_:forIndexPath:)`
     ///
     /// If nil was sent, then `ViewModelIdentifier` is used instead.
-    public init(arrayViewModel: CocoaArrayViewModelType, _ cellIdentifierClosure: (( ViewModelType, NSIndexPath) -> String)? = nil)
-    {
+    public init(arrayViewModel: CocoaArrayViewModelType, _ cellIdentifierClosure: (( ViewModelType, NSIndexPath) -> String)? = nil) {
         self.arrayViewModel = arrayViewModel
         self.cellIdentifierClosure = cellIdentifierClosure
     }
     
     /// Returns ArrayViewModel.count
-    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
+    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.arrayViewModel.count.value
     }
     
     /// Dequeues cell and sets ViewModel at `indexPath.row`.
-    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
-    {
+    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let viewModel = arrayViewModel[indexPath.row]
         
         let identifier: String
         
-        if let cellIdentifierClosure = self.cellIdentifierClosure
-        {
+        if let cellIdentifierClosure = self.cellIdentifierClosure {
             identifier = cellIdentifierClosure(viewModel, indexPath)
-        }
-        else
-        {
+        } else {
             identifier = ViewModelIdentifier
         }
         
         let cell = tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath)
         
-        if cell is ViewType
-        {
+        if cell is ViewType {
             (cell as! ViewType).viewModel = viewModel
         }
         

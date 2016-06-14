@@ -10,8 +10,7 @@ import Foundation
 import ReactiveCocoa
 
 /// UITableViewController that implements ArrayViewControllerType.
-public class RSPUITableViewController: UITableViewController, ArrayViewControllerType
-{
+public class RSPUITableViewController: UITableViewController, ArrayViewControllerType {
     /// ViewModel which will be used as context for this "View."
     ///
     /// This property is expected to be set only once with a non-nil value.
@@ -32,65 +31,53 @@ public class RSPUITableViewController: UITableViewController, ArrayViewControlle
         return viewModel as! CocoaArrayViewModelType
     }
     
-    public override func viewDidLoad()
-    {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         bindLoading(viewModel)
         bindCount(arrayViewModel)
     }
     
-    public func bindViewModel(viewModel: ViewModelType)
-    {
+    public func bindViewModel(viewModel: ViewModelType) {
         _bindViewModel(viewModel, viewController: self)
     }
     
-    public func bindActive(viewModel: ViewModelType)
-    {
+    public func bindActive(viewModel: ViewModelType) {
         _bindActive(viewModel, viewController: self)
     }
     
-    public func bindTitle(viewModel: ViewModelType)
-    {
+    public func bindTitle(viewModel: ViewModelType) {
         _bindTitle(viewModel, viewController: self)
     }
     
-    public func bindLoading(viewModel: ViewModelType)
-    {
+    public func bindLoading(viewModel: ViewModelType) {
         _bindLoading(viewModel, viewController: self)
     }
     
-    public func presentLoading(loading: Bool)
-    {
-        if let loadingView = self.loadingView
-        {
+    public func presentLoading(loading: Bool) {
+        if let loadingView = self.loadingView {
             loadingView.loading = loading
         }
     }
     
-    public func bindErrors(viewModel: ViewModelType)
-    {
+    public func bindErrors(viewModel: ViewModelType) {
         _bindErrors(viewModel, viewController: self)
     }
     
-    public func presentError(error: ViewModelErrorType)
-    {
+    public func presentError(error: ViewModelErrorType) {
         _presentError(error, viewController: self)
     }
     
-    public func bindCount(arrayViewModel: CocoaArrayViewModelType)
-    {
+    public func bindCount(arrayViewModel: CocoaArrayViewModelType) {
         _bindCount(arrayViewModel, viewController: self)
     }
     
-    public func reloadData()
-    {
+    public func reloadData() {
         arrayView.reloadData()
     }
 }
 
 /// UITableViewController subclass where `arrayViewModel` supports fetching and refreshing.
-public class RSPUIFetchedTableViewController: RSPUITableViewController, FetchedArrayViewControllerType
-{
+public class RSPUIFetchedTableViewController: RSPUITableViewController, FetchedArrayViewControllerType {
     @IBOutlet public var refreshView: UIRefreshControl? {
         get {
             return refreshControl
@@ -102,15 +89,13 @@ public class RSPUIFetchedTableViewController: RSPUITableViewController, FetchedA
     
     @IBOutlet public var fetchingNextPageView: LoadingViewType?
     
-    public override func viewDidLoad()
-    {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         
         bindRefreshing(fetchedArrayViewModel)
         bindFetchingNextPage(fetchedArrayViewModel)
         
-        if let refreshView = self.refreshView
-        {
+        if let refreshView = self.refreshView {
             refreshView.addTarget(fetchedArrayViewModel.refreshCocoaAction, action: CocoaAction.selector, forControlEvents: UIControlEvents.ValueChanged)
         }
         
@@ -119,28 +104,22 @@ public class RSPUIFetchedTableViewController: RSPUITableViewController, FetchedA
         }
     }
     
-    public func bindRefreshing(arrayViewModel: CocoaFetchedArrayViewModelType)
-    {
+    public func bindRefreshing(arrayViewModel: CocoaFetchedArrayViewModelType) {
         _bindRefreshing(arrayViewModel, viewController: self)
     }
     
-    public func presentRefreshing(refreshing: Bool)
-    {
-        if let refreshView = self.refreshView
-        {
+    public func presentRefreshing(refreshing: Bool) {
+        if let refreshView = self.refreshView {
             refreshView.loading = refreshing
         }
     }
     
-    public func bindFetchingNextPage(arrayViewModel: CocoaFetchedArrayViewModelType)
-    {
+    public func bindFetchingNextPage(arrayViewModel: CocoaFetchedArrayViewModelType) {
         _bindFetchingNextPage(arrayViewModel, viewController: self)
     }
     
-    public func presentFetchingNextPage(fetchingNextPage: Bool)
-    {
-        if let fetchingNextPageView = self.fetchingNextPageView
-        {
+    public func presentFetchingNextPage(fetchingNextPage: Bool) {
+        if let fetchingNextPageView = self.fetchingNextPageView {
             fetchingNextPageView.loading = fetchingNextPage
         }
     }

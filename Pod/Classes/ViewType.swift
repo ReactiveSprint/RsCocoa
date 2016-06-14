@@ -12,8 +12,7 @@
 public let ViewModelIdentifier = "ViewModelIdentifier"
 
 /// Represents a View in MVVM pattern
-public protocol ViewType: class
-{
+public protocol ViewType: class {
     /// ViewModel used in the receiver.
     var viewModel: ViewModelType! { get set }
     

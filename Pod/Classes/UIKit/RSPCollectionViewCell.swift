@@ -13,8 +13,7 @@ import Result
 /// UICollectionViewCell which uses a ViewModel.
 ///
 /// Subclasses need to override `bindViewModel(_:).`
-public class RSPCollectionViewCell: UICollectionViewCell, ViewType
-{
+public class RSPCollectionViewCell: UICollectionViewCell, ViewType {
     /// The Wrapped ViewModel.
     ///
     /// A setter is available to allow cell reuse.
@@ -34,20 +33,17 @@ public class RSPCollectionViewCell: UICollectionViewCell, ViewType
     public let rac_prepareForReuseSignalProducer: SignalProducer<(), NoError>
     private let rac_prepareForReuseObserver: Observer<(), NoError>
     
-    public override init(frame: CGRect)
-    {
+    public override init(frame: CGRect) {
         (self.rac_prepareForReuseSignalProducer, self.rac_prepareForReuseObserver) = SignalProducer.buffer(0)
         super.init(frame: frame)
     }
     
-    public required init?(coder aDecoder: NSCoder)
-    {
+    public required init?(coder aDecoder: NSCoder) {
         (self.rac_prepareForReuseSignalProducer, self.rac_prepareForReuseObserver) = SignalProducer.buffer(0)
         super.init(coder: aDecoder)
     }
     
-    public override func prepareForReuse()
-    {
+    public override func prepareForReuse() {
         super.prepareForReuse()
         viewModel = nil
         self.rac_prepareForReuseObserver.sendNext()
@@ -56,13 +52,11 @@ public class RSPCollectionViewCell: UICollectionViewCell, ViewType
     /// Used to bind ViewModel to UI elements.
     ///
     /// This is invoked at viewModel property's didSet.
-    public func bindViewModel(viewModel: ViewModelType)
-    {
+    public func bindViewModel(viewModel: ViewModelType) {
         bindActive(viewModel)
     }
     
-    public func bindActive(viewModel: ViewModelType)
-    {
+    public func bindActive(viewModel: ViewModelType) {
         let appActive = RACSignal.merge([
             NSNotificationCenter.defaultCenter()
                 .rac_addObserverForName(UIApplicationDidBecomeActiveNotification, object: nil)

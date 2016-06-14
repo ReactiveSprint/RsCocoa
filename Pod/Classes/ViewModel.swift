@@ -10,8 +10,7 @@ import ReactiveCocoa
 import Result
 
 /// Represents a ViewModel.
-public protocol ViewModelType
-{
+public protocol ViewModelType {
     /// Used as general `title`
     var title: ReactiveCocoa.MutableProperty<String?> { get }
     
@@ -38,8 +37,7 @@ public protocol ViewModelType
 }
 
 /// Abstract implementation of `ViewModel` used in `MVVM pattern`
-public class ViewModel: ViewModelType
-{
+public class ViewModel: ViewModelType {
     /// Used as general `title`
     public let title = MutableProperty<String?>(nil)
     
@@ -61,8 +59,8 @@ public class ViewModel: ViewModelType
     /// upon observe.
     private(set) public lazy var didBecomeActive: SignalProducer<ViewModel, NoError> = self.active.producer
         .skipRepeats()
-        .filter({ $0 })
-        .map({ [unowned self] _ in self })
+        .filter { $0 }
+        .map { [unowned self] _ in self }
     
     /// Observes the receiver's `active` property, and sends the receiver whenever it
     /// changes from true to false.
@@ -71,8 +69,8 @@ public class ViewModel: ViewModelType
     /// upon observe.
     private(set) public lazy var didBecomeInActive: SignalProducer<ViewModel, NoError> = self.active.producer
         .skipRepeats()
-        .filter({ !$0 })
-        .map({ [unowned self] _ in self })
+        .filter { !$0 }
+        .map { [unowned self] _ in self }
     
     private let errorsObserver: Observer<Signal<ViewModelErrorType, NoError>, NoError>
     /// Unified errors signal for the receiver.
@@ -85,8 +83,7 @@ public class ViewModel: ViewModelType
     public let loading: AnyProperty<Bool>
     
     /// Initializes a ViewModel.
-    public init()
-    {
+    public init() {
         let errors: (Signal<Signal<ViewModelErrorType, NoError>, NoError>, Observer<Signal<ViewModelErrorType, NoError>, NoError>) = Signal.pipe()
         
         self.errors = errors.0.flatten(.Merge)
@@ -111,14 +108,12 @@ public class ViewModel: ViewModelType
     /// Initializes a ViewModel with `title`
     ///
     /// - Parameter title: Title to be used for the reciever.
-    public convenience init(title: String?)
-    {
+    public convenience init(title: String?) {
         self.init()
         self.title.value = title
     }
     
-    deinit
-    {
+    deinit {
         loadingObserver.sendCompleted()
         errorsObserver.sendCompleted()
     }
@@ -129,8 +124,7 @@ public class ViewModel: ViewModelType
     /// All error signals are merged.
     ///
     /// - Parameter errorSignal: A signal which sends ViewModelErrorType
-    public func bindErrors<Error: ViewModelErrorType>(errorSignal: Signal<Error, NoError>)
-    {
+    public func bindErrors<Error: ViewModelErrorType>(errorSignal: Signal<Error, NoError>) {
         errorsObserver.sendNext(errorSignal.map { $0 as ViewModelErrorType })
     }
     
@@ -143,14 +137,12 @@ public class ViewModel: ViewModelType
     /// And only sends `false` when all loading signals send `false.`
     ///
     /// - Parameter loadingProducer: A producer which sends `true` when loading and false otherwise.
-    public func bindLoading(loadingProducer: SignalProducer<Bool, NoError>)
-    {
+    public func bindLoading(loadingProducer: SignalProducer<Bool, NoError>) {
         loadingObserver.sendNext(loadingProducer)
     }
 }
 
-public extension ViewModelType
-{
+public extension ViewModelType {
     /// Whether the receiver is currently enabled.
     ///
     /// This is the opposite of `loading`.
@@ -162,23 +154,20 @@ public extension ViewModelType
     }
     
     /// Binds `action.errors` to the receiver's `errors` and `action.executing` to `loading.`
-    public func bindAction<Input, Output, Error: ViewModelErrorType>(action: Action<Input, Output, Error>)
-    {
+    public func bindAction<Input, Output, Error: ViewModelErrorType>(action: Action<Input, Output, Error>) {
         bindErrors(action.errors)
         bindLoading(action.executing.producer)
     }
     
     /// Binds `action.executing` to the receiver's `loading.`
-    public func bindAction<Input, Output, Error: ErrorType>(action: Action<Input, Output, Error>)
-    {
+    public func bindAction<Input, Output, Error: ErrorType>(action: Action<Input, Output, Error>) {
         bindLoading(action.executing.producer)
     }
     
     /// Binds 'loadingSignal` to the receiver's `loading.`
     ///
     /// - Parameter loadingSignal: A signal which sends `true` when loading and false otherwise.
-    public func bindLoading(loadingSignal: Signal<Bool, NoError>)
-    {
+    public func bindLoading(loadingSignal: Signal<Bool, NoError>) {
         bindLoading(SignalProducer(signal: loadingSignal))
     }
 }
@@ -186,8 +175,7 @@ public extension ViewModelType
 /// Represents Errors that occur in ViewModels.
 ///
 /// This error type is suitable for use in Alerts.
-public protocol ViewModelErrorType: ErrorType
-{
+public protocol ViewModelErrorType: ErrorType {
     var localizedDescription: String { get }
     
     var localizedRecoverySuggestion: String? { get }
@@ -195,7 +183,6 @@ public protocol ViewModelErrorType: ErrorType
     var localizedRecoveryOptions: [String]? { get }
 }
 
-extension NSError: ViewModelErrorType
-{
+extension NSError: ViewModelErrorType {
     
 }

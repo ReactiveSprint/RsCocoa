@@ -10,11 +10,9 @@ import Foundation
 import ReactiveCocoa
 import Result
 
-public extension NSObject
-{
+public extension NSObject {
     /// SignalProducer equivalent to `rac_willDeallocSignal()`
-    public func rac_willDeallocSignalProducer() -> SignalProducer<(), NoError>
-    {
+    public func rac_willDeallocSignalProducer() -> SignalProducer<(), NoError> {
         return rac_willDeallocSignal()
             .toSignalProducer()
             .map { _ in () }

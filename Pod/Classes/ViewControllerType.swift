@@ -10,8 +10,7 @@ import ReactiveCocoa
 import Result
 
 /// Represents a ViewController.
-public protocol ViewControllerType: ViewType
-{
+public protocol ViewControllerType: ViewType {
     /// Binds viewModel's title to the receiver title.
     func bindTitle(viewModel: ViewModelType)
     
@@ -42,20 +41,17 @@ public protocol ViewControllerType: ViewType
 /// For view-related bindings, use `viewDidLoad()`
 ///
 /// Invokes `bindActive(_:)`, `bindTitle(_:)` and `bindErrors(_:)`
-public func _bindViewModel<ViewController: ViewControllerType>(viewModel: ViewModelType, viewController: ViewController)
-{
+public func _bindViewModel<ViewController: ViewControllerType>(viewModel: ViewModelType, viewController: ViewController) {
     viewController.bindActive(viewModel)
     viewController.bindTitle(viewModel)
     viewController.bindErrors(viewModel)
 }
 
-public func _bindLoading<ViewController: ViewControllerType>(viewModel: ViewModelType, viewController: ViewController)
-{
+public func _bindLoading<ViewController: ViewControllerType>(viewModel: ViewModelType, viewController: ViewController) {
     let loadingProducer = viewModel.loading.producer.forwardWhileActive(viewModel)
     loadingProducer.startWithNext(viewController.presentLoading)
 }
 
-public func _bindErrors<ViewController: ViewControllerType>(viewModel: ViewModelType, viewController: ViewController)
-{
+public func _bindErrors<ViewController: ViewControllerType>(viewModel: ViewModelType, viewController: ViewController) {
     viewModel.errors.forwardWhileActive(viewModel).observeNext(viewController.presentError)
 }

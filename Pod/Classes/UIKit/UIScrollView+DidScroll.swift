@@ -12,12 +12,9 @@ import Result
 
 let UIScrollViewDelegateProxyKey = UnsafePointer<Void>(nilLiteral: ())
 
-public extension UIScrollView
-{
-    private func rac_useDelegateProxy()
-    {
-        guard self.delegate !== self.rac_delegateProxy else
-        {
+public extension UIScrollView {
+    private func rac_useDelegateProxy() {
+        guard self.delegate !== self.rac_delegateProxy else {
             return
         }
         
@@ -30,8 +27,7 @@ public extension UIScrollView
     public var rac_delegateProxy: RACDelegateProxy {
         var proxy = objc_getAssociatedObject(self, UIScrollViewDelegateProxyKey)
         
-        if proxy == nil
-        {
+        if proxy == nil {
             proxy = RACDelegateProxy(withProtocol: UIScrollViewDelegate.self)
             objc_setAssociatedObject(self, UIScrollViewDelegateProxyKey, proxy, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
@@ -54,8 +50,7 @@ public extension UIScrollView
     }
     
     /// Creates a SignalProducer which sends the receiver whenever the receiver scrolls to vertical end.
-    public func rac_didScrollToVerticalEnd(margin: CGFloat = 0) -> SignalProducer<UIScrollView, NoError>
-    {
+    public func rac_didScrollToVerticalEnd(margin: CGFloat = 0) -> SignalProducer<UIScrollView, NoError> {
         return rac_didScroll
             .filter { scrollView in
                 let endScroll = scrollView.contentOffset.y + scrollView.frame.size.height + margin
@@ -64,8 +59,7 @@ public extension UIScrollView
     }
     
     /// Creates a SignalProducer which sends the receiver whenever the receiver scrolls to horizontal end.
-    public func rac_didScrollToHorizontalEnd(margin: CGFloat = 0) -> SignalProducer<UIScrollView, NoError>
-    {
+    public func rac_didScrollToHorizontalEnd(margin: CGFloat = 0) -> SignalProducer<UIScrollView, NoError> {
         return rac_didScroll
             .filter { scrollView in
                 let endScroll = scrollView.contentOffset.x + scrollView.frame.size.width + margin

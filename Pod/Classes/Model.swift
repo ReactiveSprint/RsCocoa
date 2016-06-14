@@ -9,14 +9,12 @@
 import ReactiveCocoa
 
 /// Represents a Model type.
-public protocol AnyModel
-{
+public protocol AnyModel {
     
 }
 
 /// Represents a Model that can be saved.
-public protocol ModelSaving: AnyModel
-{
+public protocol ModelSaving: AnyModel {
     associatedtype SaveInput
     associatedtype SaveError: ErrorType
     
@@ -24,8 +22,7 @@ public protocol ModelSaving: AnyModel
 }
 
 /// Represents a Model that can be fetched.
-public protocol ModelFetching: AnyModel
-{
+public protocol ModelFetching: AnyModel {
     associatedtype FetchInput
     associatedtype FetchError: ErrorType
     
@@ -33,8 +30,7 @@ public protocol ModelFetching: AnyModel
 }
 
 /// Represents a Model that can be deleted.
-public protocol ModelDeleting: AnyModel
-{
+public protocol ModelDeleting: AnyModel {
     associatedtype DeleteInput
     associatedtype DeleteError: ErrorType
     

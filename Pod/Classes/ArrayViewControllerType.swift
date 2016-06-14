@@ -10,8 +10,7 @@ import Foundation
 import ReactiveCocoa
 
 /// Represents a ViewController that wraps ArrayViewModel and "ArrayView"
-public protocol ArrayViewControllerType: ViewControllerType
-{
+public protocol ArrayViewControllerType: ViewControllerType {
     /// Returns a ViewModel used as "ArrayViewModel"
     var arrayViewModel: CocoaArrayViewModelType { get }
     
@@ -23,8 +22,7 @@ public protocol ArrayViewControllerType: ViewControllerType
 }
 
 /// Binds ArrayViewModel count property by invoking `reloadData()` for each distinct change.
-public func _bindCount<ViewController: ArrayViewControllerType where ViewController: NSObject>(arrayViewModel: CocoaArrayViewModelType, viewController: ViewController)
-{
+public func _bindCount<ViewController: ArrayViewControllerType where ViewController: NSObject>(arrayViewModel: CocoaArrayViewModelType, viewController: ViewController) {
     arrayViewModel.count.producer
         .takeUntil(viewController.rac_willDeallocSignalProducer())
         .skipRepeats()
