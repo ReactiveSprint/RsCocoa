@@ -181,8 +181,13 @@ public class FetchedArrayViewModel<Element: ViewModelType, PaginationType, Fetch
                 self.nextPage = page
                 },
                 terminated: { [unowned self] in
-                    self._refreshing.value = false
-                    self._fetchingNextPage.value = false
+                    if self._refreshing.value {
+                        self._refreshing.value = false
+                    }
+                    
+                    if self._fetchingNextPage.value {
+                        self._fetchingNextPage.value = false
+                    }
                 })
             .map { $0.1 }
     }
