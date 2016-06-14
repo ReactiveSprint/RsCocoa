@@ -134,7 +134,7 @@ public class FetchedArrayViewModel<Element: ViewModelType, PaginationType, Fetch
     public func initRefreshAction() -> Action<(), [Element], FetchError> {
         let action: Action<(), [Element], FetchError> = Action(enabledIf: self.enabled) { [unowned self] _ in
             self._refreshing.value = true
-            return self._fetch(nil)
+            return self._fetch()
         }
         
         bindAction(action)
@@ -169,7 +169,7 @@ public class FetchedArrayViewModel<Element: ViewModelType, PaginationType, Fetch
         return action
     }
     
-    private func _fetch(page: PaginationType?) -> SignalProducer<[Element], FetchError> {
+    private func _fetch(page: PaginationType? = nil) -> SignalProducer<[Element], FetchError> {
         return self.fetchClosure(page)
             .on(next: { [unowned self] page, viewModels in
                 if self.refreshing.value {
