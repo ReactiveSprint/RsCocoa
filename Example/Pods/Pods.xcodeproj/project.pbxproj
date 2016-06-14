@@ -319,7 +319,7 @@
 		E6C30CCB20844B69B667093CE8726B94 /* UIImagePickerController+RACSignalSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 1DE0958D4A8B5B8F37A03BBC1074ABF8 /* UIImagePickerController+RACSignalSupport.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E6F6FF9554A6C7EABD6B92B691751DAD /* BeLessThanOrEqual.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8D2062BEDEF61206663EDD78583F9F9 /* BeLessThanOrEqual.swift */; };
 		E70BBA9EA67CEC670CA0E562ECEAF3CB /* Pods-ReactiveSprint_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 88F331C3368A597220747711B75A9A59 /* Pods-ReactiveSprint_Example-dummy.m */; };
-		E80D10F1282B71AE7651ED48E8270287 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A9C777FF5652EF07D6432CAFDB772D /* Model.swift */; };
+		E80D10F1282B71AE7651ED48E8270287 /* ModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7A9C777FF5652EF07D6432CAFDB772D /* ModelType.swift */; };
 		E909D0D33037F3C642BBB8D47FC642B3 /* Nimble-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 315D3FEE464EB2BE119769FB85CFAF5C /* Nimble-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		E950FA96F8DD22AD428F5EC109EDED32 /* Quick-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 29087F7A58485E300884F358334A35B2 /* Quick-dummy.m */; };
 		E9A500611CF699885DE8A6BAB4E6B392 /* BeEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = C08A4DBDF4B6BFA0F110AC2A0A2858F8 /* BeEmpty.swift */; };
@@ -750,7 +750,7 @@
 		D6787E956E36B66E7CA388ADB7F3BB03 /* UIActivityIndicatorView+LoadingViewType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIActivityIndicatorView+LoadingViewType.swift"; sourceTree = "<group>"; };
 		D6970E0B63BC3CB300A692BB702F59B7 /* TupleExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TupleExtensions.swift; path = ReactiveCocoa/Swift/TupleExtensions.swift; sourceTree = "<group>"; };
 		D73E251A98DD457E93E84F5767D6A3E6 /* Equal.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Equal.swift; path = Sources/Nimble/Matchers/Equal.swift; sourceTree = "<group>"; };
-		D7A9C777FF5652EF07D6432CAFDB772D /* Model.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		D7A9C777FF5652EF07D6432CAFDB772D /* ModelType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ModelType.swift; sourceTree = "<group>"; };
 		D7BADA892F7E923E992DE678E7115595 /* SourceLocation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SourceLocation.swift; path = Sources/Nimble/Utils/SourceLocation.swift; sourceTree = "<group>"; };
 		D7C788AD3298D066376C24202CFB6730 /* RACReturnSignal.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACReturnSignal.m; path = "ReactiveCocoa/Objective-C/RACReturnSignal.m"; sourceTree = "<group>"; };
 		D82AD2F4794A0C220E73A91B055DC26C /* Callsite.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Callsite.swift; path = Sources/Quick/Callsite.swift; sourceTree = "<group>"; };
@@ -1293,7 +1293,7 @@
 				A50AD4A7A74554D90B574F267E4748DD /* FetchedArrayViewControllerType.swift */,
 				B737C5C2B18F6B821E4FEA72F8398347 /* FetchedArrayViewModel.swift */,
 				FF9662729FC1CBD55A9A96DE0068B426 /* LoadingViewType.swift */,
-				D7A9C777FF5652EF07D6432CAFDB772D /* Model.swift */,
+				D7A9C777FF5652EF07D6432CAFDB772D /* ModelType.swift */,
 				6801CD7F08374B06C83E317FAF4A4F33 /* ModelViewModel.swift */,
 				25657BF381F87C18CFD91ABE59BF207C /* NSObject+RAC4Deallocating.swift */,
 				9BBEEAF9BACF84DF4234BD105BFFC89C /* SignalManipulation.swift */,
@@ -1944,7 +1944,7 @@
 				2F2D9CB610DEF95EFD36622CD98CB3C1 /* FetchedArrayViewControllerType.swift in Sources */,
 				1F0126BFF9B02B62FEF5802ED8558EC6 /* FetchedArrayViewModel.swift in Sources */,
 				696A00259186D4CFD73D31114C0E8263 /* LoadingViewType.swift in Sources */,
-				E80D10F1282B71AE7651ED48E8270287 /* Model.swift in Sources */,
+				E80D10F1282B71AE7651ED48E8270287 /* ModelType.swift in Sources */,
 				6512A7FF9578D506F633A392E0F2358B /* ModelViewModel.swift in Sources */,
 				0ED3340D2D5B00AC838B5975A7E03837 /* NSObject+RAC4Deallocating.swift in Sources */,
 				6BC70BE66A519FBC40785A0A1586F641 /* ReactiveSprint-dummy.m in Sources */,

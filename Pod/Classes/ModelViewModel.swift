@@ -14,13 +14,13 @@ import Result
 /// Must be implemented as class type, to support weak references.
 public protocol ModelViewModelType: class, ViewModelType {
     /// Type of Model
-    associatedtype Model: AnyModel
+    associatedtype Model: ModelType
     
     var model: Model { get }
 }
 
 /// Implementation of `ModelViewModelType`
-public class ModelViewModel<Model: AnyModel>: ViewModel, ModelViewModelType {
+public class ModelViewModel<Model: ModelType>: ViewModel, ModelViewModelType {
     /// Returns the Model object wrapped in the receiver.
     public let model: Model
     

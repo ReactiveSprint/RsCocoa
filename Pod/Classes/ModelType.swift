@@ -1,5 +1,5 @@
 //
-//  Model.swift
+//  ModelType.swift
 //  Pods
 //
 //  Created by Ahmad Baraka on 3/1/16.
@@ -9,12 +9,12 @@
 import ReactiveCocoa
 
 /// Represents a Model type.
-public protocol AnyModel {
+public protocol ModelType {
     
 }
 
 /// Represents a Model that can be saved.
-public protocol ModelSaving: AnyModel {
+public protocol ModelSaving: ModelType {
     associatedtype SaveInput
     associatedtype SaveError: ErrorType
     
@@ -22,7 +22,7 @@ public protocol ModelSaving: AnyModel {
 }
 
 /// Represents a Model that can be fetched.
-public protocol ModelFetching: AnyModel {
+public protocol ModelFetching: ModelType {
     associatedtype FetchInput
     associatedtype FetchError: ErrorType
     
@@ -30,7 +30,7 @@ public protocol ModelFetching: AnyModel {
 }
 
 /// Represents a Model that can be deleted.
-public protocol ModelDeleting: AnyModel {
+public protocol ModelDeleting: ModelType {
     associatedtype DeleteInput
     associatedtype DeleteError: ErrorType
     
