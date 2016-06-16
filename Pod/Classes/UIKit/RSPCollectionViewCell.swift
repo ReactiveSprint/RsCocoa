@@ -61,11 +61,11 @@ public class RSPCollectionViewCell: UICollectionViewCell, ViewType {
     /// Used to bind ViewModel to UI elements.
     ///
     /// This is invoked at viewModel property's didSet.
-    public func bindViewModel(viewModel: ViewModelType) {
-        bindActive(viewModel)
+    public func bindViewModel(viewModel: ViewModelType) -> Disposable! {
+        return bindActive(viewModel)
     }
     
-    public func bindActive(viewModel: ViewModelType) {
+    public func bindActive(viewModel: ViewModelType) -> Disposable! {
         let appActive = RACSignal.merge([
             NSNotificationCenter.defaultCenter()
                 .rac_addObserverForName(UIApplicationDidBecomeActiveNotification, object: nil)
@@ -82,7 +82,7 @@ public class RSPCollectionViewCell: UICollectionViewCell, ViewType {
             .takeUntil(self.rac_prepareForReuseSignalProducer)
             .concat(SignalProducer(value: false))
         
-        viewModel.active <~ activeSignal
+        return viewModel.active <~ activeSignal
     }
     
     public func presentLoading(loading: Bool) {

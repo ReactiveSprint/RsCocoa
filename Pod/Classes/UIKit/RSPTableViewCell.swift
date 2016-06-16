@@ -69,7 +69,7 @@ public class RSPTableViewCell: UITableViewCell, ViewType {
     /// This is invoked at viewModel property's didSet.
     ///
     /// Default implementation binds `viewModel.title` to `textLabel.text`
-    public func bindViewModel(viewModel: ViewModelType) {
+    public func bindViewModel(viewModel: ViewModelType) -> Disposable! {
         if let textLabel = self.textLabel {
             viewModel.title.producer
                 .takeUntil(rac_prepareForReuseSignalProducer)
@@ -78,10 +78,10 @@ public class RSPTableViewCell: UITableViewCell, ViewType {
             }
         }
         
-        bindActive(viewModel)
+        return bindActive(viewModel)
     }
     
-    public func bindActive(viewModel: ViewModelType) {
+    public func bindActive(viewModel: ViewModelType) -> Disposable! {
         let appActive = RACSignal.merge([
             NSNotificationCenter.defaultCenter()
                 .rac_addObserverForName(UIApplicationDidBecomeActiveNotification, object: nil)
@@ -98,7 +98,7 @@ public class RSPTableViewCell: UITableViewCell, ViewType {
             .takeUntil(self.rac_prepareForReuseSignalProducer)
             .concat(SignalProducer(value: false))
         
-        viewModel.active <~ activeSignal
+        return viewModel.active <~ activeSignal
     }
     
     public func presentLoading(loading: Bool) {

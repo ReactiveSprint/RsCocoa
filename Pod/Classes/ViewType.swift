@@ -28,6 +28,9 @@ public protocol ViewType: class {
     
     /// Presents `error` in an UIAlertController.
     func presentError(error: ViewModelErrorType)
+    
+    /// Binds ViewModel's `active` property from the receiver.
+    func bindActive(viewModel: ViewModelType) -> Disposable!
 }
 
 public extension ViewType {
@@ -42,13 +45,9 @@ public extension ViewType {
         let disposable = CompositeDisposable()
         disposable += bindActive(viewModel)
         disposable += bindTitle(viewModel)
+        disposable += bindLoading(viewModel)
         disposable += bindErrors(viewModel)
         return disposable
-    }
-    
-    /// Binds ViewModel's `active` property from the receiver.
-    public func bindActive(viewModel: ViewModelType) -> Disposable! {
-        return nil
     }
     
     /// Binds viewModel's title to the receiver title.

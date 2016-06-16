@@ -17,6 +17,7 @@
 		E5406A131C7B2DF90035C40E /* ViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5406A121C7B2DF90035C40E /* ViewModelSpec.swift */; };
 		E547894D1C880F620075B0F5 /* ArrayViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E547894C1C880F620075B0F5 /* ArrayViewModelSpec.swift */; };
 		E54789541C8B552F0075B0F5 /* FetchedArrayViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54789531C8B552F0075B0F5 /* FetchedArrayViewModelSpec.swift */; };
+		E55135A11D12B63D0002554C /* ViewTypeSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55135A01D12B63D0002554C /* ViewTypeSpec.swift */; };
 		E56767C31C83453A00ABF66E /* SignalManipulationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56767C21C83453A00ABF66E /* SignalManipulationSpec.swift */; };
 		E56767C91C862F6700ABF66E /* ModelViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56767C81C862F6700ABF66E /* ModelViewModelSpec.swift */; };
 		E56767CC1C869D3C00ABF66E /* TestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56767CA1C869AE400ABF66E /* TestModel.swift */; };
@@ -59,6 +60,7 @@
 		E5406A121C7B2DF90035C40E /* ViewModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelSpec.swift; sourceTree = "<group>"; };
 		E547894C1C880F620075B0F5 /* ArrayViewModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayViewModelSpec.swift; sourceTree = "<group>"; };
 		E54789531C8B552F0075B0F5 /* FetchedArrayViewModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchedArrayViewModelSpec.swift; sourceTree = "<group>"; };
+		E55135A01D12B63D0002554C /* ViewTypeSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewTypeSpec.swift; path = UIKit/ViewTypeSpec.swift; sourceTree = "<group>"; };
 		E56767C21C83453A00ABF66E /* SignalManipulationSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignalManipulationSpec.swift; sourceTree = "<group>"; };
 		E56767C81C862F6700ABF66E /* ModelViewModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelViewModelSpec.swift; sourceTree = "<group>"; };
 		E56767CA1C869AE400ABF66E /* TestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestModel.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				E5D134B41C9F68340069226E /* UIKit */,
 				E5F546F01C997C9F00DC721C /* Views */,
 				E5F546F11C997CA400DC721C /* ViewModels */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
@@ -200,7 +203,7 @@
 		E5F546F01C997C9F00DC721C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E5D134B41C9F68340069226E /* UIKit */,
+				E55135A01D12B63D0002554C /* ViewTypeSpec.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 				E5D134C11C9F68420069226E /* UIAlertControllerSpec.swift in Sources */,
 				E5406A131C7B2DF90035C40E /* ViewModelSpec.swift in Sources */,
 				E5D134BF1C9F68420069226E /* RSPViewControllerSpec.swift in Sources */,
+				E55135A11D12B63D0002554C /* ViewTypeSpec.swift in Sources */,
 				E5D134C21C9F68420069226E /* UIRefreshControlSpec.swift in Sources */,
 				E56767CC1C869D3C00ABF66E /* TestModel.swift in Sources */,
 				E5D134CA1C9F73310069226E /* RSPTableViewCellSpec.swift in Sources */,
