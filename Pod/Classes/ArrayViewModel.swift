@@ -54,21 +54,19 @@ public protocol ArrayViewModelType: CocoaArrayViewModelType {
     func indexOf(predicate: Element -> Bool) -> Int?
 }
 
+public extension ArrayViewModelType {
+    public subscript(index: Int) -> ViewModelType { return self[index] }
+    
+    public func indexOf(predicate: ViewModelType -> Bool) -> Int? {
+        return indexOf { predicate($0) }
+    }
+}
+
 public extension ArrayViewModelType where Self.Element: Equatable {
     /// Returns the first index where `value` equals `element` or `nil`
     /// `value` is not found.
     public func indexOf(element: Element) -> Int? {
         return indexOf { $0 == element }
-    }
-}
-
-public extension ArrayViewModelType {
-    public subscript(index: Int) -> ViewModelType { return self[index] }
-    
-    public func indexOf(predicate: ViewModelType -> Bool) -> Int? {
-        return indexOf { viewModel in
-            predicate(viewModel)
-        }
     }
 }
 
