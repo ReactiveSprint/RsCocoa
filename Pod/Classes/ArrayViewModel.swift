@@ -27,6 +27,13 @@ public protocol CocoaArrayViewModelType: ViewModelType {
     func indexOf(predicate: ViewModelType -> Bool) -> Int?
 }
 
+public extension CocoaArrayViewModelType {
+    /// Returns true if Array is empty, false otherwise.
+    public var isEmpty: AnyProperty<Bool> {
+        return AnyProperty(initialValue: count.value <= 0, producer: count.producer.map { $0 <= 0 })
+    }
+}
+
 /// Represents an ViewModel which wraps an Array of ViewModels of type `Element`
 public protocol ArrayViewModelType: CocoaArrayViewModelType {
     /// Type of ViewModels Array
@@ -62,13 +69,6 @@ public extension ArrayViewModelType {
         return indexOf { viewModel in
             predicate(viewModel)
         }
-    }
-}
-
-public extension CocoaArrayViewModelType {
-    /// Returns true if Array is empty, false otherwise.
-    public var isEmpty: AnyProperty<Bool> {
-        return AnyProperty(initialValue: count.value <= 0, producer: count.producer.map { $0 <= 0 })
     }
 }
 

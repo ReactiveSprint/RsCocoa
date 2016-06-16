@@ -33,6 +33,21 @@ public class RSPTableViewCell: UITableViewCell, ViewType {
     public let rac_prepareForReuseSignalProducer: SignalProducer<(), NoError>
     private let rac_prepareForReuseObserver: Observer<(), NoError>
     
+    public var title: String? {
+        get {
+            if let textLabel = self.textLabel {
+                return textLabel.text
+            } else {
+                return nil
+            }
+        }
+        set {
+            if let textLabel = self.textLabel {
+                textLabel.text = newValue
+            }
+        }
+    }
+    
     public override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         (self.rac_prepareForReuseSignalProducer, self.rac_prepareForReuseObserver) = SignalProducer.buffer(0)
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -84,5 +99,13 @@ public class RSPTableViewCell: UITableViewCell, ViewType {
             .concat(SignalProducer(value: false))
         
         viewModel.active <~ activeSignal
+    }
+    
+    public func presentLoading(loading: Bool) {
+        
+    }
+    
+    public func presentError(error: ViewModelErrorType) {
+        
     }
 }

@@ -33,6 +33,15 @@ public class RSPCollectionViewCell: UICollectionViewCell, ViewType {
     public let rac_prepareForReuseSignalProducer: SignalProducer<(), NoError>
     private let rac_prepareForReuseObserver: Observer<(), NoError>
     
+    public var title: String? {
+        get {
+            return nil
+        }
+        set {
+            
+        }
+    }
+    
     public override init(frame: CGRect) {
         (self.rac_prepareForReuseSignalProducer, self.rac_prepareForReuseObserver) = SignalProducer.buffer(0)
         super.init(frame: frame)
@@ -74,5 +83,13 @@ public class RSPCollectionViewCell: UICollectionViewCell, ViewType {
             .concat(SignalProducer(value: false))
         
         viewModel.active <~ activeSignal
+    }
+    
+    public func presentLoading(loading: Bool) {
+        
+    }
+    
+    public func presentError(error: ViewModelErrorType) {
+        
     }
 }

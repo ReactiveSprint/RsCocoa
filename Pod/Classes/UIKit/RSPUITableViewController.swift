@@ -9,8 +9,8 @@
 import Foundation
 import ReactiveCocoa
 
-/// UITableViewController that implements ArrayViewControllerType.
-public class RSPUITableViewController: UITableViewController, ArrayViewControllerType {
+/// UITableViewController that implements ArrayViewType.
+public class RSPUITableViewController: UITableViewController, ArrayViewType {
     /// ViewModel which will be used as context for this "View."
     ///
     /// This property is expected to be set only once with a non-nil value.
@@ -21,7 +21,50 @@ public class RSPUITableViewController: UITableViewController, ArrayViewControlle
         }
     }
     
-    @IBOutlet public var loadingView: LoadingViewType?
+    /// Gets or Sets a View used for displaying `loading` state of `viewModel`.
+    ///
+    /// If your view conforms to protocl `LoadingViewType`, it's loading state is handled.
+    /// Otherwise, Override `presentLoading(_)`
+    @IBOutlet public var loadingView: UIView?
+    
+    public var localizedEmptyMessage: String? {
+        get {
+            if let localizedEmptyMessageView = self.localizedEmptyMessageView as? TextViewType {
+                return localizedEmptyMessageView.rs_text
+            }
+            else {
+                return nil
+            }
+        }
+        set {
+            if let localizedEmptyMessageView = self.localizedEmptyMessageView as? TextViewType {
+                localizedEmptyMessageView.rs_text = newValue
+            }
+        }
+    }
+    public var localizedEmptyMessageHidden: Bool {
+        get {
+            if let localizedEmptyMessageView = self.localizedEmptyMessageView as? TextViewType {
+                return localizedEmptyMessageView.hidden
+            }
+            else {
+                return true
+            }
+        }
+        set {
+            if let localizedEmptyMessageView = self.localizedEmptyMessageView as? TextViewType {
+                localizedEmptyMessageView.hidden = newValue
+            }
+        }
+    }
+    
+    /// View used to display a message when `ArrayViewModel` is empty.
+    ///
+    /// If your view conforms to `TextViewType` protocol,
+    /// it's shown or hidden whenever the viewModel is empty.
+    ///
+    /// Otherwise, override `localizedEmptyMessage` and `localizedEmptyMessageHidden`.
+    @IBOutlet var localizedEmptyMessageView: UIView?
     
     public var arrayView: UITableView! {
         return tableView
@@ -37,38 +80,12 @@ public class RSPUITableViewController: UITableViewController, ArrayViewControlle
         bindCount(arrayViewModel)
     }
     
-    public func bindViewModel(viewModel: ViewModelType) {
-        _bindViewModel(viewModel, viewController: self)
-    }
-    
-    public func bindActive(viewModel: ViewModelType) {
-        _bindActive(viewModel, viewController: self)
-    }
-    
-    public func bindTitle(viewModel: ViewModelType) {
-        _bindTitle(viewModel, viewController: self)
-    }
-    
-    public func bindLoading(viewModel: ViewModelType) {
-        _bindLoading(viewModel, viewController: self)
-    }
-    
+    /// Default implementation sets `loading` to `loadingView`
+    /// if it conforms to `LoadingViewType` protocol.
     public func presentLoading(loading: Bool) {
-        if let loadingView = self.loadingView {
+        if let loadingView = self.loadingView as? LoadingViewType {
             loadingView.loading = loading
         }
-    }
-    
-    public func bindErrors(viewModel: ViewModelType) {
-        _bindErrors(viewModel, viewController: self)
-    }
-    
-    public func presentError(error: ViewModelErrorType) {
-        _presentError(error, viewController: self)
-    }
-    
-    public func bindCount(arrayViewModel: CocoaArrayViewModelType) {
-        _bindCount(arrayViewModel, viewController: self)
     }
     
     public func reloadData() {
@@ -77,7 +94,10 @@ public class RSPUITableViewController: UITableViewController, ArrayViewControlle
 }
 
 /// UITableViewController subclass where `arrayViewModel` supports fetching and refreshing.
-public class RSPUIFetchedTableViewController: RSPUITableViewController, FetchedArrayViewControllerType {
+public class RSPUIFetchedTableViewController: RSPUITableViewController, FetchedArrayViewType {
+    /// A View which is used to display `refreshing` state of a ViewModel.
+    ///
+    /// `ValueChanged` event will execute `CocoaFetchedArrayViewModelType.refreshCocoaAction`
     @IBOutlet public var refreshView: UIRefreshControl? {
         get {
             return refreshControl
@@ -87,25 +107,21 @@ public class RSPUIFetchedTableViewController: RSPUITableViewController, FetchedA
         }
     }
     
-    @IBOutlet public var fetchingNextPageView: LoadingViewType?
+    /// A View which is used to display `fetchingNextPageView` state of a ViewModel.
+    ///
+    /// If your view conforms to `LoadingViewType`, it's updated as needed.
+    /// Otherwise, override `presentFetchingNextPage(_:)`
+    @IBOutlet public var fetchingNextPageView: UIView?
     
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        bindRefreshing(fetchedArrayViewModel)
-        bindFetchingNextPage(fetchedArrayViewModel)
+        bindRefreshing(viewModel)
+        bindFetchingNextPage(viewModel)
         
         if let refreshView = self.refreshView {
-            refreshView.addTarget(fetchedArrayViewModel.refreshCocoaAction, action: CocoaAction.selector, forControlEvents: UIControlEvents.ValueChanged)
+            refreshView.addTarget(viewModel.refreshCocoaAction, action: CocoaAction.selector, forControlEvents: UIControlEvents.ValueChanged)
         }
-        
-        arrayView.rac_didScrollToHorizontalEnd().startWithNext { [unowned self] _ in
-            self.fetchedArrayViewModel.fetchIfNeededCocoaAction.execute(nil)
-        }
-    }
-    
-    public func bindRefreshing(arrayViewModel: CocoaFetchedArrayViewModelType) {
-        _bindRefreshing(arrayViewModel, viewController: self)
     }
     
     public func presentRefreshing(refreshing: Bool) {
@@ -114,13 +130,13 @@ public class RSPUIFetchedTableViewController: RSPUITableViewController, FetchedA
         }
     }
     
-    public func bindFetchingNextPage(arrayViewModel: CocoaFetchedArrayViewModelType) {
-        _bindFetchingNextPage(arrayViewModel, viewController: self)
-    }
-    
     public func presentFetchingNextPage(fetchingNextPage: Bool) {
-        if let fetchingNextPageView = self.fetchingNextPageView {
+        if let fetchingNextPageView = self.fetchingNextPageView as? LoadingViewType {
             fetchingNextPageView.loading = fetchingNextPage
         }
+    }
+    
+    public override func scrollViewDidScroll(scrollView: UIScrollView) {
+        viewModel.fetchIfNeededCocoaAction.execute(nil)
     }
 }
