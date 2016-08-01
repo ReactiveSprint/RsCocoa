@@ -95,7 +95,7 @@ public class FetchedArrayViewModel<Element: ViewModelType, PaginationType, Fetch
     
     private(set) public var nextPage: PaginationType? = nil
     
-    public let fetchClosure: PaginationType? -> SignalProducer<(PaginationType?, [Element]), FetchError>
+    public var fetchClosure: (PaginationType? -> SignalProducer<(PaginationType?, [Element]), FetchError>)!
     private(set) public lazy var refreshAction: Action<(), [Element], FetchError> = self.initRefreshAction()
     private(set) public lazy var fetchAction: Action<(), [Element], FetchError> = self.initFetchAction()
     
@@ -109,6 +109,13 @@ public class FetchedArrayViewModel<Element: ViewModelType, PaginationType, Fetch
         
         return action
     }()
+    
+    /// Initializes an instance.
+    ///
+    /// `fetchClosure` must be set before any actions be invoked.
+    public override init() {
+        super.init()
+    }
     
     /// Initializes an instance with `fetchClosure`
     ///
