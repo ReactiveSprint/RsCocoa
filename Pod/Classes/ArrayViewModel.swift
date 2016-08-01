@@ -14,6 +14,9 @@ public protocol CocoaArrayViewModelType: ViewModelType {
     /// Returns count of ViewModels.
     var count: AnyProperty<Int> { get }
     
+    /// Returns true if Array is empty, false otherwise.
+    var isEmpty: AnyProperty<Bool> { get }
+    
     /// Returns localized message to be used when the array is empty.
     var localizedEmptyMessage: MutableProperty<String?> { get }
     
@@ -25,13 +28,6 @@ public protocol CocoaArrayViewModelType: ViewModelType {
     /// Returns the first index where `predicate` returns `true` for the
     /// corresponding value, or `nil` if such value is not found.
     func indexOf(predicate: ViewModelType -> Bool) -> Int?
-}
-
-public extension CocoaArrayViewModelType {
-    /// Returns true if Array is empty, false otherwise.
-    public var isEmpty: AnyProperty<Bool> {
-        return AnyProperty(initialValue: count.value <= 0, producer: count.producer.map { $0 <= 0 })
-    }
 }
 
 /// Represents an ViewModel which wraps an Array of ViewModels of type `Element`
@@ -73,6 +69,8 @@ public extension ArrayViewModelType where Self.Element: Equatable {
 /// ViewModel that has a Constant array of ViewModels.
 public class ArrayViewModel<Element: ViewModelType>: ViewModel, ArrayViewModelType {
     public let count: AnyProperty<Int>
+    
+    private(set) public lazy var isEmpty: AnyProperty<Bool> = AnyProperty(initialValue: self.count.value <= 0, producer: self.count.producer.map { $0 <= 0 })
     
     public let viewModels: [Element]
     
