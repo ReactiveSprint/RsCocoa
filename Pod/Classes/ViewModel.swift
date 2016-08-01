@@ -26,6 +26,12 @@ public protocol ViewModelType {
     /// Whether the receiver is currently loading
     var loading: AnyProperty<Bool> { get }
     
+    /// Whether the receiver is currently enabled.
+    ///
+    /// Suitable to be used with `Action.enabledIf` if you want your Action
+    /// to be enabled if the receiver is.
+    var enabled: AnyProperty<Bool> { get }
+    
     /// Binds `errorSignal` to the receiver's `errors.`
     ///
     /// This method allows you to forward errors without binding an Action.
@@ -85,6 +91,14 @@ public class ViewModel: ViewModelType {
     private let loadingObserver: Observer<SignalProducer<Bool, NoError>, NoError>
     /// Whether the receiver is currently loading
     public let loading: AnyProperty<Bool>
+    
+    /// Whether the receiver is currently enabled.
+    ///
+    /// Default implementation is `!loading`.
+    ///
+    /// Suitable to be used with `Action.enabledIf` if you want your Action
+    /// to be enabled if the receiver is.
+    private(set) lazy public var enabled: AnyProperty<Bool> = AnyProperty(initialValue: !self.loading.value, producer: self.loading.producer.map { !$0 })
     
     /// Initializes a ViewModel.
     public init() {
@@ -157,16 +171,6 @@ public class ViewModel: ViewModelType {
 }
 
 public extension ViewModelType {
-    /// Whether the receiver is currently enabled.
-    ///
-    /// This is the opposite of `loading`.
-    ///
-    /// Suitable to be used with `Action.enabledIf` if you want your Action
-    /// to be enabled if the receiver is.
-    public var enabled: AnyProperty<Bool> {
-        return AnyProperty(initialValue: false, producer: loading.producer.map { !$0 })
-    }
-    
     /// Binds `action.errors` to the receiver's `errors` and `action.executing` to `loading.`
     public func bindAction<Input, Output, Error: ViewModelErrorType>(action: Action<Input, Output, Error>) {
         bindErrors(action.errors)
