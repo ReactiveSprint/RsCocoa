@@ -79,7 +79,7 @@ public class FetchedArrayViewModel<Element: ViewModelType, PaginationType, Fetch
     }
     
     private(set) public lazy var count: AnyProperty<Int> = AnyProperty(initialValue: 0, producer: self._viewModels.producer.map { $0.count })
-
+    
     private(set) public lazy var isEmpty: AnyProperty<Bool> = AnyProperty(initialValue: self.count.value <= 0, producer: self.count.producer.map { $0 <= 0 })
     
     private(set) public lazy var localizedEmptyMessage = MutableProperty<String?>(nil)
@@ -109,6 +109,12 @@ public class FetchedArrayViewModel<Element: ViewModelType, PaginationType, Fetch
         
         return action
     }()
+    
+    /// If `true`, `refreshAction` will remove all items before invoking `fetchClosure`.
+    /// If `false`, items will be cleared when new items are received aka `SignalProducer.on(next:)`
+    ///
+    /// Default is `false.`
+    public var shouldClearPreRefresh = false
     
     /// Initializes an instance.
     ///
@@ -179,9 +185,13 @@ public class FetchedArrayViewModel<Element: ViewModelType, PaginationType, Fetch
     }
     
     private func _fetch(page: PaginationType? = nil) -> SignalProducer<[Element], FetchError> {
+        if _refreshing.value && shouldClearPreRefresh {
+            _viewModels.value.removeAll()
+        }
+        
         return self.fetchClosure(page)
             .on(next: { [unowned self] page, viewModels in
-                if self.refreshing.value {
+                if !self.shouldClearPreRefresh && self.refreshing.value {
                     self._viewModels.value.removeAll()
                 }
                 self._viewModels.value.appendContentsOf(viewModels)
