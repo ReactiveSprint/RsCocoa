@@ -33,7 +33,7 @@ public class ModelViewModel<Model: ModelType>: ViewModel, ModelViewModelType {
     }
 }
 
-public extension ModelViewModelType where Model: ModelSaving {
+public extension ModelViewModel where Model: ModelSaving {
     private func _createSaveAction() -> Action<Model.SaveInput, Model, Model.SaveError> {
         return Action(enabledIf: self.enabled) { [unowned self] in self.model.save($0) }
     }
@@ -48,7 +48,7 @@ public extension ModelViewModelType where Model: ModelSaving {
     }
 }
 
-public extension ModelViewModelType where Model: ModelSaving, Model.SaveError: ViewModelErrorType {
+public extension ModelViewModel where Model: ModelSaving, Model.SaveError: ViewModelErrorType {
     /// An action to save the wrapped model.
     ///
     /// This action is `enabledIf: self.enabled` and is bound to the receiver using `bindAction(action:)`
@@ -59,7 +59,7 @@ public extension ModelViewModelType where Model: ModelSaving, Model.SaveError: V
     }
 }
 
-public extension ModelViewModelType where Model: ModelFetching {
+public extension ModelViewModel where Model: ModelFetching {
     private func _createFetchAction() -> Action<Model.FetchInput, Model, Model.FetchError> {
         return Action(enabledIf: self.enabled) { [unowned self] in self.model.fetch($0) }
     }
@@ -74,7 +74,7 @@ public extension ModelViewModelType where Model: ModelFetching {
     }
 }
 
-public extension ModelViewModelType where Model: ModelFetching, Model.FetchError: ViewModelErrorType {
+public extension ModelViewModel where Model: ModelFetching, Model.FetchError: ViewModelErrorType {
     /// An action to fetch the wrapped model.
     ///
     /// This action is `enabledIf: self.enabled` and is bound to the receiver using `bindAction(action:)`
@@ -85,7 +85,7 @@ public extension ModelViewModelType where Model: ModelFetching, Model.FetchError
     }
 }
 
-public extension ModelViewModelType where Model: ModelDeleting {
+public extension ModelViewModel where Model: ModelDeleting {
     private func _createDeleteAction() -> Action<Model.DeleteInput, Model, Model.DeleteError> {
         return Action(enabledIf: self.enabled) { [unowned self] in self.model.delete($0) }
     }
@@ -100,7 +100,7 @@ public extension ModelViewModelType where Model: ModelDeleting {
     }
 }
 
-public extension ModelViewModelType where Model: ModelDeleting, Model.DeleteError: ViewModelErrorType {
+public extension ModelViewModel where Model: ModelDeleting, Model.DeleteError: ViewModelErrorType {
     /// An action to delete the wrapped model.
     ///
     /// This action is `enabledIf: self.enabled` and is bound to the receiver using `bindAction(action:)`

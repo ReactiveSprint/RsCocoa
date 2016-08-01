@@ -31,18 +31,6 @@ public protocol ViewModelType {
     /// Suitable to be used with `Action.enabledIf` if you want your Action
     /// to be enabled if the receiver is.
     var enabled: AnyProperty<Bool> { get }
-    
-    /// Binds `errorSignal` to the receiver's `errors.`
-    ///
-    /// This method allows you to forward errors without binding an Action.
-    ///
-    /// - Parameter errorSignal: A signal which sends ViewModelErrorType
-    func bindErrors<Error: ViewModelErrorType>(errorSignal: Signal<Error, NoError>)
-    
-    /// Binds 'loadingProducer` to the receiver's `loading.`
-    ///
-    /// - Parameter loadingProducer: A producer which sends `true` when loading and false otherwise.
-    func bindLoading(loadingProducer: SignalProducer<Bool, NoError>)
 }
 
 /// Abstract implementation of `ViewModel` used in `MVVM pattern`
@@ -170,7 +158,7 @@ public class ViewModel: ViewModelType {
     }
 }
 
-public extension ViewModelType {
+public extension ViewModel {
     /// Binds `action.errors` to the receiver's `errors` and `action.executing` to `loading.`
     public func bindAction<Input, Output, Error: ViewModelErrorType>(action: Action<Input, Output, Error>) {
         bindErrors(action.errors)
