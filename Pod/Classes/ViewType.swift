@@ -52,7 +52,7 @@ public extension ViewType {
     
     /// Binds viewModel's title to the receiver title.
     public func bindTitle(viewModel: ViewModelType) -> Disposable {
-        let titleProducer = viewModel.title.producer.forwardWhileActive(viewModel)
+        let titleProducer = viewModel.title.producer
         return titleProducer.startWithNext { [unowned self] title in
             self.title = title
         }

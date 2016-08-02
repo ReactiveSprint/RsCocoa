@@ -42,27 +42,6 @@ class ViewTypeSpec: QuickSpec {
         }
         
         describe("binding") {
-            it("should bind title") {
-                expect(view.title).to(beNil())
-                
-                viewModel.title.value = "Test1"
-                expect(view.title).to(beNil())
-                
-                viewModel.active.value = true
-                
-                viewModel.title.value = "Test2"
-                expect(view.title) == "Test2"
-                
-                viewModel.title.value = "Test3"
-                expect(view.title) == "Test3"
-                
-                viewModel.title.value = nil
-                expect(view.title).to(beNil())
-
-                viewModel.active.value = false
-                viewModel.title.value = "Test4"
-                expect(view.title).to(beNil())
-            }
         }
     }
     
